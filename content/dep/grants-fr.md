@@ -3,21 +3,25 @@
 _Source YAML: `grants.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [Divulgation des octrois de subventions et de contributions](#divulgation-des-octrois-de-subventions-et-de-contributions)
 - [Divulgation proactive - Subventions et les contributions  (Rien à signaler)](#divulgation-proactive-subventions-et-les-contributions-rien-signaler)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- [Divulgation des octrois de subventions et de contributions ](https://ouvert.canada.ca/data/fr/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831)
-- [Divulgation proactive - Subventions et les contributions  (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/grants.json
+## Ressources publiées
+
+Published data: [Divulgation des octrois de subventions et de contributions ](https://ouvert.canada.ca/data/fr/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831)
+Published data: [Divulgation proactive - Subventions et les contributions  (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/grants.json
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -40,7 +44,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [Divulgation des octrois de subventions et de contributions](#divulgation-des-octrois-de-subventions-et-de-contributions)
+<div id="divulgation-des-octrois-de-subventions-et-de-contributions"></div>
+
+## Divulgation des octrois de subventions et de contributions
 
 ### 1-1 Numéro de référence
 
@@ -1047,7 +1053,9 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Le bénéficiaire réaffecte ou redistribue la subvention ou la contribution octroyée à des tiers |
 
-## [Divulgation proactive - Subventions et les contributions  (Rien à signaler)](#divulgation-proactive-subventions-et-les-contributions-rien-signaler)
+<div id="divulgation-proactive-subventions-et-les-contributions-rien-signaler"></div>
+
+## Divulgation proactive - Subventions et les contributions  (Rien à signaler)
 
 ### 2-1 Année
 

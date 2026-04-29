@@ -3,21 +3,25 @@
 _Source YAML: `briefingt.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Proactive Disclosure - Briefing Note Titles and Numbers](#proactive-disclosure-briefing-note-titles-and-numbers)
 - [Proactive Publication - Briefing Note Titles and Numbers Nothing to Report](#proactive-publication-briefing-note-titles-and-numbers-nothing-to-report)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Proactive Disclosure - Briefing Note Titles and Numbers](https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/299a2e26-5103-4a49-ac3a-53db9fcc06c7)
-- [Proactive Publication - Briefing Note Titles and Numbers Nothing to Report](https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/5e28b544-720b-4745-9e55-3aac6464a4fb)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/briefingt.json
+## Published resources
+
+Published data: [Proactive Disclosure - Briefing Note Titles and Numbers](https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/299a2e26-5103-4a49-ac3a-53db9fcc06c7)
+Published data: [Proactive Publication - Briefing Note Titles and Numbers Nothing to Report](https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/5e28b544-720b-4745-9e55-3aac6464a4fb)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/briefingt.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -47,7 +51,9 @@ Controlled List Values:
 
 </details>
 
-## [Proactive Disclosure - Briefing Note Titles and Numbers](#proactive-disclosure-briefing-note-titles-and-numbers)
+<div id="proactive-disclosure-briefing-note-titles-and-numbers"></div>
+
+## Proactive Disclosure - Briefing Note Titles and Numbers
 
 ### 1-1 Briefing Note Number
 
@@ -234,7 +240,9 @@ Controlled List Values:
 | Validation FR | None |
 | Example Value | Programme des services familiaux |
 
-## [Proactive Publication - Briefing Note Titles and Numbers Nothing to Report](#proactive-publication-briefing-note-titles-and-numbers-nothing-to-report)
+<div id="proactive-publication-briefing-note-titles-and-numbers-nothing-to-report"></div>
+
+## Proactive Publication - Briefing Note Titles and Numbers Nothing to Report
 
 ### 2-1 Year
 

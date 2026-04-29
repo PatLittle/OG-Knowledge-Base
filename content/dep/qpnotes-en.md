@@ -3,21 +3,25 @@
 _Source YAML: `qpnotes.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Question Period Notes](#question-period-notes)
 - [Nothing to Report](#nothing-to-report)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Question Period Notes](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/c55a2862-7ec4-462c-a844-22acab664812)
-- [Nothing to Report](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/dba8cc4a-2a57-435c-a270-fa024474e609)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/qpnotes.json
+## Published resources
+
+Published data: [Question Period Notes](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/c55a2862-7ec4-462c-a844-22acab664812)
+Published data: [Nothing to Report](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/dba8cc4a-2a57-435c-a270-fa024474e609)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/qpnotes.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -47,7 +51,9 @@ Controlled List Values:
 
 </details>
 
-## [Question Period Notes](#question-period-notes)
+<div id="question-period-notes"></div>
+
+## Question Period Notes
 
 ### 1-1 Reference Number
 
@@ -389,7 +395,9 @@ Controlled List Values:
 | Validation FR | None |
 | Example Value | Le gouvernement continuera de travailler avec la commissaire à l’information, les parlementaires et d’autres intervenants afin d’être encore plus ouvert et transparent. |
 
-## [Nothing to Report](#nothing-to-report)
+<div id="nothing-to-report"></div>
+
+## Nothing to Report
 
 ### 2-1 Year
 

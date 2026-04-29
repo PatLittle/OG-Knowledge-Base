@@ -3,19 +3,23 @@
 _Source YAML: `dac.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)](#proactive-disclosure-departmental-audit-committees-2018-2019-q2-and-later)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)](https://open.canada.ca/data/dataset/8634f1c9-597e-416d-91f2-df24d2ffbeea/resource/499383b6-cd2a-466a-9fcf-910d3e427700)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/dac.json
+## Published resources
+
+Published data: [Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)](https://open.canada.ca/data/dataset/8634f1c9-597e-416d-91f2-df24d2ffbeea/resource/499383b6-cd2a-466a-9fcf-910d3e427700)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/dac.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -45,7 +49,9 @@ Controlled List Values:
 
 </details>
 
-## [Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)](#proactive-disclosure-departmental-audit-committees-2018-2019-q2-and-later)
+<div id="proactive-disclosure-departmental-audit-committees-2018-2019-q2-and-later"></div>
+
+## Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)
 
 ### 1-1 Reporting Period
 

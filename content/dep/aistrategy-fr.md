@@ -3,18 +3,22 @@
 _Source YAML: `aistrategy.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/aistrategy.json
+## Ressources publiées
+
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/aistrategy.json
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -37,7 +41,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
+<div id="ai-strategy-implementation-tracker"></div>
+
+## AI Strategy Implementation Tracker
 
 ### 1-1 Numéro de référence
 

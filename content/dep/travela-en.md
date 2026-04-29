@@ -3,19 +3,23 @@
 _Source YAML: `travela.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Annual Expenditures on Travel, Hospitality and Conferences](#annual-expenditures-on-travel-hospitality-and-conferences)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Annual Expenditures on Travel, Hospitality and Conferences](https://open.canada.ca/data/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/travela.json
+## Published resources
+
+Published data: [Annual Expenditures on Travel, Hospitality and Conferences](https://open.canada.ca/data/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/travela.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -45,7 +49,9 @@ Controlled List Values:
 
 </details>
 
-## [Annual Expenditures on Travel, Hospitality and Conferences](#annual-expenditures-on-travel-hospitality-and-conferences)
+<div id="annual-expenditures-on-travel-hospitality-and-conferences"></div>
+
+## Annual Expenditures on Travel, Hospitality and Conferences
 
 ### 1-1 Fiscal Year Ending
 

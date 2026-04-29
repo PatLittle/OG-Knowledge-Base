@@ -3,18 +3,20 @@
 _Source YAML: `contracts.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Contracts over $10,000](#contracts-over-10000)
 - [Proactive Publication - Contracts Nothing to Report](#proactive-publication-contracts-nothing-to-report)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Contracts over $10,000](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305)
-- [Proactive Publication - Contracts Nothing to Report](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/contracts.json
+## Published resources
+
+Published data: [Contracts over $10,000](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305)
+Published data: [Proactive Publication - Contracts Nothing to Report](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/contracts.json
 
 
 # Timelines
@@ -43,7 +45,9 @@ _Source YAML: `contracts.yaml`_
 14. Departments are to provide a nil report for any quarter in which no contract or amendment is disclosed.  Departments are to populate the ‘Reporting Period’ and ‘Nil Report’ data elements within the Nil Reporting template.
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -73,7 +77,9 @@ Controlled List Values:
 
 </details>
 
-## [Contracts over $10,000](#contracts-over-10000)
+<div id="contracts-over-10000"></div>
+
+## Contracts over $10,000
 
 ### 1-1 Reference Number
 
@@ -1421,7 +1427,9 @@ Controlled List Values:
 | 1995-1996-Q2 | 1995-1996-Q2 | 1995-1996-Q2 |
 | 1995-1996-Q1 | 1995-1996-Q1 | 1995-1996-Q1 |
 
-## [Proactive Publication - Contracts Nothing to Report](#proactive-publication-contracts-nothing-to-report)
+<div id="proactive-publication-contracts-nothing-to-report"></div>
+
+## Proactive Publication - Contracts Nothing to Report
 
 ### 2-1 Reporting Period
 

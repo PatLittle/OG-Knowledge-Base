@@ -3,21 +3,25 @@
 _Source YAML: `reclassification.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Proactive Disclosure - Position Reclassification](#proactive-disclosure-position-reclassification)
 - [Proactive Disclosure - Position Reclassification Nothing to Report](#proactive-disclosure-position-reclassification-nothing-to-report)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Proactive Disclosure - Position Reclassification](https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/bdaa5515-3782-4e5c-9d44-c25e032addb7)
-- [Proactive Disclosure - Position Reclassification Nothing to Report](https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/1e955e4d-df35-4441-bf38-b7086192ece2)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/reclassification.json
+## Published resources
+
+Published data: [Proactive Disclosure - Position Reclassification](https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/bdaa5515-3782-4e5c-9d44-c25e032addb7)
+Published data: [Proactive Disclosure - Position Reclassification Nothing to Report](https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/1e955e4d-df35-4441-bf38-b7086192ece2)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/reclassification.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -47,7 +51,9 @@ Controlled List Values:
 
 </details>
 
-## [Proactive Disclosure - Position Reclassification](#proactive-disclosure-position-reclassification)
+<div id="proactive-disclosure-position-reclassification"></div>
+
+## Proactive Disclosure - Position Reclassification
 
 ### 1-1 Reference Number
 
@@ -710,7 +716,9 @@ Controlled List Values:
 | Validation FR | Ce champ ne doit pas être vide |
 | Example Value | Changements des les fonctions de travail |
 
-## [Proactive Disclosure - Position Reclassification Nothing to Report](#proactive-disclosure-position-reclassification-nothing-to-report)
+<div id="proactive-disclosure-position-reclassification-nothing-to-report"></div>
+
+## Proactive Disclosure - Position Reclassification Nothing to Report
 
 ### 2-1 Year
 

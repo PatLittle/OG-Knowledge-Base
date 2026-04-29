@@ -3,18 +3,22 @@
 _Source YAML: `aistrategy.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/aistrategy.json
+## Published resources
+
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/aistrategy.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -44,7 +48,9 @@ Controlled List Values:
 
 </details>
 
-## [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
+<div id="ai-strategy-implementation-tracker"></div>
+
+## AI Strategy Implementation Tracker
 
 ### 1-1 Reference Number
 

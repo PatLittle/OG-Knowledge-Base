@@ -3,21 +3,25 @@
 _Source YAML: `grants.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Proactive Disclosure - Grants and Contributions](#proactive-disclosure-grants-and-contributions)
 - [Proactive Disclosure - Grants and Contributions Nothing to Report](#proactive-disclosure-grants-and-contributions-nothing-to-report)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Proactive Disclosure - Grants and Contributions](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831)
-- [Proactive Disclosure - Grants and Contributions Nothing to Report](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/grants.json
+## Published resources
+
+Published data: [Proactive Disclosure - Grants and Contributions](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831)
+Published data: [Proactive Disclosure - Grants and Contributions Nothing to Report](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/grants.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -47,7 +51,9 @@ Controlled List Values:
 
 </details>
 
-## [Proactive Disclosure - Grants and Contributions](#proactive-disclosure-grants-and-contributions)
+<div id="proactive-disclosure-grants-and-contributions"></div>
+
+## Proactive Disclosure - Grants and Contributions
 
 ### 1-1 Reference Number
 
@@ -1054,7 +1060,9 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Le bénéficiaire réaffecte ou redistribue la subvention ou la contribution octroyée à des tiers |
 
-## [Proactive Disclosure - Grants and Contributions Nothing to Report](#proactive-disclosure-grants-and-contributions-nothing-to-report)
+<div id="proactive-disclosure-grants-and-contributions-nothing-to-report"></div>
+
+## Proactive Disclosure - Grants and Contributions Nothing to Report
 
 ### 2-1 Year
 

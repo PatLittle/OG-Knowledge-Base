@@ -3,21 +3,25 @@
 _Source YAML: `travelq.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Proactive Disclosure - Travel Expenses](#proactive-disclosure-travel-expenses)
 - [Proactive Disclosure - Travel Expenses Nothing to Report](#proactive-disclosure-travel-expenses-nothing-to-report)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Proactive Disclosure - Travel Expenses](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c)
-- [Proactive Disclosure - Travel Expenses Nothing to Report](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/travelq.json
+## Published resources
+
+Published data: [Proactive Disclosure - Travel Expenses](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c)
+Published data: [Proactive Disclosure - Travel Expenses Nothing to Report](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/travelq.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -47,7 +51,9 @@ Controlled List Values:
 
 </details>
 
-## [Proactive Disclosure - Travel Expenses](#proactive-disclosure-travel-expenses)
+<div id="proactive-disclosure-travel-expenses"></div>
+
+## Proactive Disclosure - Travel Expenses
 
 ### 1-1 Reference Number
 
@@ -447,7 +453,9 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Fournir des commentaires explicatifs supplémentaires au besoin. |
 
-## [Proactive Disclosure - Travel Expenses Nothing to Report](#proactive-disclosure-travel-expenses-nothing-to-report)
+<div id="proactive-disclosure-travel-expenses-nothing-to-report"></div>
+
+## Proactive Disclosure - Travel Expenses Nothing to Report
 
 ### 2-1 Year
 

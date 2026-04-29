@@ -3,19 +3,23 @@
 _Source YAML: `nap5.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [NAP data](#nap-data)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [NAP data](https://open.canada.ca/data/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap5.json
+## Published resources
+
+Published data: [NAP data](https://open.canada.ca/data/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap5.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -45,7 +49,9 @@ Controlled List Values:
 
 </details>
 
-## [NAP data](#nap-data)
+<div id="nap-data"></div>
+
+## NAP data
 
 ### 1-1 Reporting Period
 
