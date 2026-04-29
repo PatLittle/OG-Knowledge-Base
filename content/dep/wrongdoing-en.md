@@ -3,19 +3,23 @@
 _Source YAML: `wrongdoing.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Proactive Disclosure - Acts of Founded Wrongdoing](#proactive-disclosure-acts-of-founded-wrongdoing)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Proactive Disclosure - Acts of Founded Wrongdoing](https://open.canada.ca/data/dataset/6e75f19c-d19d-48aa-984e-609c8d9bc403/resource/84a77a58-6bce-4bfb-ad67-bbe452523b14)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/wrongdoing.json
+## Published resources
+
+Published data: [Proactive Disclosure - Acts of Founded Wrongdoing](https://open.canada.ca/data/dataset/6e75f19c-d19d-48aa-984e-609c8d9bc403/resource/84a77a58-6bce-4bfb-ad67-bbe452523b14)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/wrongdoing.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -45,7 +49,9 @@ Controlled List Values:
 
 </details>
 
-## [Proactive Disclosure - Acts of Founded Wrongdoing](#proactive-disclosure-acts-of-founded-wrongdoing)
+<div id="proactive-disclosure-acts-of-founded-wrongdoing"></div>
+
+## Proactive Disclosure - Acts of Founded Wrongdoing
 
 ### 1-1 Reference Number
 

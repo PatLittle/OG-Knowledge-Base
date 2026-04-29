@@ -3,18 +3,22 @@
 _Source YAML: `nap6.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap6.json
+## Published resources
+
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap6.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -44,7 +48,9 @@ Controlled List Values:
 
 </details>
 
-## [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
+<div id="6th-national-action-plan-on-open-government-tracker"></div>
+
+## 6th National Action Plan on Open Government Tracker
 
 ### 1-1 Reporting Period
 

@@ -3,18 +3,20 @@
 _Source YAML: `contracts.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [Contrats de plus de 10 000 $](#contrats-de-plus-de-10-000)
 - [Publication proactive – Contrats (Rien à signaler)](#publication-proactive-contrats-rien-signaler)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- [Contrats de plus de 10 000 $](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305)
-- [Publication proactive – Contrats (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/contracts.json
+## Ressources publiées
+
+Published data: [Contrats de plus de 10 000 $](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305)
+Published data: [Publication proactive – Contrats (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/contracts.json
 
 
 # Calendrier
@@ -42,7 +44,9 @@ _Source YAML: `contracts.yaml`_
 14. Les ministères doivent fournir un rapport « rien à signaler » nul pour tout trimestre au cours duquel aucun marché ou modification n’est divulgué.  Les ministères doivent remplir les champs « période de référence » et « rien à signaler » dans le modèle de rapport « rien à signaler ».
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -65,7 +69,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [Contrats de plus de 10 000 $](#contrats-de-plus-de-10-000)
+<div id="contrats-de-plus-de-10-000"></div>
+
+## Contrats de plus de 10 000 $
 
 ### 1-1 Numéro de référence
 
@@ -1413,7 +1419,9 @@ Valeurs de la liste contrôlée :
 | 1995-1996-Q2 | 1995-1996-Q2 | 1995-1996-Q2 |
 | 1995-1996-Q1 | 1995-1996-Q1 | 1995-1996-Q1 |
 
-## [Publication proactive – Contrats (Rien à signaler)](#publication-proactive-contrats-rien-signaler)
+<div id="publication-proactive-contrats-rien-signaler"></div>
+
+## Publication proactive – Contrats (Rien à signaler)
 
 ### 2-1 Periode de declaration
 

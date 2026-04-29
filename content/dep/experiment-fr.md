@@ -3,19 +3,23 @@
 _Source YAML: `experiment.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [inventaire d'expérience](#inventaire-dexprience)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- [inventaire d'expérience](https://ouvert.canada.ca/data/fr/dataset/39954bc7-ff7a-4180-8b6e-b02bee35078a/resource/07151ad9-52e2-4f99-b4fd-7cd208816a64)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/experiment.json
+## Ressources publiées
+
+Published data: [inventaire d'expérience](https://ouvert.canada.ca/data/fr/dataset/39954bc7-ff7a-4180-8b6e-b02bee35078a/resource/07151ad9-52e2-4f99-b4fd-7cd208816a64)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/experiment.json
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -38,7 +42,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [inventaire d'expérience](#inventaire-dexprience)
+<div id="inventaire-dexprience"></div>
+
+## inventaire d'expérience
 
 ### 1-1 Numéro de référence
 

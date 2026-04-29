@@ -3,19 +3,23 @@
 _Source YAML: `adminaircraft.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [utilisation des avions d'affaires](#utilisation-des-avions-daffaires)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- [utilisation des avions d'affaires](https://ouvert.canada.ca/data/fr/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/adminaircraft.json
+## Ressources publiées
+
+Published data: [utilisation des avions d'affaires](https://ouvert.canada.ca/data/fr/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/adminaircraft.json
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -38,7 +42,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [utilisation des avions d'affaires](#utilisation-des-avions-daffaires)
+<div id="utilisation-des-avions-daffaires"></div>
+
+## utilisation des avions d'affaires
 
 ### 1-1 Numéro de référence
 

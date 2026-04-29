@@ -3,19 +3,23 @@
 _Source YAML: `inventory.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Open Data Inventory](#open-data-inventory)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Open Data Inventory](https://open.canada.ca/data/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7/resource/d0df95a8-31a9-46c9-853b-6952819ec7b4)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/inventory.json
+## Published resources
+
+Published data: [Open Data Inventory](https://open.canada.ca/data/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7/resource/d0df95a8-31a9-46c9-853b-6952819ec7b4)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/inventory.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -45,7 +49,9 @@ Controlled List Values:
 
 </details>
 
-## [Open Data Inventory](#open-data-inventory)
+<div id="open-data-inventory"></div>
+
+## Open Data Inventory
 
 ### 1-1 Reference Number
 

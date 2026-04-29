@@ -3,21 +3,25 @@
 _Source YAML: `ati.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Completed Access to Information Request Summaries dataset](#completed-access-to-information-request-summaries-dataset)
 - [Completed Access to Information Request Summaries dataset (Nothing to report)](#completed-access-to-information-request-summaries-dataset-nothing-to-report)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Completed Access to Information Request Summaries dataset](https://open.canada.ca/data/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/19383ca2-b01a-487d-88f7-e1ffbc7d39c2)
-- [Completed Access to Information Request Summaries dataset (Nothing to report)](https://open.canada.ca/data/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/5a1386a5-ba69-4725-8338-2f26004d7382)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/ati.json
+## Published resources
+
+Published data: [Completed Access to Information Request Summaries dataset](https://open.canada.ca/data/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/19383ca2-b01a-487d-88f7-e1ffbc7d39c2)
+Published data: [Completed Access to Information Request Summaries dataset (Nothing to report)](https://open.canada.ca/data/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/5a1386a5-ba69-4725-8338-2f26004d7382)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/ati.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -47,7 +51,9 @@ Controlled List Values:
 
 </details>
 
-## [Completed Access to Information Request Summaries dataset](#completed-access-to-information-request-summaries-dataset)
+<div id="completed-access-to-information-request-summaries-dataset"></div>
+
+## Completed Access to Information Request Summaries dataset
 
 ### 1-1 Year
 
@@ -212,7 +218,9 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Le dossier de divulgation comprend en plus des enregistrements audio |
 
-## [Completed Access to Information Request Summaries dataset (Nothing to report)](#completed-access-to-information-request-summaries-dataset-nothing-to-report)
+<div id="completed-access-to-information-request-summaries-dataset-nothing-to-report"></div>
+
+## Completed Access to Information Request Summaries dataset (Nothing to report)
 
 ### 2-1 Year
 

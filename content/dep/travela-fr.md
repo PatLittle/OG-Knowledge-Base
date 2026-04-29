@@ -3,19 +3,23 @@
 _Source YAML: `travela.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [Les dépenses annuelles totales de voyages, d’accueil et de conférences](#les-dpenses-annuelles-totales-de-voyages-daccueil-et-de-confrences)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- [Les dépenses annuelles totales de voyages, d’accueil et de conférences](https://ouvert.canada.ca/data/fr/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/travela.json
+## Ressources publiées
+
+Published data: [Les dépenses annuelles totales de voyages, d’accueil et de conférences](https://ouvert.canada.ca/data/fr/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/travela.json
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -38,7 +42,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [Les dépenses annuelles totales de voyages, d’accueil et de conférences](#les-dpenses-annuelles-totales-de-voyages-daccueil-et-de-confrences)
+<div id="les-dpenses-annuelles-totales-de-voyages-daccueil-et-de-confrences"></div>
+
+## Les dépenses annuelles totales de voyages, d’accueil et de conférences
 
 ### 1-1 Dépenses pour l’exercice financier se terminant
 

@@ -3,19 +3,23 @@
 _Source YAML: `adminaircraft.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Published resources](#published-resources)
 - [Legend](#legend)
 - [Use of Government Administrative Aircraft](#use-of-government-administrative-aircraft)
 
-## [Published resources](#published-resources)
+<div id="published-resources"></div>
 
-- [Use of Government Administrative Aircraft](https://open.canada.ca/data/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e)
-- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/adminaircraft.json
+## Published resources
+
+Published data: [Use of Government Administrative Aircraft](https://open.canada.ca/data/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e)
+Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/adminaircraft.json
 
 
-## [Legend](#legend)
+<div id="legend"></div>
+
+## Legend
 
 <details>
 <summary>Show legend</summary>
@@ -45,7 +49,9 @@ Controlled List Values:
 
 </details>
 
-## [Use of Government Administrative Aircraft](#use-of-government-administrative-aircraft)
+<div id="use-of-government-administrative-aircraft"></div>
+
+## Use of Government Administrative Aircraft
 
 ### 1-1 Reference Number
 

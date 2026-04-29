@@ -3,19 +3,23 @@
 _Source YAML: `contractsa.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [Total global – Contrats de 10 000 $ et moins](#total-global-contrats-de-10-000-et-moins)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- [Total global – Contrats de 10 000 $ et moins](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/2e9a82e2-bb18-4bff-a61e-59af3b429672)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/contractsa.json
+## Ressources publiées
+
+Published data: [Total global – Contrats de 10 000 $ et moins](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/2e9a82e2-bb18-4bff-a61e-59af3b429672)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/contractsa.json
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -38,7 +42,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [Total global – Contrats de 10 000 $ et moins](#total-global-contrats-de-10-000-et-moins)
+<div id="total-global-contrats-de-10-000-et-moins"></div>
+
+## Total global – Contrats de 10 000 $ et moins
 
 ### 1-1 Période de déclaration
 

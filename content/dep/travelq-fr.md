@@ -3,21 +3,25 @@
 _Source YAML: `travelq.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table of Contents
 
 - [Ressources publiées](#ressources-publies)
 - [Légende](#lgende)
 - [Divulgation des frais de voyage](#divulgation-des-frais-de-voyage)
 - [Divulgation proactive – Dépenses de voyage (Rien à signaler)](#divulgation-proactive-dpenses-de-voyage-rien-signaler)
 
-## [Ressources publiées](#ressources-publies)
+<div id="ressources-publies"></div>
 
-- [Divulgation des frais de voyage ](https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c)
-- [Divulgation proactive – Dépenses de voyage (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/travelq.json
+## Ressources publiées
+
+Published data: [Divulgation des frais de voyage ](https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c)
+Published data: [Divulgation proactive – Dépenses de voyage (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/travelq.json
 
 
-## [Légende](#lgende)
+<div id="lgende"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -40,7 +44,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [Divulgation des frais de voyage](#divulgation-des-frais-de-voyage)
+<div id="divulgation-des-frais-de-voyage"></div>
+
+## Divulgation des frais de voyage
 
 ### 1-1 Numéro de référence
 
@@ -440,7 +446,9 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Fournir des commentaires explicatifs supplémentaires au besoin. |
 
-## [Divulgation proactive – Dépenses de voyage (Rien à signaler)](#divulgation-proactive-dpenses-de-voyage-rien-signaler)
+<div id="divulgation-proactive-dpenses-de-voyage-rien-signaler"></div>
+
+## Divulgation proactive – Dépenses de voyage (Rien à signaler)
 
 ### 2-1 Année
 
