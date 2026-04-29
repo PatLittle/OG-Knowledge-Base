@@ -2,14 +2,22 @@
 
 _Source YAML: `reclassification.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Divulgation proactive - Reclassifications de postes](#divulgation-proactive-reclassifications-de-postes)
+- [Divulgation proactive - Reclassifications de postes (Rien à signaler)](#divulgation-proactive-reclassifications-de-postes-rien-signaler)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Divulgation proactive - Reclassifications de postes](https://ouvert.canada.ca/data/fr/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/bdaa5515-3782-4e5c-9d44-c25e032addb7)
 - [Divulgation proactive - Reclassifications de postes (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/1e955e4d-df35-4441-bf38-b7086192ece2)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/reclassification.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -32,7 +40,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Position Reclassification
+## [Divulgation proactive - Reclassifications de postes](#divulgation-proactive-reclassifications-de-postes)
 
 ### 1-1 Numéro de référence
 
@@ -695,7 +703,7 @@ Valeurs de la liste contrôlée :
 | Validation FR | Ce champ ne doit pas être vide |
 | Exemple de valeur | Changements des les fonctions de travail |
 
-## Proactive Publication - Position Reclassification
+## [Divulgation proactive - Reclassifications de postes (Rien à signaler)](#divulgation-proactive-reclassifications-de-postes-rien-signaler)
 
 ### 2-1 Année
 

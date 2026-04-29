@@ -2,13 +2,20 @@
 
 _Source YAML: `wrongdoing.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Divulgation proactive – Dossiers sur les actes répréhensibles fondés](#divulgation-proactive-dossiers-sur-les-actes-rprhensibles-fonds)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Divulgation proactive – Dossiers sur les actes répréhensibles fondés](https://ouvert.canada.ca/data/fr/dataset/6e75f19c-d19d-48aa-984e-609c8d9bc403/resource/84a77a58-6bce-4bfb-ad67-bbe452523b14)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/wrongdoing.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -31,7 +38,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Acts of Founded Wrongdoing
+## [Divulgation proactive – Dossiers sur les actes répréhensibles fondés](#divulgation-proactive-dossiers-sur-les-actes-rprhensibles-fonds)
 
 ### 1-1 Numéro de référence
 

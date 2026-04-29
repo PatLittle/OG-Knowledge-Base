@@ -2,14 +2,22 @@
 
 _Source YAML: `service.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Renseignements sur l'identification des services, données volumétrique (pour 2024)](#renseignements-sur-lidentification-des-services-donnes-volumtrique-pour-2024)
+- [Normes relatives aux services et résultats de rendement (pour 2024)](#normes-relatives-aux-services-et-rsultats-de-rendement-pour-2024)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Renseignements sur l'identification des services, données volumétrique (pour 2024)](https://ouvert.canada.ca/data/fr/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c/resource/c0cf9766-b85b-48c3-b295-34f72305aaf6)
 - [Normes relatives aux services et résultats de rendement (pour 2024)](https://ouvert.canada.ca/data/fr/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c/resource/8736cd7e-9bf9-4a45-9eee-a6cb3c43c07e)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/service.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -32,7 +40,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Service Inventory
+## [Renseignements sur l'identification des services, données volumétrique (pour 2024)](#renseignements-sur-lidentification-des-services-donnes-volumtrique-pour-2024)
 
 ### 1-1 Exercice financier
 
@@ -2174,7 +2182,7 @@ Valeurs de la liste contrôlée :
 | Limite de caractères | 1500 |
 | Exemple de valeur | https://www.canada.ca/fr/services/prestations/pensionspubliques/rpc/securite-vieillesse.html |
 
-## Service Inventory
+## [Normes relatives aux services et résultats de rendement (pour 2024)](#normes-relatives-aux-services-et-rsultats-de-rendement-pour-2024)
 
 ### 2-1 Exercice financier
 

@@ -2,13 +2,24 @@
 
 _Source YAML: `adminaircraft.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Use of Government Administrative Aircraft](#use-of-government-administrative-aircraft)
+
+## [Published resources](#published-resources)
 
 - [Use of Government Administrative Aircraft](https://open.canada.ca/data/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/adminaircraft.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Use of Administrative Aircraft
+
+</details>
+
+## [Use of Government Administrative Aircraft](#use-of-government-administrative-aircraft)
 
 ### 1-1 Reference Number
 

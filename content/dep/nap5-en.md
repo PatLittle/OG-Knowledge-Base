@@ -2,13 +2,24 @@
 
 _Source YAML: `nap5.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [NAP data](#nap-data)
+
+## [Published resources](#published-resources)
 
 - [NAP data](https://open.canada.ca/data/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap5.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## 5th National Action Plan on Open Government Tracker
+
+</details>
+
+## [NAP data](#nap-data)
 
 ### 1-1 Reporting Period
 

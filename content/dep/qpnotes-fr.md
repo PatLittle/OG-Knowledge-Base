@@ -2,14 +2,22 @@
 
 _Source YAML: `qpnotes.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Notes pour la période de questions](#notes-pour-la-priode-de-questions)
+- [Rien à signaler](#rien-signaler)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Notes pour la période de questions](https://ouvert.canada.ca/data/fr/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/c55a2862-7ec4-462c-a844-22acab664812)
 - [Rien à signaler](https://ouvert.canada.ca/data/fr/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/dba8cc4a-2a57-435c-a270-fa024474e609)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/qpnotes.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -32,7 +40,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Question Period Notes
+## [Notes pour la période de questions](#notes-pour-la-priode-de-questions)
 
 ### 1-1 Numéro de référence
 
@@ -374,7 +382,7 @@ Valeurs de la liste contrôlée :
 | Validation FR | None |
 | Exemple de valeur | Le gouvernement continuera de travailler avec la commissaire à l’information, les parlementaires et d’autres intervenants afin d’être encore plus ouvert et transparent. |
 
-## Proactive Publication - Question Period Notes
+## [Rien à signaler](#rien-signaler)
 
 ### 2-1 Année
 

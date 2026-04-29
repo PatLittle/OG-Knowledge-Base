@@ -2,13 +2,20 @@
 
 _Source YAML: `nap5.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Données PAN](#donnes-pan)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Données PAN](https://ouvert.canada.ca/data/fr/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/nap5.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -31,7 +38,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## 5th National Action Plan on Open Government Tracker
+## [Données PAN](#donnes-pan)
 
 ### 1-1 Période de déclaration
 

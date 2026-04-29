@@ -2,12 +2,23 @@
 
 _Source YAML: `aistrategy.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
+
+## [Published resources](#published-resources)
 
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/aistrategy.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -30,7 +41,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## AI Strategy Implementation Tracker
+
+</details>
+
+## [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
 
 ### 1-1 Reference Number
 

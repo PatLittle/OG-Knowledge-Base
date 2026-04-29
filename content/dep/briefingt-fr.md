@@ -2,14 +2,22 @@
 
 _Source YAML: `briefingt.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Divulgation proactive - titres at numéros des notes d’information](#divulgation-proactive-titres-at-numros-des-notes-dinformation)
+- [Publication proactive - Titres et numéros des notes d’information rien à signaler](#publication-proactive-titres-et-numros-des-notes-dinformation-rien-signaler)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Divulgation proactive - titres at numéros des notes d’information](https://ouvert.canada.ca/data/fr/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/299a2e26-5103-4a49-ac3a-53db9fcc06c7)
 - [Publication proactive - Titres et numéros des notes d’information rien à signaler](https://ouvert.canada.ca/data/fr/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/5e28b544-720b-4745-9e55-3aac6464a4fb)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/briefingt.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -32,7 +40,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+## [Divulgation proactive - titres at numéros des notes d’information](#divulgation-proactive-titres-at-numros-des-notes-dinformation)
 
 ### 1-1 Numéro de suivi
 
@@ -219,7 +227,7 @@ Valeurs de la liste contrôlée :
 | Validation FR | None |
 | Exemple de valeur | Programme des services familiaux |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+## [Publication proactive - Titres et numéros des notes d’information rien à signaler](#publication-proactive-titres-et-numros-des-notes-dinformation-rien-signaler)
 
 ### 2-1 Année
 

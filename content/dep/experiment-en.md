@@ -2,13 +2,24 @@
 
 _Source YAML: `experiment.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Experimental Inventory](#experimental-inventory)
+
+## [Published resources](#published-resources)
 
 - [Experimental Inventory](https://open.canada.ca/data/dataset/39954bc7-ff7a-4180-8b6e-b02bee35078a/resource/07151ad9-52e2-4f99-b4fd-7cd208816a64)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/experiment.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Experimentation Inventory
+
+</details>
+
+## [Experimental Inventory](#experimental-inventory)
 
 ### 1-1 Reference Number
 

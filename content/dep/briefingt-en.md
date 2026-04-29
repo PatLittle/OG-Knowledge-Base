@@ -2,14 +2,26 @@
 
 _Source YAML: `briefingt.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Proactive Disclosure - Briefing Note Titles and Numbers](#proactive-disclosure-briefing-note-titles-and-numbers)
+- [Proactive Publication - Briefing Note Titles and Numbers Nothing to Report](#proactive-publication-briefing-note-titles-and-numbers-nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Proactive Disclosure - Briefing Note Titles and Numbers](https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/299a2e26-5103-4a49-ac3a-53db9fcc06c7)
 - [Proactive Publication - Briefing Note Titles and Numbers Nothing to Report](https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/5e28b544-720b-4745-9e55-3aac6464a4fb)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/briefingt.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+
+</details>
+
+## [Proactive Disclosure - Briefing Note Titles and Numbers](#proactive-disclosure-briefing-note-titles-and-numbers)
 
 ### 1-1 Briefing Note Number
 
@@ -219,7 +234,7 @@ Controlled List Values:
 | Validation FR | None |
 | Example Value | Programme des services familiaux |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+## [Proactive Publication - Briefing Note Titles and Numbers Nothing to Report](#proactive-publication-briefing-note-titles-and-numbers-nothing-to-report)
 
 ### 2-1 Year
 

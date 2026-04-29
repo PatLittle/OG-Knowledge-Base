@@ -2,13 +2,24 @@
 
 _Source YAML: `contractsa.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Aggregated Total - Contracts $10K and under](#aggregated-total-contracts-10k-and-under)
+
+## [Published resources](#published-resources)
 
 - [Aggregated Total - Contracts $10K and under](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/2e9a82e2-bb18-4bff-a61e-59af3b429672)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/contractsa.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Aggregated Contracts from -$10,000 to $10,000
+
+</details>
+
+## [Aggregated Total - Contracts $10K and under](#aggregated-total-contracts-10k-and-under)
 
 ### 1-1 Calendar Year Reporting Period
 

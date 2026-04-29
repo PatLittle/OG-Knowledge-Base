@@ -2,13 +2,24 @@
 
 _Source YAML: `wrongdoing.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Proactive Disclosure - Acts of Founded Wrongdoing](#proactive-disclosure-acts-of-founded-wrongdoing)
+
+## [Published resources](#published-resources)
 
 - [Proactive Disclosure - Acts of Founded Wrongdoing](https://open.canada.ca/data/dataset/6e75f19c-d19d-48aa-984e-609c8d9bc403/resource/84a77a58-6bce-4bfb-ad67-bbe452523b14)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/wrongdoing.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Acts of Founded Wrongdoing
+
+</details>
+
+## [Proactive Disclosure - Acts of Founded Wrongdoing](#proactive-disclosure-acts-of-founded-wrongdoing)
 
 ### 1-1 Reference Number
 

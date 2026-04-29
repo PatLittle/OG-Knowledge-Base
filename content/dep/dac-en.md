@@ -2,13 +2,24 @@
 
 _Source YAML: `dac.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)](#proactive-disclosure-departmental-audit-committees-2018-2019-q2-and-later)
+
+## [Published resources](#published-resources)
 
 - [Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)](https://open.canada.ca/data/dataset/8634f1c9-597e-416d-91f2-df24d2ffbeea/resource/499383b6-cd2a-466a-9fcf-910d3e427700)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/dac.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Departmental Audit Committee
+
+</details>
+
+## [Proactive Disclosure - Departmental Audit Committees (2018-2019-Q2 and later)](#proactive-disclosure-departmental-audit-committees-2018-2019-q2-and-later)
 
 ### 1-1 Reporting Period
 

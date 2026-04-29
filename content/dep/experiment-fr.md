@@ -2,13 +2,20 @@
 
 _Source YAML: `experiment.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [inventaire d'expérience](#inventaire-dexprience)
+
+## [Ressources publiées](#ressources-publies)
 
 - [inventaire d'expérience](https://ouvert.canada.ca/data/fr/dataset/39954bc7-ff7a-4180-8b6e-b02bee35078a/resource/07151ad9-52e2-4f99-b4fd-7cd208816a64)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/experiment.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -31,7 +38,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Experimentation Inventory
+## [inventaire d'expérience](#inventaire-dexprience)
 
 ### 1-1 Numéro de référence
 
