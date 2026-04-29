@@ -1,4 +1,5 @@
 const DEP_PROFILES = [
+  { id: "index", yaml: "", title: "Index" },
   { id: "adminaircraft", yaml: "adminaircraft.yaml", title: "Proactive Publication - Use of Administrative Aircraft" },
   { id: "aistrategy", yaml: "aistrategy.yaml", title: "AI Strategy Implementation Tracker" },
   { id: "ati", yaml: "ati.yaml", title: "ATI Summaries" },
@@ -35,7 +36,7 @@ const I18N = {
 
 let searchIndex = null;
 
-const GITHUB_REPO_EDIT_BASE = "https://github.com/open-government-portal/OG-Knowledge-Base/blob/main/";
+const GITHUB_REPO_EDIT_BASE = "https://github.com/PatLittle/OG-Knowledge-Base/blob/main/";
 
 function getGithubEditLink(path) {
   return `${GITHUB_REPO_EDIT_BASE}${path}`;
@@ -44,7 +45,7 @@ function getGithubEditLink(path) {
 function renderEditPageButton(container, lang, path) {
   const link = getGithubEditLink(path);
   const buttonLabel = I18N[lang].editPage;
-  container.insertAdjacentHTML("beforeend", `<p class="kb-edit-page-wrap"><a class="kb-edit-page-btn" href="${link}" target="_blank" rel="noopener noreferrer">${buttonLabel}</a></p>`);
+  container.insertAdjacentHTML("beforeend", `<p class="kb-edit-page-wrap"><a class="kb-edit-page-btn" href="${link}" target="_blank" rel="noopener noreferrer"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" aria-hidden="true" width="18" height="18" /> ${buttonLabel}</a></p>`);
 }
 
 function getLang() { return new URLSearchParams(window.location.search).get("lang") === "fr" ? "fr" : "en"; }
@@ -56,7 +57,7 @@ function normalizeText(value) { return value.toLowerCase().replace(/[`#*_>[\]()-
 function renderNav(lang) {
   const text = I18N[lang];
   const nav = document.getElementById("kb-side-nav");
-  nav.innerHTML = `<gcds-nav-link href="${buildHref(lang)}">${text.overview}</gcds-nav-link><gcds-nav-group menu-label="${text.dep}" open-trigger>${DEP_PROFILES.map((d)=>`<gcds-nav-link data-page-link="dep:${d.id}" href="${buildHref(lang,`dep:${d.id}`)}">${d.title}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group menu-label="${text.metadata}" open-trigger>${METADATA_PAGES.map((d)=>`<gcds-nav-link data-page-link="metadata:${d.id}" href="${buildHref(lang,`metadata:${d.id}`)}">${lang === "fr" ? d.titleFr : d.titleEn}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group menu-label="${text.skills}" open-trigger><gcds-nav-link href="content/skills/deplane-dep-markdown/SKILL.md">deplane-dep-markdown</gcds-nav-link></gcds-nav-group>`;
+  nav.innerHTML = `<gcds-nav-link href="${buildHref(lang)}">${text.overview}</gcds-nav-link><gcds-nav-group label="PD Data Profiles" open-trigger>${DEP_PROFILES.map((d)=>`<gcds-nav-link data-page-link="dep:${d.id}" href="${buildHref(lang,`dep:${d.id}`)}">${d.title}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group label="OG Portal Metadata" open-trigger>${METADATA_PAGES.map((d)=>`<gcds-nav-link data-page-link="metadata:${d.id}" href="${buildHref(lang,`metadata:${d.id}`)}">${lang === "fr" ? d.titleFr : d.titleEn}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group label="SKILLS.md" open-trigger><gcds-nav-link href="content/skills/deplane-dep-markdown/SKILL.md">deplane-dep-markdown</gcds-nav-link></gcds-nav-group>`;
 }
 
 function setActive(pageId) { document.querySelectorAll("[data-page-link]").forEach((n)=>n.toggleAttribute("current", n.dataset.pageLink === pageId)); }
@@ -117,8 +118,6 @@ async function renderSearch(container, lang, query) {
   target.innerHTML = `<ul class="kb-search-results">${ranked.map((doc) => `<li><a href="${doc.url}">${doc.profile.title}</a><p>${doc.snippet}...</p></li>`).join("")}</ul>`;
 }
 
-function renderHome(container, lang) { const t = I18N[lang]; container.innerHTML = `<gcds-heading tag="h1">${t.kb}</gcds-heading><p class="kb-meta">${lang === "fr" ? "Documentation DEP bilingue avec fichiers séparés par profil." : "Bilingual DEP documentation with profile-per-file content."}</p>`; }
-
 function configureFooter(lang) {
   const footer = document.querySelector("gcds-footer");
   if (!footer) return;
@@ -126,9 +125,9 @@ function configureFooter(lang) {
   footer.setAttribute(
     "contextual-links",
     JSON.stringify({
-      EN: buildHref("en"),
-      FR: buildHref("fr"),
-      "GitHub repo": "https://github.com/open-government-portal/OG-Knowledge-Base"
+      "Open Government Portal": "https://open.canada.ca",
+      "API Documentation": "https://open.canada.ca/data/en/dataset/2d90548d-50ef-4802-91f8-c59c5cf68251",
+      "GitHub repo": "https://github.com/PatLittle/OG-Knowledge-Base"
     })
   );
 }
@@ -157,7 +156,7 @@ async function init() {
   if (q) await renderSearch(c, lang, q);
   else if (pageId.startsWith("dep:")) await renderMarkdown(c, lang, `content/dep/${pageId.replace("dep:","")}-${lang}.md`);
   else if (pageId.startsWith("metadata:")) await renderMarkdown(c, lang, `content/metadata/${pageId.replace("metadata:","")}-${lang}.md`);
-  else renderHome(c, lang);
+  else await renderMarkdown(c, lang, `content/home/index-${lang}.md`);
 
   const side = document.querySelector(".kb-sidebar");
   const layout = document.getElementById("kb-layout");
