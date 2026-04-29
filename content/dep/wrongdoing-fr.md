@@ -4,7 +4,7 @@ _Source YAML: `wrongdoing.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/6e75f19c-d19d-48aa-984e-609c8d9bc403/resource/84a77a58-6bce-4bfb-ad67-bbe452523b14
+- [Divulgation proactive – Dossiers sur les actes répréhensibles fondés](https://ouvert.canada.ca/data/fr/dataset/6e75f19c-d19d-48aa-984e-609c8d9bc403/resource/84a77a58-6bce-4bfb-ad67-bbe452523b14)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/wrongdoing.json
 
 

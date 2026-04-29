@@ -4,7 +4,7 @@ _Source YAML: `inventory.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7/resource/d0df95a8-31a9-46c9-853b-6952819ec7b4
+- [Répertoire des données ouvertes](https://ouvert.canada.ca/data/fr/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7/resource/d0df95a8-31a9-46c9-853b-6952819ec7b4)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/inventory.json
 
 

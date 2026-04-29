@@ -4,8 +4,8 @@ _Source YAML: `qpnotes.yaml`_
 
 ## Published resources
 
-- https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/c55a2862-7ec4-462c-a844-22acab664812
-- https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/dba8cc4a-2a57-435c-a270-fa024474e609
+- [Question Period Notes](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/c55a2862-7ec4-462c-a844-22acab664812)
+- [Nothing to Report](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/dba8cc4a-2a57-435c-a270-fa024474e609)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/qpnotes.json
 
 

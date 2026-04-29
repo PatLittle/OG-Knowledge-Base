@@ -4,7 +4,7 @@ _Source YAML: `adminaircraft.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e
+- [utilisation des avions d'affaires](https://ouvert.canada.ca/data/fr/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/adminaircraft.json
 
 

@@ -4,7 +4,7 @@ _Source YAML: `contractsa.yaml`_
 
 ## Published resources
 
-- https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/2e9a82e2-bb18-4bff-a61e-59af3b429672
+- [Aggregated Total - Contracts $10K and under](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/2e9a82e2-bb18-4bff-a61e-59af3b429672)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/contractsa.json
 
 

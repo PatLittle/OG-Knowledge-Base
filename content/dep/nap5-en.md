@@ -4,7 +4,7 @@ _Source YAML: `nap5.yaml`_
 
 ## Published resources
 
-- https://open.canada.ca/data/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396
+- [NAP data](https://open.canada.ca/data/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap5.json
 
 

@@ -4,8 +4,8 @@ _Source YAML: `ati.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/19383ca2-b01a-487d-88f7-e1ffbc7d39c2
-- https://ouvert.canada.ca/data/fr/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/5a1386a5-ba69-4725-8338-2f26004d7382
+- [Jeu de données des sommaires de demandes d’accès à l’information complétées](https://ouvert.canada.ca/data/fr/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/19383ca2-b01a-487d-88f7-e1ffbc7d39c2)
+- [Jeu de données des sommaires de demandes d’accès à l’information complétées (rien à déclarer)](https://ouvert.canada.ca/data/fr/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/5a1386a5-ba69-4725-8338-2f26004d7382)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/ati.json
 
 

@@ -4,7 +4,7 @@ _Source YAML: `travela.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171
+- [Les dépenses annuelles totales de voyages, d’accueil et de conférences](https://ouvert.canada.ca/data/fr/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/travela.json
 
 
