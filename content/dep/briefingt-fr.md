@@ -4,8 +4,8 @@ _Source YAML: `briefingt.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/299a2e26-5103-4a49-ac3a-53db9fcc06c7
-- https://ouvert.canada.ca/data/fr/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/5e28b544-720b-4745-9e55-3aac6464a4fb
+- [Divulgation proactive - titres at numéros des notes d’information](https://ouvert.canada.ca/data/fr/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/299a2e26-5103-4a49-ac3a-53db9fcc06c7)
+- [Publication proactive - Titres et numéros des notes d’information rien à signaler](https://ouvert.canada.ca/data/fr/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/5e28b544-720b-4745-9e55-3aac6464a4fb)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/briefingt.json
 
 

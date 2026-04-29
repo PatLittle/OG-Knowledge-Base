@@ -4,7 +4,7 @@ _Source YAML: `dac.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/8634f1c9-597e-416d-91f2-df24d2ffbeea/resource/499383b6-cd2a-466a-9fcf-910d3e427700
+- [Divulgation proactive - Comités ministériels d'audit (2018-2019-Q2 et plus tard)](https://ouvert.canada.ca/data/fr/dataset/8634f1c9-597e-416d-91f2-df24d2ffbeea/resource/499383b6-cd2a-466a-9fcf-910d3e427700)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/dac.json
 
 

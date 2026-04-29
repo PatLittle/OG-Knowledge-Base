@@ -4,8 +4,8 @@ _Source YAML: `travelq.yaml`_
 
 ## Published resources
 
-- https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c
-- https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2
+- [Proactive Disclosure - Travel Expenses](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c)
+- [Proactive Disclosure - Travel Expenses Nothing to Report](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/travelq.json
 
 

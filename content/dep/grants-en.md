@@ -4,8 +4,8 @@ _Source YAML: `grants.yaml`_
 
 ## Published resources
 
-- https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831
-- https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475
+- [Proactive Disclosure - Grants and Contributions](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831)
+- [Proactive Disclosure - Grants and Contributions Nothing to Report](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/grants.json
 
 

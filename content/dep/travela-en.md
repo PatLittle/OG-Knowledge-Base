@@ -4,7 +4,7 @@ _Source YAML: `travela.yaml`_
 
 ## Published resources
 
-- https://open.canada.ca/data/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171
+- [Annual Expenditures on Travel, Hospitality and Conferences](https://open.canada.ca/data/dataset/4ae27978-0931-49ab-9c17-0b119c0ba92f/resource/a811cac0-2a2a-4440-8a81-2994fc753171)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/travela.json
 
 

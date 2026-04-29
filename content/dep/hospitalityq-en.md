@@ -4,8 +4,8 @@ _Source YAML: `hospitalityq.yaml`_
 
 ## Published resources
 
-- https://open.canada.ca/data/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/7b301f1a-2a7a-48bd-9ea9-e0ac4a5313ed
-- https://open.canada.ca/data/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/36a3b6cc-4f45-4081-8dbd-2340ca487041
+- [Proactive Disclosure - Hospitality Expenses](https://open.canada.ca/data/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/7b301f1a-2a7a-48bd-9ea9-e0ac4a5313ed)
+- [Proactive Disclosure - Hospitality Nothing to Report](https://open.canada.ca/data/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/36a3b6cc-4f45-4081-8dbd-2340ca487041)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/hospitalityq.json
 
 

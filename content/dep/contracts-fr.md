@@ -4,8 +4,8 @@ _Source YAML: `contracts.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305
-- https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68
+- [Contrats de plus de 10 000 $](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305)
+- [Publication proactive – Contrats (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/contracts.json
 
 

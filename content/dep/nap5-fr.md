@@ -4,7 +4,7 @@ _Source YAML: `nap5.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396
+- [Données PAN](https://ouvert.canada.ca/data/fr/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/nap5.json
 
 

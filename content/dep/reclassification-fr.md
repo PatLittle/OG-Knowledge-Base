@@ -4,8 +4,8 @@ _Source YAML: `reclassification.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/bdaa5515-3782-4e5c-9d44-c25e032addb7
-- https://ouvert.canada.ca/data/fr/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/1e955e4d-df35-4441-bf38-b7086192ece2
+- [Divulgation proactive - Reclassifications de postes](https://ouvert.canada.ca/data/fr/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/bdaa5515-3782-4e5c-9d44-c25e032addb7)
+- [Divulgation proactive - Reclassifications de postes (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/1e955e4d-df35-4441-bf38-b7086192ece2)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/reclassification.json
 
 

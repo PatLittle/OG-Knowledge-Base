@@ -4,7 +4,7 @@ _Source YAML: `consultations.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/7c03f039-3753-4093-af60-74b0f7b2385d/resource/92bec4b7-6feb-4215-a5f7-61da342b2354
+- [Consultations - Toutes](https://ouvert.canada.ca/data/fr/dataset/7c03f039-3753-4093-af60-74b0f7b2385d/resource/92bec4b7-6feb-4215-a5f7-61da342b2354)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/consultations.json
 
 

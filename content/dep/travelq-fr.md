@@ -4,8 +4,8 @@ _Source YAML: `travelq.yaml`_
 
 ## Ressources publiées
 
-- https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c
-- https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2
+- [Divulgation des frais de voyage ](https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c)
+- [Divulgation proactive – Dépenses de voyage (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/travelq.json
 
 
