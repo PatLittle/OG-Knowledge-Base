@@ -54,10 +54,28 @@ function getSearchQuery() { return new URLSearchParams(window.location.search).g
 function buildHref(lang, page = "", query = "") { const p = new URLSearchParams(); if (lang === "fr") p.set("lang", "fr"); if (page) p.set("page", page); if (query.trim()) p.set("q", query.trim()); const q = p.toString(); return q ? `index.html?${q}` : "index.html"; }
 function normalizeText(value) { return value.toLowerCase().replace(/[`#*_>[\]()-]/g, " ").replace(/\s+/g, " ").trim(); }
 
+function mapMarkdownPathToPage(path, lang) {
+  if (!path || /^(https?:|mailto:|#)/i.test(path)) return "";
+  const depMatch = path.match(/^([a-z0-9-]+)-(en|fr)\.md$/i);
+  if (depMatch) {
+    const depId = depMatch[1].toLowerCase();
+    if (DEP_PROFILES.some((profile) => profile.id === depId)) return buildHref(lang, `dep:${depId}`);
+    if (METADATA_PAGES.some((page) => page.id === depId)) return buildHref(lang, `metadata:${depId}`);
+  }
+  return "";
+}
+
+function rewriteDocLinks(root, lang) {
+  root.querySelectorAll("a[href]").forEach((link) => {
+    const mappedHref = mapMarkdownPathToPage(link.getAttribute("href"), lang);
+    if (mappedHref) link.setAttribute("href", mappedHref);
+  });
+}
+
 function renderNav(lang) {
   const text = I18N[lang];
   const nav = document.getElementById("kb-side-nav");
-  nav.innerHTML = `<gcds-nav-link href="${buildHref(lang)}">${text.overview}</gcds-nav-link><gcds-nav-group label="PD Data Profiles" open-trigger>${DEP_PROFILES.map((d)=>`<gcds-nav-link data-page-link="dep:${d.id}" href="${buildHref(lang,`dep:${d.id}`)}">${d.title}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group label="OG Portal Metadata" open-trigger>${METADATA_PAGES.map((d)=>`<gcds-nav-link data-page-link="metadata:${d.id}" href="${buildHref(lang,`metadata:${d.id}`)}">${lang === "fr" ? d.titleFr : d.titleEn}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group label="SKILLS.md" open-trigger><gcds-nav-link href="content/skills/deplane-dep-markdown/SKILL.md">deplane-dep-markdown</gcds-nav-link></gcds-nav-group>`;
+  nav.innerHTML = `<gcds-nav-link slot="home" href="${buildHref(lang)}">${text.kb}</gcds-nav-link><gcds-nav-group open-trigger="${text.dep}" menu-label="${text.dep}">${DEP_PROFILES.map((d)=>`<gcds-nav-link data-page-link="dep:${d.id}" href="${buildHref(lang,`dep:${d.id}`)}">${d.title}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group open-trigger="${text.metadata}" menu-label="${text.metadata}">${METADATA_PAGES.map((d)=>`<gcds-nav-link data-page-link="metadata:${d.id}" href="${buildHref(lang,`metadata:${d.id}`)}">${lang === "fr" ? d.titleFr : d.titleEn}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group open-trigger="${text.skills}" menu-label="${text.skills}"><gcds-nav-link href="https://github.com/PatLittle/OG-Knowledge-Base/tree/main/content/skills">Skills directory (GitHub)</gcds-nav-link><gcds-nav-link href="https://github.com/PatLittle/OG-Knowledge-Base/blob/main/content/skills/deplane-dep-markdown/SKILL.md">deplane-dep-markdown</gcds-nav-link></gcds-nav-group>`;
 }
 
 function setActive(pageId) { document.querySelectorAll("[data-page-link]").forEach((n)=>n.toggleAttribute("current", n.dataset.pageLink === pageId)); }
@@ -69,7 +87,10 @@ async function renderMarkdown(container, lang, path) {
   const target = document.getElementById("kb-rendered");
   const resp = await fetch(md);
   target.innerHTML = resp.ok ? marked.parse(await resp.text(), { mangle: false, headerIds: true }) : `<p>Could not load <code>${md}</code>.</p>`;
-  if (resp.ok) renderEditPageButton(container, lang, md);
+  if (resp.ok) {
+    rewriteDocLinks(target, lang);
+    renderEditPageButton(container, lang, md);
+  }
 }
 
 async function buildSearchIndex(lang) {
