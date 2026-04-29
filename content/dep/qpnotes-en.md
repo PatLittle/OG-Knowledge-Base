@@ -2,14 +2,26 @@
 
 _Source YAML: `qpnotes.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Question Period Notes](#question-period-notes)
+- [Nothing to Report](#nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Question Period Notes](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/c55a2862-7ec4-462c-a844-22acab664812)
 - [Nothing to Report](https://open.canada.ca/data/dataset/ecd1a913-47da-47fc-8f96-2432be420986/resource/dba8cc4a-2a57-435c-a270-fa024474e609)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/qpnotes.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Question Period Notes
+
+</details>
+
+## [Question Period Notes](#question-period-notes)
 
 ### 1-1 Reference Number
 
@@ -374,7 +389,7 @@ Controlled List Values:
 | Validation FR | None |
 | Example Value | Le gouvernement continuera de travailler avec la commissaire à l’information, les parlementaires et d’autres intervenants afin d’être encore plus ouvert et transparent. |
 
-## Proactive Publication - Question Period Notes
+## [Nothing to Report](#nothing-to-report)
 
 ### 2-1 Year
 

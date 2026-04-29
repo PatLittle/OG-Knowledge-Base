@@ -2,13 +2,20 @@
 
 _Source YAML: `consultations.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Consultations - Toutes](#consultations-toutes)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Consultations - Toutes](https://ouvert.canada.ca/data/fr/dataset/7c03f039-3753-4093-af60-74b0f7b2385d/resource/92bec4b7-6feb-4215-a5f7-61da342b2354)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/consultations.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -31,7 +38,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Open Dialogue - Consultations
+## [Consultations - Toutes](#consultations-toutes)
 
 ### 1-1 Numéro d’enregistrement
 

@@ -2,12 +2,23 @@
 
 _Source YAML: `nap6.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
+
+## [Published resources](#published-resources)
 
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap6.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -30,7 +41,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## 6th National Action Plan on Open Government Tracker
+
+</details>
+
+## [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
 
 ### 1-1 Reporting Period
 

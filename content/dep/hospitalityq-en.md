@@ -2,14 +2,26 @@
 
 _Source YAML: `hospitalityq.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Proactive Disclosure - Hospitality Expenses](#proactive-disclosure-hospitality-expenses)
+- [Proactive Disclosure - Hospitality Nothing to Report](#proactive-disclosure-hospitality-nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Proactive Disclosure - Hospitality Expenses](https://open.canada.ca/data/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/7b301f1a-2a7a-48bd-9ea9-e0ac4a5313ed)
 - [Proactive Disclosure - Hospitality Nothing to Report](https://open.canada.ca/data/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/36a3b6cc-4f45-4081-8dbd-2340ca487041)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/hospitalityq.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Hospitality Expenses
+
+</details>
+
+## [Proactive Disclosure - Hospitality Expenses](#proactive-disclosure-hospitality-expenses)
 
 ### 1-1 Reference Number
 
@@ -415,7 +430,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Fournir des commentaires explicatifs additionnels au besoin. |
 
-## Proactive Publication - Hospitality Expenses
+## [Proactive Disclosure - Hospitality Nothing to Report](#proactive-disclosure-hospitality-nothing-to-report)
 
 ### 2-1 Year
 

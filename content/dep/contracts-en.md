@@ -2,7 +2,15 @@
 
 _Source YAML: `contracts.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Contracts over $10,000](#contracts-over-10000)
+- [Proactive Publication - Contracts Nothing to Report](#proactive-publication-contracts-nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Contracts over $10,000](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305)
 - [Proactive Publication - Contracts Nothing to Report](https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68)
@@ -35,7 +43,11 @@ _Source YAML: `contracts.yaml`_
 14. Departments are to provide a nil report for any quarter in which no contract or amendment is disclosed.  Departments are to populate the ‘Reporting Period’ and ‘Nil Report’ data elements within the Nil Reporting template.
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -58,7 +70,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Contracts over $10,000
+
+</details>
+
+## [Contracts over $10,000](#contracts-over-10000)
 
 ### 1-1 Reference Number
 
@@ -1406,7 +1421,7 @@ Controlled List Values:
 | 1995-1996-Q2 | 1995-1996-Q2 | 1995-1996-Q2 |
 | 1995-1996-Q1 | 1995-1996-Q1 | 1995-1996-Q1 |
 
-## Proactive Publication - Contracts over $10,000
+## [Proactive Publication - Contracts Nothing to Report](#proactive-publication-contracts-nothing-to-report)
 
 ### 2-1 Reporting Period
 

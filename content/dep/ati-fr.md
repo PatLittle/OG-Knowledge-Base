@@ -2,14 +2,22 @@
 
 _Source YAML: `ati.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Jeu de données des sommaires de demandes d’accès à l’information complétées](#jeu-de-donnes-des-sommaires-de-demandes-daccs-linformation-compltes)
+- [Jeu de données des sommaires de demandes d’accès à l’information complétées (rien à déclarer)](#jeu-de-donnes-des-sommaires-de-demandes-daccs-linformation-compltes-rien-dclarer)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Jeu de données des sommaires de demandes d’accès à l’information complétées](https://ouvert.canada.ca/data/fr/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/19383ca2-b01a-487d-88f7-e1ffbc7d39c2)
 - [Jeu de données des sommaires de demandes d’accès à l’information complétées (rien à déclarer)](https://ouvert.canada.ca/data/fr/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/5a1386a5-ba69-4725-8338-2f26004d7382)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/ati.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -32,7 +40,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## ATI Summaries
+## [Jeu de données des sommaires de demandes d’accès à l’information complétées](#jeu-de-donnes-des-sommaires-de-demandes-daccs-linformation-compltes)
 
 ### 1-1 Année
 
@@ -197,7 +205,7 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Le dossier de divulgation comprend en plus des enregistrements audio |
 
-## ATI Summaries
+## [Jeu de données des sommaires de demandes d’accès à l’information complétées (rien à déclarer)](#jeu-de-donnes-des-sommaires-de-demandes-daccs-linformation-compltes-rien-dclarer)
 
 ### 2-1 Année
 

@@ -4,7 +4,7 @@ Generated from source YAML schemas in `ckanext-canada-master/ckanext/canada/tabl
 
 Total profiles: 20
 
-## Included profiles
+## [Included profiles](#included-profiles)
 
 - `adminaircraft.yaml`: Proactive Publication - Use of Administrative Aircraft
 - `aistrategy.yaml`: AI Strategy Implementation Tracker
@@ -31,7 +31,61 @@ Total profiles: 20
 
 _Source YAML: `adminaircraft.yaml`_
 
-## Légende
+
+## [Table of Contents](#table-of-contents)
+
+- [Included profiles](#included-profiles)
+- [Légende](#lgende)
+- [Proactive Publication - Use of Administrative Aircraft](#proactive-publication-use-of-administrative-aircraft)
+- [Légende](#lgende)
+- [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
+- [Légende](#lgende)
+- [ATI Summaries](#ati-summaries)
+- [ATI Summaries](#ati-summaries)
+- [Légende](#lgende)
+- [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
+- [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
+- [Légende](#lgende)
+- [Open Dialogue - Consultations](#open-dialogue-consultations)
+- [Légende](#lgende)
+- [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
+- [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
+- [Légende](#lgende)
+- [Proactive Publication - Aggregated Contracts from -$10,000 to $10,000](#proactive-publication-aggregated-contracts-from-10000-to-10000)
+- [Légende](#lgende)
+- [Proactive Publication - Departmental Audit Committee](#proactive-publication-departmental-audit-committee)
+- [Légende](#lgende)
+- [Experimentation Inventory](#experimentation-inventory)
+- [Légende](#lgende)
+- [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
+- [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
+- [Légende](#lgende)
+- [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
+- [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
+- [Légende](#lgende)
+- [Open Data Inventory](#open-data-inventory)
+- [Légende](#lgende)
+- [5th National Action Plan on Open Government Tracker](#5th-national-action-plan-on-open-government-tracker)
+- [Légende](#lgende)
+- [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
+- [Légende](#lgende)
+- [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
+- [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
+- [Légende](#lgende)
+- [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
+- [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
+- [Légende](#lgende)
+- [Service Inventory](#service-inventory)
+- [Service Inventory](#service-inventory)
+- [Légende](#lgende)
+- [Proactive Publication - Annual Travel, Hospitality and Conferences](#proactive-publication-annual-travel-hospitality-and-conferences)
+- [Légende](#lgende)
+- [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
+- [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
+- [Légende](#lgende)
+- [Proactive Publication - Acts of Founded Wrongdoing](#proactive-publication-acts-of-founded-wrongdoing)
+
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -54,7 +108,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Use of Administrative Aircraft
+## [Proactive Publication - Use of Administrative Aircraft](#proactive-publication-use-of-administrative-aircraft)
 
 ### 1-1 Numéro de référence
 
@@ -386,7 +440,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `aistrategy.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -409,7 +463,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## AI Strategy Implementation Tracker
+## [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
 
 ### 1-1 Numéro de référence
 
@@ -821,7 +875,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `ati.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -844,7 +898,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## ATI Summaries
+## [ATI Summaries](#ati-summaries)
 
 ### 1-1 Année
 
@@ -1009,7 +1063,7 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Le dossier de divulgation comprend en plus des enregistrements audio |
 
-## ATI Summaries
+## [ATI Summaries](#ati-summaries)
 
 ### 2-1 Année
 
@@ -1052,7 +1106,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `briefingt.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -1075,7 +1129,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+## [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
 
 ### 1-1 Numéro de suivi
 
@@ -1262,7 +1316,7 @@ Valeurs de la liste contrôlée :
 | Validation FR | None |
 | Exemple de valeur | Programme des services familiaux |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+## [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
 
 ### 2-1 Année
 
@@ -1305,7 +1359,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `consultations.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -1328,7 +1382,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Open Dialogue - Consultations
+## [Open Dialogue - Consultations](#open-dialogue-consultations)
 
 ### 1-1 Numéro d’enregistrement
 
@@ -1897,7 +1951,7 @@ _Source YAML: `contracts.yaml`_
 14. Les ministères doivent fournir un rapport « rien à signaler » nul pour tout trimestre au cours duquel aucun marché ou modification n’est divulgué.  Les ministères doivent remplir les champs « période de référence » et « rien à signaler » dans le modèle de rapport « rien à signaler ».
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -1920,7 +1974,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Contracts over $10,000
+## [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
 
 ### 1-1 Numéro de référence
 
@@ -3268,7 +3322,7 @@ Valeurs de la liste contrôlée :
 | 1995-1996-Q2 | 1995-1996-Q2 | 1995-1996-Q2 |
 | 1995-1996-Q1 | 1995-1996-Q1 | 1995-1996-Q1 |
 
-## Proactive Publication - Contracts over $10,000
+## [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
 
 ### 2-1 Periode de declaration
 
@@ -3423,7 +3477,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `contractsa.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -3446,7 +3500,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Aggregated Contracts from -$10,000 to $10,000
+## [Proactive Publication - Aggregated Contracts from -$10,000 to $10,000](#proactive-publication-aggregated-contracts-from-10000-to-10000)
 
 ### 1-1 Période de déclaration
 
@@ -3659,7 +3713,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `dac.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -3682,7 +3736,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Departmental Audit Committee
+## [Proactive Publication - Departmental Audit Committee](#proactive-publication-departmental-audit-committee)
 
 ### 1-1 Période de déclaration
 
@@ -3941,7 +3995,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `experiment.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -3964,7 +4018,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Experimentation Inventory
+## [Experimentation Inventory](#experimentation-inventory)
 
 ### 1-1 Numéro de référence
 
@@ -4391,7 +4445,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `grants.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -4414,7 +4468,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Grants and Contributions
+## [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
 
 ### 1-1 Numéro de référence
 
@@ -5421,7 +5475,7 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Le bénéficiaire réaffecte ou redistribue la subvention ou la contribution octroyée à des tiers |
 
-## Proactive Publication - Grants and Contributions
+## [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
 
 ### 2-1 Année
 
@@ -5503,7 +5557,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `hospitalityq.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -5526,7 +5580,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Hospitality Expenses
+## [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
 
 ### 1-1 Numéro de référence
 
@@ -5909,7 +5963,7 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Fournir des commentaires explicatifs additionnels au besoin. |
 
-## Proactive Publication - Hospitality Expenses
+## [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
 
 ### 2-1 Année
 
@@ -5969,7 +6023,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `inventory.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -5992,7 +6046,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Open Data Inventory
+## [Open Data Inventory](#open-data-inventory)
 
 ### 1-1 Numéro de référence
 
@@ -6291,7 +6345,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `nap5.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -6314,7 +6368,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## 5th National Action Plan on Open Government Tracker
+## [5th National Action Plan on Open Government Tracker](#5th-national-action-plan-on-open-government-tracker)
 
 ### 1-1 Période de déclaration
 
@@ -7741,7 +7795,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `nap6.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -7764,7 +7818,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## 6th National Action Plan on Open Government Tracker
+## [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
 
 ### 1-1 Période de déclaration
 
@@ -8686,7 +8740,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `qpnotes.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -8709,7 +8763,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Question Period Notes
+## [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
 
 ### 1-1 Numéro de référence
 
@@ -9051,7 +9105,7 @@ Valeurs de la liste contrôlée :
 | Validation FR | None |
 | Exemple de valeur | Le gouvernement continuera de travailler avec la commissaire à l’information, les parlementaires et d’autres intervenants afin d’être encore plus ouvert et transparent. |
 
-## Proactive Publication - Question Period Notes
+## [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
 
 ### 2-1 Année
 
@@ -9101,7 +9155,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `reclassification.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -9124,7 +9178,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Position Reclassification
+## [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
 
 ### 1-1 Numéro de référence
 
@@ -9787,7 +9841,7 @@ Valeurs de la liste contrôlée :
 | Validation FR | Ce champ ne doit pas être vide |
 | Exemple de valeur | Changements des les fonctions de travail |
 
-## Proactive Publication - Position Reclassification
+## [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
 
 ### 2-1 Année
 
@@ -9839,7 +9893,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `service.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -9862,7 +9916,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Service Inventory
+## [Service Inventory](#service-inventory)
 
 ### 1-1 Exercice financier
 
@@ -12004,7 +12058,7 @@ Valeurs de la liste contrôlée :
 | Limite de caractères | 1500 |
 | Exemple de valeur | https://www.canada.ca/fr/services/prestations/pensionspubliques/rpc/securite-vieillesse.html |
 
-## Service Inventory
+## [Service Inventory](#service-inventory)
 
 ### 2-1 Exercice financier
 
@@ -12456,7 +12510,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `travela.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -12479,7 +12533,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Annual Travel, Hospitality and Conferences
+## [Proactive Publication - Annual Travel, Hospitality and Conferences](#proactive-publication-annual-travel-hospitality-and-conferences)
 
 ### 1-1 Dépenses pour l’exercice financier se terminant
 
@@ -12841,7 +12895,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `travelq.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -12864,7 +12918,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Travel Expenses
+## [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
 
 ### 1-1 Numéro de référence
 
@@ -13264,7 +13318,7 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Fournir des commentaires explicatifs supplémentaires au besoin. |
 
-## Proactive Publication - Travel Expenses
+## [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
 
 ### 2-1 Année
 
@@ -13324,7 +13378,7 @@ Valeurs de la liste contrôlée :
 
 _Source YAML: `wrongdoing.yaml`_
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -13347,7 +13401,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Acts of Founded Wrongdoing
+## [Proactive Publication - Acts of Founded Wrongdoing](#proactive-publication-acts-of-founded-wrongdoing)
 
 ### 1-1 Numéro de référence
 

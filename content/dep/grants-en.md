@@ -2,14 +2,26 @@
 
 _Source YAML: `grants.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Proactive Disclosure - Grants and Contributions](#proactive-disclosure-grants-and-contributions)
+- [Proactive Disclosure - Grants and Contributions Nothing to Report](#proactive-disclosure-grants-and-contributions-nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Proactive Disclosure - Grants and Contributions](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831)
 - [Proactive Disclosure - Grants and Contributions Nothing to Report](https://open.canada.ca/data/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/grants.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Grants and Contributions
+
+</details>
+
+## [Proactive Disclosure - Grants and Contributions](#proactive-disclosure-grants-and-contributions)
 
 ### 1-1 Reference Number
 
@@ -1039,7 +1054,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Le bénéficiaire réaffecte ou redistribue la subvention ou la contribution octroyée à des tiers |
 
-## Proactive Publication - Grants and Contributions
+## [Proactive Disclosure - Grants and Contributions Nothing to Report](#proactive-disclosure-grants-and-contributions-nothing-to-report)
 
 ### 2-1 Year
 

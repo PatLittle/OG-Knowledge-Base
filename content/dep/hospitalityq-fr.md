@@ -2,14 +2,22 @@
 
 _Source YAML: `hospitalityq.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Divulgation des frais d'accueil](#divulgation-des-frais-daccueil)
+- [Divulgation proactive – Dépenses d'accueil (Rien à signaler)](#divulgation-proactive-dpenses-daccueil-rien-signaler)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Divulgation des frais d'accueil](https://ouvert.canada.ca/data/fr/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/7b301f1a-2a7a-48bd-9ea9-e0ac4a5313ed)
 - [Divulgation proactive – Dépenses d'accueil (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/36a3b6cc-4f45-4081-8dbd-2340ca487041)
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/hospitalityq.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -32,7 +40,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Hospitality Expenses
+## [Divulgation des frais d'accueil](#divulgation-des-frais-daccueil)
 
 ### 1-1 Numéro de référence
 
@@ -415,7 +423,7 @@ Valeurs de la liste contrôlée :
 | Validation FR |   |
 | Exemple de valeur | Fournir des commentaires explicatifs additionnels au besoin. |
 
-## Proactive Publication - Hospitality Expenses
+## [Divulgation proactive – Dépenses d'accueil (Rien à signaler)](#divulgation-proactive-dpenses-daccueil-rien-signaler)
 
 ### 2-1 Année
 

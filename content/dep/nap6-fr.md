@@ -2,12 +2,19 @@
 
 _Source YAML: `nap6.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
+
+## [Ressources publiées](#ressources-publies)
 
 - Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/nap6.json
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -30,7 +37,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## 6th National Action Plan on Open Government Tracker
+## [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
 
 ### 1-1 Période de déclaration
 

@@ -2,14 +2,26 @@
 
 _Source YAML: `reclassification.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Proactive Disclosure - Position Reclassification](#proactive-disclosure-position-reclassification)
+- [Proactive Disclosure - Position Reclassification Nothing to Report](#proactive-disclosure-position-reclassification-nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Proactive Disclosure - Position Reclassification](https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/bdaa5515-3782-4e5c-9d44-c25e032addb7)
 - [Proactive Disclosure - Position Reclassification Nothing to Report](https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/1e955e4d-df35-4441-bf38-b7086192ece2)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/reclassification.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Position Reclassification
+
+</details>
+
+## [Proactive Disclosure - Position Reclassification](#proactive-disclosure-position-reclassification)
 
 ### 1-1 Reference Number
 
@@ -695,7 +710,7 @@ Controlled List Values:
 | Validation FR | Ce champ ne doit pas être vide |
 | Example Value | Changements des les fonctions de travail |
 
-## Proactive Publication - Position Reclassification
+## [Proactive Disclosure - Position Reclassification Nothing to Report](#proactive-disclosure-position-reclassification-nothing-to-report)
 
 ### 2-1 Year
 

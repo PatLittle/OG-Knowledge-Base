@@ -2,7 +2,15 @@
 
 _Source YAML: `contracts.yaml`_
 
-## Ressources publiées
+
+## [Table of Contents](#table-of-contents)
+
+- [Ressources publiées](#ressources-publies)
+- [Légende](#lgende)
+- [Contrats de plus de 10 000 $](#contrats-de-plus-de-10-000)
+- [Publication proactive – Contrats (Rien à signaler)](#publication-proactive-contrats-rien-signaler)
+
+## [Ressources publiées](#ressources-publies)
 
 - [Contrats de plus de 10 000 $](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305)
 - [Publication proactive – Contrats (Rien à signaler)](https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68)
@@ -34,7 +42,7 @@ _Source YAML: `contracts.yaml`_
 14. Les ministères doivent fournir un rapport « rien à signaler » nul pour tout trimestre au cours duquel aucun marché ou modification n’est divulgué.  Les ministères doivent remplir les champs « période de référence » et « rien à signaler » dans le modèle de rapport « rien à signaler ».
 
 
-## Légende
+## [Légende](#lgende)
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -57,7 +65,7 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## Proactive Publication - Contracts over $10,000
+## [Contrats de plus de 10 000 $](#contrats-de-plus-de-10-000)
 
 ### 1-1 Numéro de référence
 
@@ -1405,7 +1413,7 @@ Valeurs de la liste contrôlée :
 | 1995-1996-Q2 | 1995-1996-Q2 | 1995-1996-Q2 |
 | 1995-1996-Q1 | 1995-1996-Q1 | 1995-1996-Q1 |
 
-## Proactive Publication - Contracts over $10,000
+## [Publication proactive – Contrats (Rien à signaler)](#publication-proactive-contrats-rien-signaler)
 
 ### 2-1 Periode de declaration
 

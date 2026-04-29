@@ -2,13 +2,24 @@
 
 _Source YAML: `consultations.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Consultations - All](#consultations-all)
+
+## [Published resources](#published-resources)
 
 - [Consultations - All ](https://open.canada.ca/data/dataset/7c03f039-3753-4093-af60-74b0f7b2385d/resource/92bec4b7-6feb-4215-a5f7-61da342b2354)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/consultations.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Open Dialogue - Consultations
+
+</details>
+
+## [Consultations - All](#consultations-all)
 
 ### 1-1 Registration Number
 

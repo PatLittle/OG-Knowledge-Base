@@ -2,14 +2,26 @@
 
 _Source YAML: `service.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Service Identification Information & Metrics (2024)](#service-identification-information-metrics-2024)
+- [Service Standards & Performance Results (2024)](#service-standards-performance-results-2024)
+
+## [Published resources](#published-resources)
 
 - [Service Identification Information & Metrics (2024)](https://open.canada.ca/data/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c/resource/c0cf9766-b85b-48c3-b295-34f72305aaf6)
 - [Service Standards & Performance Results (2024)](https://open.canada.ca/data/dataset/3ac0d080-6149-499a-8b06-7ce5f00ec56c/resource/8736cd7e-9bf9-4a45-9eee-a6cb3c43c07e)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/service.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Service Inventory
+
+</details>
+
+## [Service Identification Information & Metrics (2024)](#service-identification-information-metrics-2024)
 
 ### 1-1 Fiscal Year
 
@@ -2174,7 +2189,7 @@ Controlled List Values:
 | Character Limit | 1500 |
 | Example Value | https://www.canada.ca/fr/services/prestations/pensionspubliques/rpc/securite-vieillesse.html |
 
-## Service Inventory
+## [Service Standards & Performance Results (2024)](#service-standards-performance-results-2024)
 
 ### 2-1 Fiscal Year
 

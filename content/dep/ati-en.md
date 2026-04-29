@@ -2,14 +2,26 @@
 
 _Source YAML: `ati.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Completed Access to Information Request Summaries dataset](#completed-access-to-information-request-summaries-dataset)
+- [Completed Access to Information Request Summaries dataset (Nothing to report)](#completed-access-to-information-request-summaries-dataset-nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Completed Access to Information Request Summaries dataset](https://open.canada.ca/data/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/19383ca2-b01a-487d-88f7-e1ffbc7d39c2)
 - [Completed Access to Information Request Summaries dataset (Nothing to report)](https://open.canada.ca/data/dataset/0797e893-751e-4695-8229-a5066e4fe43c/resource/5a1386a5-ba69-4725-8338-2f26004d7382)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/ati.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## ATI Summaries
+
+</details>
+
+## [Completed Access to Information Request Summaries dataset](#completed-access-to-information-request-summaries-dataset)
 
 ### 1-1 Year
 
@@ -197,7 +212,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Le dossier de divulgation comprend en plus des enregistrements audio |
 
-## ATI Summaries
+## [Completed Access to Information Request Summaries dataset (Nothing to report)](#completed-access-to-information-request-summaries-dataset-nothing-to-report)
 
 ### 2-1 Year
 

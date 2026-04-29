@@ -4,7 +4,7 @@ Generated from source YAML schemas in `ckanext-canada-master/ckanext/canada/tabl
 
 Total profiles: 20
 
-## Included profiles
+## [Included profiles](#included-profiles)
 
 - `adminaircraft.yaml`: Proactive Publication - Use of Administrative Aircraft
 - `aistrategy.yaml`: AI Strategy Implementation Tracker
@@ -31,7 +31,65 @@ Total profiles: 20
 
 _Source YAML: `adminaircraft.yaml`_
 
-## Legend
+
+## [Table of Contents](#table-of-contents)
+
+- [Included profiles](#included-profiles)
+- [Legend](#legend)
+- [Proactive Publication - Use of Administrative Aircraft](#proactive-publication-use-of-administrative-aircraft)
+- [Legend](#legend)
+- [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
+- [Legend](#legend)
+- [ATI Summaries](#ati-summaries)
+- [ATI Summaries](#ati-summaries)
+- [Legend](#legend)
+- [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
+- [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
+- [Legend](#legend)
+- [Open Dialogue - Consultations](#open-dialogue-consultations)
+- [Legend](#legend)
+- [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
+- [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
+- [Legend](#legend)
+- [Proactive Publication - Aggregated Contracts from -$10,000 to $10,000](#proactive-publication-aggregated-contracts-from-10000-to-10000)
+- [Legend](#legend)
+- [Proactive Publication - Departmental Audit Committee](#proactive-publication-departmental-audit-committee)
+- [Legend](#legend)
+- [Experimentation Inventory](#experimentation-inventory)
+- [Legend](#legend)
+- [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
+- [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
+- [Legend](#legend)
+- [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
+- [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
+- [Legend](#legend)
+- [Open Data Inventory](#open-data-inventory)
+- [Legend](#legend)
+- [5th National Action Plan on Open Government Tracker](#5th-national-action-plan-on-open-government-tracker)
+- [Legend](#legend)
+- [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
+- [Legend](#legend)
+- [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
+- [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
+- [Legend](#legend)
+- [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
+- [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
+- [Legend](#legend)
+- [Service Inventory](#service-inventory)
+- [Service Inventory](#service-inventory)
+- [Legend](#legend)
+- [Proactive Publication - Annual Travel, Hospitality and Conferences](#proactive-publication-annual-travel-hospitality-and-conferences)
+- [Legend](#legend)
+- [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
+- [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
+- [Legend](#legend)
+- [Proactive Publication - Acts of Founded Wrongdoing](#proactive-publication-acts-of-founded-wrongdoing)
+
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -54,7 +112,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Use of Administrative Aircraft
+
+</details>
+
+## [Proactive Publication - Use of Administrative Aircraft](#proactive-publication-use-of-administrative-aircraft)
 
 ### 1-1 Reference Number
 
@@ -386,7 +447,7 @@ Controlled List Values:
 
 _Source YAML: `aistrategy.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -409,7 +470,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## AI Strategy Implementation Tracker
+## [AI Strategy Implementation Tracker](#ai-strategy-implementation-tracker)
 
 ### 1-1 Reference Number
 
@@ -821,7 +882,7 @@ Controlled List Values:
 
 _Source YAML: `ati.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -844,7 +905,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## ATI Summaries
+## [ATI Summaries](#ati-summaries)
 
 ### 1-1 Year
 
@@ -1009,7 +1070,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Le dossier de divulgation comprend en plus des enregistrements audio |
 
-## ATI Summaries
+## [ATI Summaries](#ati-summaries)
 
 ### 2-1 Year
 
@@ -1052,7 +1113,7 @@ Controlled List Values:
 
 _Source YAML: `briefingt.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -1075,7 +1136,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+## [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
 
 ### 1-1 Briefing Note Number
 
@@ -1262,7 +1323,7 @@ Controlled List Values:
 | Validation FR | None |
 | Example Value | Programme des services familiaux |
 
-## Proactive Publication - Briefing Note Titles and Numbers
+## [Proactive Publication - Briefing Note Titles and Numbers](#proactive-publication-briefing-note-titles-and-numbers)
 
 ### 2-1 Year
 
@@ -1305,7 +1366,7 @@ Controlled List Values:
 
 _Source YAML: `consultations.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -1328,7 +1389,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Open Dialogue - Consultations
+## [Open Dialogue - Consultations](#open-dialogue-consultations)
 
 ### 1-1 Registration Number
 
@@ -1898,7 +1959,7 @@ _Source YAML: `contracts.yaml`_
 14. Departments are to provide a nil report for any quarter in which no contract or amendment is disclosed.  Departments are to populate the ‘Reporting Period’ and ‘Nil Report’ data elements within the Nil Reporting template.
 
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -1921,7 +1982,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Contracts over $10,000
+## [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
 
 ### 1-1 Reference Number
 
@@ -3269,7 +3330,7 @@ Controlled List Values:
 | 1995-1996-Q2 | 1995-1996-Q2 | 1995-1996-Q2 |
 | 1995-1996-Q1 | 1995-1996-Q1 | 1995-1996-Q1 |
 
-## Proactive Publication - Contracts over $10,000
+## [Proactive Publication - Contracts over $10,000](#proactive-publication-contracts-over-10000)
 
 ### 2-1 Reporting Period
 
@@ -3424,7 +3485,7 @@ Controlled List Values:
 
 _Source YAML: `contractsa.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -3447,7 +3508,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Aggregated Contracts from -$10,000 to $10,000
+## [Proactive Publication - Aggregated Contracts from -$10,000 to $10,000](#proactive-publication-aggregated-contracts-from-10000-to-10000)
 
 ### 1-1 Calendar Year Reporting Period
 
@@ -3660,7 +3721,7 @@ Controlled List Values:
 
 _Source YAML: `dac.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -3683,7 +3744,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Departmental Audit Committee
+## [Proactive Publication - Departmental Audit Committee](#proactive-publication-departmental-audit-committee)
 
 ### 1-1 Reporting Period
 
@@ -3942,7 +4003,7 @@ Controlled List Values:
 
 _Source YAML: `experiment.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -3965,7 +4026,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Experimentation Inventory
+## [Experimentation Inventory](#experimentation-inventory)
 
 ### 1-1 Reference Number
 
@@ -4392,7 +4453,7 @@ Controlled List Values:
 
 _Source YAML: `grants.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -4415,7 +4476,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Grants and Contributions
+## [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
 
 ### 1-1 Reference Number
 
@@ -5422,7 +5483,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Le bénéficiaire réaffecte ou redistribue la subvention ou la contribution octroyée à des tiers |
 
-## Proactive Publication - Grants and Contributions
+## [Proactive Publication - Grants and Contributions](#proactive-publication-grants-and-contributions)
 
 ### 2-1 Year
 
@@ -5504,7 +5565,7 @@ Controlled List Values:
 
 _Source YAML: `hospitalityq.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -5527,7 +5588,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Hospitality Expenses
+## [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
 
 ### 1-1 Reference Number
 
@@ -5910,7 +5971,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Fournir des commentaires explicatifs additionnels au besoin. |
 
-## Proactive Publication - Hospitality Expenses
+## [Proactive Publication - Hospitality Expenses](#proactive-publication-hospitality-expenses)
 
 ### 2-1 Year
 
@@ -5970,7 +6031,7 @@ Controlled List Values:
 
 _Source YAML: `inventory.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -5993,7 +6054,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Open Data Inventory
+## [Open Data Inventory](#open-data-inventory)
 
 ### 1-1 Reference Number
 
@@ -6292,7 +6353,7 @@ Controlled List Values:
 
 _Source YAML: `nap5.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -6315,7 +6376,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## 5th National Action Plan on Open Government Tracker
+## [5th National Action Plan on Open Government Tracker](#5th-national-action-plan-on-open-government-tracker)
 
 ### 1-1 Reporting Period
 
@@ -7742,7 +7803,7 @@ Controlled List Values:
 
 _Source YAML: `nap6.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -7765,7 +7826,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## 6th National Action Plan on Open Government Tracker
+## [6th National Action Plan on Open Government Tracker](#6th-national-action-plan-on-open-government-tracker)
 
 ### 1-1 Reporting Period
 
@@ -8687,7 +8748,7 @@ Controlled List Values:
 
 _Source YAML: `qpnotes.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -8710,7 +8771,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Question Period Notes
+## [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
 
 ### 1-1 Reference Number
 
@@ -9052,7 +9113,7 @@ Controlled List Values:
 | Validation FR | None |
 | Example Value | Le gouvernement continuera de travailler avec la commissaire à l’information, les parlementaires et d’autres intervenants afin d’être encore plus ouvert et transparent. |
 
-## Proactive Publication - Question Period Notes
+## [Proactive Publication - Question Period Notes](#proactive-publication-question-period-notes)
 
 ### 2-1 Year
 
@@ -9102,7 +9163,7 @@ Controlled List Values:
 
 _Source YAML: `reclassification.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -9125,7 +9186,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Position Reclassification
+## [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
 
 ### 1-1 Reference Number
 
@@ -9788,7 +9849,7 @@ Controlled List Values:
 | Validation FR | Ce champ ne doit pas être vide |
 | Example Value | Changements des les fonctions de travail |
 
-## Proactive Publication - Position Reclassification
+## [Proactive Publication - Position Reclassification](#proactive-publication-position-reclassification)
 
 ### 2-1 Year
 
@@ -9840,7 +9901,7 @@ Controlled List Values:
 
 _Source YAML: `service.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -9863,7 +9924,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Service Inventory
+## [Service Inventory](#service-inventory)
 
 ### 1-1 Fiscal Year
 
@@ -12005,7 +12066,7 @@ Controlled List Values:
 | Character Limit | 1500 |
 | Example Value | https://www.canada.ca/fr/services/prestations/pensionspubliques/rpc/securite-vieillesse.html |
 
-## Service Inventory
+## [Service Inventory](#service-inventory)
 
 ### 2-1 Fiscal Year
 
@@ -12457,7 +12518,7 @@ Controlled List Values:
 
 _Source YAML: `travela.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -12480,7 +12541,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Annual Travel, Hospitality and Conferences
+## [Proactive Publication - Annual Travel, Hospitality and Conferences](#proactive-publication-annual-travel-hospitality-and-conferences)
 
 ### 1-1 Fiscal Year Ending
 
@@ -12842,7 +12903,7 @@ Controlled List Values:
 
 _Source YAML: `travelq.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -12865,7 +12926,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Travel Expenses
+## [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
 
 ### 1-1 Reference Number
 
@@ -13265,7 +13326,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Fournir des commentaires explicatifs supplémentaires au besoin. |
 
-## Proactive Publication - Travel Expenses
+## [Proactive Publication - Travel Expenses](#proactive-publication-travel-expenses)
 
 ### 2-1 Year
 
@@ -13325,7 +13386,7 @@ Controlled List Values:
 
 _Source YAML: `wrongdoing.yaml`_
 
-## Legend
+## [Legend](#legend)
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -13348,7 +13409,7 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Acts of Founded Wrongdoing
+## [Proactive Publication - Acts of Founded Wrongdoing](#proactive-publication-acts-of-founded-wrongdoing)
 
 ### 1-1 Reference Number
 

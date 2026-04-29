@@ -2,13 +2,24 @@
 
 _Source YAML: `inventory.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Open Data Inventory](#open-data-inventory)
+
+## [Published resources](#published-resources)
 
 - [Open Data Inventory](https://open.canada.ca/data/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7/resource/d0df95a8-31a9-46c9-853b-6952819ec7b4)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/inventory.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -31,7 +42,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Open Data Inventory
+
+</details>
+
+## [Open Data Inventory](#open-data-inventory)
 
 ### 1-1 Reference Number
 

@@ -2,14 +2,26 @@
 
 _Source YAML: `travelq.yaml`_
 
-## Published resources
+
+## [Table of Contents](#table-of-contents)
+
+- [Published resources](#published-resources)
+- [Legend](#legend)
+- [Proactive Disclosure - Travel Expenses](#proactive-disclosure-travel-expenses)
+- [Proactive Disclosure - Travel Expenses Nothing to Report](#proactive-disclosure-travel-expenses-nothing-to-report)
+
+## [Published resources](#published-resources)
 
 - [Proactive Disclosure - Travel Expenses](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/8282db2a-878f-475c-af10-ad56aa8fa72c)
 - [Proactive Disclosure - Travel Expenses Nothing to Report](https://open.canada.ca/data/dataset/009f9a49-c2d9-4d29-a6d4-1a228da335ce/resource/d3f883ce-4133-48da-bc76-c6b063d257a2)
 - Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/travelq.json
 
 
-## Legend
+## [Legend](#legend)
+
+<details>
+<summary>Show legend</summary>
+
 
 The following sample table provides a description of each field you will see for all elements:
 
@@ -32,7 +44,10 @@ Controlled List Values:
 | CODE1 | English Description 1 | French Description 1 |
 | CODE2 | English Description 2 | French Description 2 |
 
-## Proactive Publication - Travel Expenses
+
+</details>
+
+## [Proactive Disclosure - Travel Expenses](#proactive-disclosure-travel-expenses)
 
 ### 1-1 Reference Number
 
@@ -432,7 +447,7 @@ Controlled List Values:
 | Validation FR |   |
 | Example Value | Fournir des commentaires explicatifs supplémentaires au besoin. |
 
-## Proactive Publication - Travel Expenses
+## [Proactive Disclosure - Travel Expenses Nothing to Report](#proactive-disclosure-travel-expenses-nothing-to-report)
 
 ### 2-1 Year
 

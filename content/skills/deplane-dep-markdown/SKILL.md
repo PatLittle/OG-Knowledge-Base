@@ -77,7 +77,7 @@ Select-String -Path all-dep-fr.md -Pattern '_Source YAML:' | Measure-Object
 - Include English and French controlled-list labels in both language outputs.
 - For `nap5` and `nap6`, include extra controlled-list metadata for due dates, deadlines, lead departments, and Summit for Democracy where present.
 - Preserve bilingual field details in each output, as deplane's DEP documents do.
-- In each DEP profile's published resources section, call CKAN `resource_show` for each resource id and use `name_translated` (fallback `name`) as the resource link label/title in the document.
+- In each DEP profile: add a Table of Contents near the top linking to all H2 sections; make H2 headings self-link anchors; render the Legend section inside a collapsible `<details>` block; and in the published-resource sections use CKAN `resource_show` `name_translated` (fallback `name`) titles so each resource section heading matches the schema resource title.
 
 ## Validation Notes
 
