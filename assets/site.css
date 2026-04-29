@@ -17,3 +17,6 @@ body { margin: 0; }
 .kb-rendered table { border-collapse:collapse; display:block; overflow-x:auto; }
 .kb-rendered th,.kb-rendered td { border:1px solid var(--kb-border); padding:.5rem .65rem; }
 @media (max-width:48rem){ .kb-layout,.kb-layout.nav-collapsed{grid-template-columns:1fr;} .kb-sidebar{position:static; border-right:0; border-bottom:1px solid var(--kb-border);} .kb-header-search input{min-width:12rem;} }
+.kb-edit-page-wrap { margin-top: 1.5rem; }
+.kb-edit-page-btn { display:inline-block; border:1px solid #26374a; background:#26374a; color:#fff; padding:.55rem .8rem; text-decoration:none; border-radius:4px; }
+.kb-edit-page-btn:hover, .kb-edit-page-btn:focus { background:#1d2b3a; border-color:#1d2b3a; }

@@ -29,11 +29,23 @@ const METADATA_PAGES = [
 ];
 
 const I18N = {
-  en: { kb: "DEP Knowledge Base", overview: "Overview", dep: "DEP content", metadata: "Metadata schemas", skills: "Agent skills", loading: "Loading content...", langBtn: "Français", collapse: "Collapse navigation", expand: "Show navigation", searchPlaceholder: "Search the knowledge base", searchButton: "Search", searchEmpty: "Type a query to search the knowledge base.", searchNone: "No matching pages found.", searchResults: "Search results" },
-  fr: { kb: "Base de connaissances DEP", overview: "Aperçu", dep: "Contenu DEP", metadata: "Schémas de métadonnées", skills: "Compétences d'agent", loading: "Chargement du contenu...", langBtn: "English", collapse: "Masquer la navigation", expand: "Afficher la navigation", searchPlaceholder: "Chercher dans la base de connaissances", searchButton: "Rechercher", searchEmpty: "Saisissez une requête pour lancer la recherche.", searchNone: "Aucun résultat trouvé.", searchResults: "Résultats de recherche" },
+  en: { kb: "Open Government Portal Knowledge Base", overview: "Overview", dep: "DEP content", metadata: "Metadata schemas", skills: "Agent skills", loading: "Loading content...", langBtn: "Français", collapse: "Collapse navigation", expand: "Show navigation", searchPlaceholder: "Search the knowledge base", searchButton: "Search", searchEmpty: "Type a query to search the knowledge base.", searchNone: "No matching pages found.", searchResults: "Search results", editPage: "Edit this page on GitHub" },
+  fr: { kb: "Base de connaissances du portail du gouvernement ouvert", overview: "Aperçu", dep: "Contenu DEP", metadata: "Schémas de métadonnées", skills: "Compétences d'agent", loading: "Chargement du contenu...", langBtn: "English", collapse: "Masquer la navigation", expand: "Afficher la navigation", searchPlaceholder: "Chercher dans la base de connaissances", searchButton: "Rechercher", searchEmpty: "Saisissez une requête pour lancer la recherche.", searchNone: "Aucun résultat trouvé.", searchResults: "Résultats de recherche", editPage: "Modifier cette page sur GitHub" },
 };
 
 let searchIndex = null;
+
+const GITHUB_REPO_EDIT_BASE = "https://github.com/open-government-portal/OG-Knowledge-Base/blob/main/";
+
+function getGithubEditLink(path) {
+  return `${GITHUB_REPO_EDIT_BASE}${path}`;
+}
+
+function renderEditPageButton(container, lang, path) {
+  const link = getGithubEditLink(path);
+  const buttonLabel = I18N[lang].editPage;
+  container.insertAdjacentHTML("beforeend", `<p class="kb-edit-page-wrap"><a class="kb-edit-page-btn" href="${link}" target="_blank" rel="noopener noreferrer">${buttonLabel}</a></p>`);
+}
 
 function getLang() { return new URLSearchParams(window.location.search).get("lang") === "fr" ? "fr" : "en"; }
 function getPageId() { return new URLSearchParams(window.location.search).get("page") || ""; }
@@ -56,6 +68,7 @@ async function renderMarkdown(container, lang, path) {
   const target = document.getElementById("kb-rendered");
   const resp = await fetch(md);
   target.innerHTML = resp.ok ? marked.parse(await resp.text(), { mangle: false, headerIds: true }) : `<p>Could not load <code>${md}</code>.</p>`;
+  if (resp.ok) renderEditPageButton(container, lang, md);
 }
 
 async function buildSearchIndex(lang) {
@@ -106,10 +119,25 @@ async function renderSearch(container, lang, query) {
 
 function renderHome(container, lang) { const t = I18N[lang]; container.innerHTML = `<gcds-heading tag="h1">${t.kb}</gcds-heading><p class="kb-meta">${lang === "fr" ? "Documentation DEP bilingue avec fichiers séparés par profil." : "Bilingual DEP documentation with profile-per-file content."}</p>`; }
 
+function configureFooter(lang) {
+  const footer = document.querySelector("gcds-footer");
+  if (!footer) return;
+  footer.setAttribute("contextual-heading", lang === "fr" ? "Base de connaissances du portail du gouvernement ouvert" : "Open Government Portal Knowledge Base");
+  footer.setAttribute(
+    "contextual-links",
+    JSON.stringify({
+      EN: buildHref("en"),
+      FR: buildHref("fr"),
+      "GitHub repo": "https://github.com/open-government-portal/OG-Knowledge-Base"
+    })
+  );
+}
+
 async function init() {
   const lang = getLang(); const pageId = getPageId(); const q = getSearchQuery(); const t = I18N[lang];
   document.documentElement.lang = lang;
   document.title = `${t.kb}`;
+  configureFooter(lang);
 
   const header = document.getElementById("site-header");
   header.setAttribute("lang-href", buildHref(lang === "en" ? "fr" : "en", pageId, q));
