@@ -22,13 +22,17 @@ const DEP_PROFILES = [
 ];
 
 const I18N = {
-  en: { kb: "DEP Knowledge Base", overview: "Overview", dep: "DEP content", skills: "Agent skills", filter: "Filter visible content", placeholder: "Type a field, profile, or code", loading: "Loading content...", langBtn: "Français", collapse: "Collapse navigation", expand: "Show navigation" },
-  fr: { kb: "Base de connaissances DEP", overview: "Aperçu", dep: "Contenu DEP", skills: "Compétences d'agent", filter: "Filtrer le contenu visible", placeholder: "Tapez un champ, profil ou code", loading: "Chargement du contenu...", langBtn: "English", collapse: "Masquer la navigation", expand: "Afficher la navigation" },
+  en: { kb: "DEP Knowledge Base", overview: "Overview", dep: "DEP content", skills: "Agent skills", loading: "Loading content...", langBtn: "Français", collapse: "Collapse navigation", expand: "Show navigation", searchPlaceholder: "Search the knowledge base", searchButton: "Search", searchEmpty: "Type a query to search the knowledge base.", searchNone: "No matching pages found.", searchResults: "Search results" },
+  fr: { kb: "Base de connaissances DEP", overview: "Aperçu", dep: "Contenu DEP", skills: "Compétences d'agent", loading: "Chargement du contenu...", langBtn: "English", collapse: "Masquer la navigation", expand: "Afficher la navigation", searchPlaceholder: "Chercher dans la base de connaissances", searchButton: "Rechercher", searchEmpty: "Saisissez une requête pour lancer la recherche.", searchNone: "Aucun résultat trouvé.", searchResults: "Résultats de recherche" },
 };
+
+let searchIndex = null;
 
 function getLang() { return new URLSearchParams(window.location.search).get("lang") === "fr" ? "fr" : "en"; }
 function getDepId() { return new URLSearchParams(window.location.search).get("dep") || ""; }
-function buildHref(lang, dep = "") { const p = new URLSearchParams(); if (lang === "fr") p.set("lang", "fr"); if (dep) p.set("dep", dep); const q = p.toString(); return q ? `index.html?${q}` : "index.html"; }
+function getSearchQuery() { return new URLSearchParams(window.location.search).get("q") || ""; }
+function buildHref(lang, dep = "", query = "") { const p = new URLSearchParams(); if (lang === "fr") p.set("lang", "fr"); if (dep) p.set("dep", dep); if (query.trim()) p.set("q", query.trim()); const q = p.toString(); return q ? `index.html?${q}` : "index.html"; }
+function normalizeText(value) { return value.toLowerCase().replace(/[`#*_>[\]()-]/g, " ").replace(/\s+/g, " ").trim(); }
 
 function renderNav(lang) {
   const text = I18N[lang];
@@ -41,29 +45,80 @@ function setActive(dep) { document.querySelectorAll("[data-dep-link]").forEach((
 async function renderMarkdown(container, lang, dep) {
   const t = I18N[lang];
   const md = `content/dep/${dep}-${lang}.md`;
-  container.innerHTML = `<div class="kb-toolbar"><label for="kb-search">${t.filter}</label><input id="kb-search" type="search" placeholder="${t.placeholder}"/></div><div id="kb-rendered" class="kb-rendered"><p>${t.loading}</p></div>`;
+  container.innerHTML = `<div id="kb-rendered" class="kb-rendered"><p>${t.loading}</p></div>`;
   const target = document.getElementById("kb-rendered");
   const resp = await fetch(md);
   target.innerHTML = resp.ok ? marked.parse(await resp.text(), { mangle: false, headerIds: true }) : `<p>Could not load <code>${md}</code>.</p>`;
-  document.getElementById("kb-search").addEventListener("input", (e) => filterRenderedContent(e.target.value, target));
 }
 
-function filterRenderedContent(query, root) { const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean); root.querySelectorAll("h1,h2,h3,table,p,ul,ol,pre").forEach((node)=>{ node.hidden = terms.length && !terms.every((t)=>node.textContent.toLowerCase().includes(t)); }); }
+async function buildSearchIndex(lang) {
+  if (searchIndex?.lang === lang) return searchIndex.docs;
+  const docs = await Promise.all(DEP_PROFILES.map(async (profile) => {
+    const url = `content/dep/${profile.id}-${lang}.md`;
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    const markdown = await response.text();
+    return { profile, url: buildHref(lang, profile.id), text: normalizeText(markdown), snippet: markdown.replace(/[#>*`\-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 220) };
+  }));
+  searchIndex = { lang, docs: docs.filter(Boolean) };
+  return searchIndex.docs;
+}
+
+async function renderSearch(container, lang, query) {
+  const t = I18N[lang];
+  const clean = normalizeText(query);
+  const terms = clean.split(" ").filter(Boolean);
+  container.innerHTML = `<gcds-heading tag="h1">${t.searchResults}</gcds-heading><p class="kb-meta">${clean ? `“${query}”` : t.searchEmpty}</p><div id="kb-search-results"></div>`;
+  if (!terms.length) return;
+
+  const docs = await buildSearchIndex(lang);
+  const ranked = docs
+    .map((doc) => {
+      const score = terms.reduce((sum, term) => sum + (doc.text.includes(term) ? 1 : 0), 0);
+      return { ...doc, score };
+    })
+    .filter((doc) => doc.score > 0)
+    .sort((a, b) => b.score - a.score || a.profile.title.localeCompare(b.profile.title));
+
+  const target = document.getElementById("kb-search-results");
+  if (!ranked.length) {
+    target.innerHTML = `<p>${t.searchNone}</p>`;
+    return;
+  }
+
+  target.innerHTML = `<ul class="kb-search-results">${ranked.map((doc) => `<li><a href="${doc.url}">${doc.profile.title}</a><p>${doc.snippet}...</p></li>`).join("")}</ul>`;
+}
+
 function renderHome(container, lang) { const t = I18N[lang]; container.innerHTML = `<gcds-heading tag="h1">${t.kb}</gcds-heading><p class="kb-meta">${lang === "fr" ? "Documentation DEP bilingue avec fichiers séparés par profil." : "Bilingual DEP documentation with profile-per-file content."}</p>`; }
 
 async function init() {
-  const lang = getLang(); const dep = getDepId(); const t = I18N[lang];
+  const lang = getLang(); const dep = getDepId(); const q = getSearchQuery(); const t = I18N[lang];
   document.documentElement.lang = lang;
   document.title = `${t.kb}`;
-  document.getElementById("lang-toggle").setAttribute("href", buildHref(lang === "en" ? "fr" : "en", dep));
-  document.getElementById("lang-toggle").textContent = t.langBtn;
+
+  const header = document.getElementById("site-header");
+  header.setAttribute("lang-href", buildHref(lang === "en" ? "fr" : "en", dep, q));
+
+  const searchInput = document.getElementById("kb-header-search-input");
+  searchInput.placeholder = t.searchPlaceholder;
+  searchInput.value = q;
+  document.querySelector("#kb-header-search button").setAttribute("aria-label", t.searchButton);
+  document.getElementById("kb-header-search").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const query = searchInput.value.trim();
+    window.location.href = buildHref(lang, "", query);
+  });
+
   renderNav(lang); setActive(dep);
   const c = document.getElementById("kb-content");
-  dep ? await renderMarkdown(c, lang, dep) : renderHome(c, lang);
+  if (q) await renderSearch(c, lang, q);
+  else if (dep) await renderMarkdown(c, lang, dep);
+  else renderHome(c, lang);
 
   const side = document.querySelector(".kb-sidebar");
+  const layout = document.getElementById("kb-layout");
   const btn = document.getElementById("nav-toggle");
-  const update = () => { const collapsed = side.classList.contains("collapsed"); btn.setAttribute("aria-expanded", String(!collapsed)); btn.setAttribute("aria-label", collapsed ? t.expand : t.collapse); btn.innerHTML = collapsed ? "☰" : "⮜"; };
+  const update = () => { const collapsed = side.classList.contains("collapsed"); layout.classList.toggle("nav-collapsed", collapsed); btn.setAttribute("aria-expanded", String(!collapsed)); btn.setAttribute("aria-label", collapsed ? t.expand : t.collapse); btn.innerHTML = collapsed ? "☰" : "⮜"; };
   btn.addEventListener("click", ()=>{ side.classList.toggle("collapsed"); update(); }); update();
 }
 window.addEventListener("DOMContentLoaded", init);

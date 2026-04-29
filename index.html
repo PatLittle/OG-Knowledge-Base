@@ -13,13 +13,16 @@
     <script defer src="assets/site.js"></script>
   </head>
   <body>
-    <gcds-header lang-href="#" skip-to-href="#main-content">
-      <gcds-search slot="search"></gcds-search>
+    <gcds-header id="site-header" lang-href="#" skip-to-href="#main-content">
+      <form slot="search" id="kb-header-search" class="kb-header-search" role="search">
+        <label class="sr-only" for="kb-header-search-input">Search</label>
+        <input id="kb-header-search-input" type="search" name="q" autocomplete="off" />
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
       <gcds-breadcrumbs slot="breadcrumb"><gcds-breadcrumbs-item href="index.html">Knowledge base</gcds-breadcrumbs-item></gcds-breadcrumbs>
     </gcds-header>
     <gcds-container id="main-content" layout="page" tag="main">
-      <div class="kb-topbar"><a id="lang-toggle" href="index.html">Français</a></div>
-      <div class="kb-layout">
+      <div class="kb-layout" id="kb-layout">
         <aside class="kb-sidebar">
           <button id="nav-toggle" class="kb-nav-toggle" type="button" aria-expanded="true" aria-label="Collapse navigation">⮜</button>
           <gcds-side-nav id="kb-side-nav" label="DEP knowledge base"></gcds-side-nav>
