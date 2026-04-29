@@ -14,7 +14,7 @@ Open `http://localhost:8000`.
 
 ## Content
 
-- DEP Markdown: `content/dep/all-dep-en.md`, `content/dep/all-dep-fr.md`
+- DEP Markdown: per-profile bilingual files in `content/dep/*-en.md` and `content/dep/*-fr.md`
 - Agent skill: `content/skills/deplane-dep-markdown/SKILL.md`
 - Repeatable DEP generator: `content/skills/deplane-dep-markdown/generate_dep_markdown.py`
 
@@ -32,5 +32,5 @@ If GitHub CLI and Git are installed and authenticated, create and push the repo 
 
 Regenerate the consolidated DEP Markdown with the included skill/generator, then replace:
 
-- `content/dep/all-dep-en.md`
-- `content/dep/all-dep-fr.md`
+- `content/dep/*-en.md`
+- `content/dep/*-fr.md`
