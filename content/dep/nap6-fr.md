@@ -2,6 +2,11 @@
 
 _Source YAML: `nap6.yaml`_
 
+## Ressources publiées
+
+- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/nap6.json
+
+
 ## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :

@@ -2,6 +2,12 @@
 
 _Source YAML: `adminaircraft.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/98abeb62-7c76-4dfb-a134-1551f55ede55/resource/1495406e-338c-43ec-9995-ec8d8c90d17e
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/adminaircraft.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

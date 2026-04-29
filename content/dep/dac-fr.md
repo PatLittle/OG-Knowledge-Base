@@ -2,6 +2,12 @@
 
 _Source YAML: `dac.yaml`_
 
+## Ressources publiées
+
+- https://ouvert.canada.ca/data/fr/dataset/8634f1c9-597e-416d-91f2-df24d2ffbeea/resource/499383b6-cd2a-466a-9fcf-910d3e427700
+- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/dac.json
+
+
 ## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :

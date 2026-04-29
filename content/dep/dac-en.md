@@ -2,6 +2,12 @@
 
 _Source YAML: `dac.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/8634f1c9-597e-416d-91f2-df24d2ffbeea/resource/499383b6-cd2a-466a-9fcf-910d3e427700
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/dac.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

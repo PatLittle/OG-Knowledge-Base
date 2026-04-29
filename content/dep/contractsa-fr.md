@@ -2,6 +2,12 @@
 
 _Source YAML: `contractsa.yaml`_
 
+## Ressources publiées
+
+- https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/2e9a82e2-bb18-4bff-a61e-59af3b429672
+- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/contractsa.json
+
+
 ## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :

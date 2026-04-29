@@ -2,6 +2,13 @@
 
 _Source YAML: `reclassification.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/bdaa5515-3782-4e5c-9d44-c25e032addb7
+- https://open.canada.ca/data/dataset/f132b8a6-abad-43d6-b6ad-2301e778b1b6/resource/1e955e4d-df35-4441-bf38-b7086192ece2
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/reclassification.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

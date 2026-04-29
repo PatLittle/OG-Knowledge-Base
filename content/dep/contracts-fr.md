@@ -2,6 +2,13 @@
 
 _Source YAML: `contracts.yaml`_
 
+## Ressources publiées
+
+- https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305
+- https://ouvert.canada.ca/data/fr/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68
+- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/contracts.json
+
+
 # Calendrier
 1. Les organisations sont tenues de rendre publics dans le mois suivant la fin de chaque trimestre les marchés conclus d’un montant supérieur à 10 000 dollars et les modifications positives et négatives de plus de 10 000 dollars.
 2. Les organisations sont tenues de fournir à Services publics et Approvisionnement Canada (SPAC) des informations sur les marchés conclus et les modifications d’une valeur comprise entre -10 000 $ et 10 000 $. Elles doivent rendre compte annuellement de ces marchés et modifications au plus tard le 1er mars de l’année civile suivante. Par exemple, un marché conclu au cours de l’année civile 2017 doit faire l’objet d’un rapport au plus tard le 1er mars 2018.

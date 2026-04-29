@@ -2,6 +2,12 @@
 
 _Source YAML: `experiment.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/39954bc7-ff7a-4180-8b6e-b02bee35078a/resource/07151ad9-52e2-4f99-b4fd-7cd208816a64
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/experiment.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

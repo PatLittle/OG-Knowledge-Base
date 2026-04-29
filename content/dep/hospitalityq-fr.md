@@ -2,6 +2,13 @@
 
 _Source YAML: `hospitalityq.yaml`_
 
+## Ressources publiées
+
+- https://ouvert.canada.ca/data/fr/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/7b301f1a-2a7a-48bd-9ea9-e0ac4a5313ed
+- https://ouvert.canada.ca/data/fr/dataset/b9f51ef4-4605-4ef2-8231-62a2edda1b54/resource/36a3b6cc-4f45-4081-8dbd-2340ca487041
+- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/hospitalityq.json
+
+
 ## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :

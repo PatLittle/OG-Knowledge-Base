@@ -2,6 +2,11 @@
 
 _Source YAML: `aistrategy.yaml`_
 
+## Published resources
+
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/aistrategy.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:
