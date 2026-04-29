@@ -2,6 +2,12 @@
 
 _Source YAML: `consultations.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/7c03f039-3753-4093-af60-74b0f7b2385d/resource/92bec4b7-6feb-4215-a5f7-61da342b2354
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/consultations.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

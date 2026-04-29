@@ -2,6 +2,13 @@
 
 _Source YAML: `grants.yaml`_
 
+## Ressources publiées
+
+- https://ouvert.canada.ca/data/fr/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/1d15a62f-5656-49ad-8c88-f40ce689d831
+- https://ouvert.canada.ca/data/fr/dataset/432527ab-7aac-45b5-81d6-7597107a7013/resource/4e4db232-f5e8-43c7-b8b2-439eb7d55475
+- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/grants.json
+
+
 ## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :

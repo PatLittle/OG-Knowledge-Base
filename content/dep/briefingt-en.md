@@ -2,6 +2,13 @@
 
 _Source YAML: `briefingt.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/299a2e26-5103-4a49-ac3a-53db9fcc06c7
+- https://open.canada.ca/data/dataset/ee9bd7e8-90a5-45db-9287-85c8cf3589b6/resource/5e28b544-720b-4745-9e55-3aac6464a4fb
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/briefingt.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

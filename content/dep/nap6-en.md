@@ -2,6 +2,11 @@
 
 _Source YAML: `nap6.yaml`_
 
+## Published resources
+
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/nap6.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

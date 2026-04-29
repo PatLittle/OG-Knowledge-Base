@@ -2,6 +2,12 @@
 
 _Source YAML: `wrongdoing.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/6e75f19c-d19d-48aa-984e-609c8d9bc403/resource/84a77a58-6bce-4bfb-ad67-bbe452523b14
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/wrongdoing.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:

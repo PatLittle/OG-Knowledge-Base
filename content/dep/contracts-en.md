@@ -2,6 +2,13 @@
 
 _Source YAML: `contracts.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fac950c0-00d5-4ec1-a4d3-9cbebf98a305
+- https://open.canada.ca/data/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b/resource/fa4ff6c4-e9af-4491-9d4e-2b468e415a68
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/contracts.json
+
+
 # Timelines
 1. Organizations are required to publicly disclose quarterly, within one month after the close of each quarter, contracts entered into over $10K, and positive and negative amendments over $10K.
 2. Organizations are required to provide information on contracts entered into and amendments valued from -$10K to $10K to Public Services and Procurement Canada (PSPC). Such contracts and amendments are to be reported annually by March 1st of the following calendar year. For example, a contract entered into in calendar year 2017 is to be reported by March 1, 2018.

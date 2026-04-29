@@ -2,6 +2,12 @@
 
 _Source YAML: `inventory.yaml`_
 
+## Published resources
+
+- https://open.canada.ca/data/dataset/4ed351cf-95d8-4c10-97ac-6b3511f359b7/resource/d0df95a8-31a9-46c9-853b-6952819ec7b4
+- Recombinant schema: https://open.canada.ca/data/en/recombinant-schema/inventory.json
+
+
 ## Legend
 
 The following sample table provides a description of each field you will see for all elements:
