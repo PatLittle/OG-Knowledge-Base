@@ -162,7 +162,7 @@ async function init() {
   const side = document.querySelector(".kb-sidebar");
   const layout = document.getElementById("kb-layout");
   const btn = document.getElementById("nav-toggle");
-  const update = () => { const collapsed = side.classList.contains("collapsed"); layout.classList.toggle("nav-collapsed", collapsed); btn.setAttribute("aria-expanded", String(!collapsed)); btn.setAttribute("aria-label", collapsed ? t.expand : t.collapse); btn.innerHTML = collapsed ? "☰" : "⮜"; };
+  const update = () => { const collapsed = side.classList.contains("collapsed"); layout.classList.toggle("nav-collapsed", collapsed); btn.setAttribute("aria-expanded", String(!collapsed)); btn.setAttribute("aria-label", collapsed ? t.expand : t.collapse); btn.innerHTML = collapsed ? "☰⇉" : "☰⇇"; };
   btn.addEventListener("click", ()=>{ side.classList.toggle("collapsed"); update(); }); update();
 }
 window.addEventListener("DOMContentLoaded", init);
