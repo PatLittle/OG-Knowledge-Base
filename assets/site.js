@@ -21,30 +21,37 @@ const DEP_PROFILES = [
   { id: "wrongdoing", yaml: "wrongdoing.yaml", title: "Proactive Publication - Acts of Founded Wrongdoing" },
 ];
 
+const METADATA_PAGES = [
+  { id: "metadata-schemas", titleEn: "Metadata Schemas", titleFr: "Schémas de métadonnées" },
+  { id: "organization-schema", titleEn: "Organization schema", titleFr: "Schéma Organisation" },
+  { id: "info-schema", titleEn: "Info dataset schema", titleFr: "Schéma Jeu de données (info)" },
+  { id: "dataset-schema", titleEn: "Dataset schema", titleFr: "Schéma Jeu de données (dataset)" },
+];
+
 const I18N = {
-  en: { kb: "DEP Knowledge Base", overview: "Overview", dep: "DEP content", skills: "Agent skills", loading: "Loading content...", langBtn: "Français", collapse: "Collapse navigation", expand: "Show navigation", searchPlaceholder: "Search the knowledge base", searchButton: "Search", searchEmpty: "Type a query to search the knowledge base.", searchNone: "No matching pages found.", searchResults: "Search results" },
-  fr: { kb: "Base de connaissances DEP", overview: "Aperçu", dep: "Contenu DEP", skills: "Compétences d'agent", loading: "Chargement du contenu...", langBtn: "English", collapse: "Masquer la navigation", expand: "Afficher la navigation", searchPlaceholder: "Chercher dans la base de connaissances", searchButton: "Rechercher", searchEmpty: "Saisissez une requête pour lancer la recherche.", searchNone: "Aucun résultat trouvé.", searchResults: "Résultats de recherche" },
+  en: { kb: "DEP Knowledge Base", overview: "Overview", dep: "DEP content", metadata: "Metadata schemas", skills: "Agent skills", loading: "Loading content...", langBtn: "Français", collapse: "Collapse navigation", expand: "Show navigation", searchPlaceholder: "Search the knowledge base", searchButton: "Search", searchEmpty: "Type a query to search the knowledge base.", searchNone: "No matching pages found.", searchResults: "Search results" },
+  fr: { kb: "Base de connaissances DEP", overview: "Aperçu", dep: "Contenu DEP", metadata: "Schémas de métadonnées", skills: "Compétences d'agent", loading: "Chargement du contenu...", langBtn: "English", collapse: "Masquer la navigation", expand: "Afficher la navigation", searchPlaceholder: "Chercher dans la base de connaissances", searchButton: "Rechercher", searchEmpty: "Saisissez une requête pour lancer la recherche.", searchNone: "Aucun résultat trouvé.", searchResults: "Résultats de recherche" },
 };
 
 let searchIndex = null;
 
 function getLang() { return new URLSearchParams(window.location.search).get("lang") === "fr" ? "fr" : "en"; }
-function getDepId() { return new URLSearchParams(window.location.search).get("dep") || ""; }
+function getPageId() { return new URLSearchParams(window.location.search).get("page") || ""; }
 function getSearchQuery() { return new URLSearchParams(window.location.search).get("q") || ""; }
-function buildHref(lang, dep = "", query = "") { const p = new URLSearchParams(); if (lang === "fr") p.set("lang", "fr"); if (dep) p.set("dep", dep); if (query.trim()) p.set("q", query.trim()); const q = p.toString(); return q ? `index.html?${q}` : "index.html"; }
+function buildHref(lang, page = "", query = "") { const p = new URLSearchParams(); if (lang === "fr") p.set("lang", "fr"); if (page) p.set("page", page); if (query.trim()) p.set("q", query.trim()); const q = p.toString(); return q ? `index.html?${q}` : "index.html"; }
 function normalizeText(value) { return value.toLowerCase().replace(/[`#*_>[\]()-]/g, " ").replace(/\s+/g, " ").trim(); }
 
 function renderNav(lang) {
   const text = I18N[lang];
   const nav = document.getElementById("kb-side-nav");
-  nav.innerHTML = `<gcds-nav-link href="${buildHref(lang)}">${text.overview}</gcds-nav-link><gcds-nav-group menu-label="${text.dep}" open-trigger>${DEP_PROFILES.map((d)=>`<gcds-nav-link data-dep-link="${d.id}" href="${buildHref(lang,d.id)}">${d.title}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group menu-label="${text.skills}" open-trigger><gcds-nav-link href="content/skills/deplane-dep-markdown/SKILL.md">deplane-dep-markdown</gcds-nav-link></gcds-nav-group>`;
+  nav.innerHTML = `<gcds-nav-link href="${buildHref(lang)}">${text.overview}</gcds-nav-link><gcds-nav-group menu-label="${text.dep}" open-trigger>${DEP_PROFILES.map((d)=>`<gcds-nav-link data-page-link="dep:${d.id}" href="${buildHref(lang,`dep:${d.id}`)}">${d.title}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group menu-label="${text.metadata}" open-trigger>${METADATA_PAGES.map((d)=>`<gcds-nav-link data-page-link="metadata:${d.id}" href="${buildHref(lang,`metadata:${d.id}`)}">${lang === "fr" ? d.titleFr : d.titleEn}</gcds-nav-link>`).join("")}</gcds-nav-group><gcds-nav-group menu-label="${text.skills}" open-trigger><gcds-nav-link href="content/skills/deplane-dep-markdown/SKILL.md">deplane-dep-markdown</gcds-nav-link></gcds-nav-group>`;
 }
 
-function setActive(dep) { document.querySelectorAll("[data-dep-link]").forEach((n)=>n.toggleAttribute("current", n.dataset.depLink === dep)); }
+function setActive(pageId) { document.querySelectorAll("[data-page-link]").forEach((n)=>n.toggleAttribute("current", n.dataset.pageLink === pageId)); }
 
-async function renderMarkdown(container, lang, dep) {
+async function renderMarkdown(container, lang, path) {
   const t = I18N[lang];
-  const md = `content/dep/${dep}-${lang}.md`;
+  const md = path;
   container.innerHTML = `<div id="kb-rendered" class="kb-rendered"><p>${t.loading}</p></div>`;
   const target = document.getElementById("kb-rendered");
   const resp = await fetch(md);
@@ -53,13 +60,21 @@ async function renderMarkdown(container, lang, dep) {
 
 async function buildSearchIndex(lang) {
   if (searchIndex?.lang === lang) return searchIndex.docs;
-  const docs = await Promise.all(DEP_PROFILES.map(async (profile) => {
+  const depDocs = DEP_PROFILES.map(async (profile) => {
     const url = `content/dep/${profile.id}-${lang}.md`;
     const response = await fetch(url);
     if (!response.ok) return null;
     const markdown = await response.text();
-    return { profile, url: buildHref(lang, profile.id), text: normalizeText(markdown), snippet: markdown.replace(/[#>*`\-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 220) };
-  }));
+    return { profile, url: buildHref(lang, `dep:${profile.id}`), text: normalizeText(markdown), snippet: markdown.replace(/[#>*`\-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 220) };
+  });
+  const metadataDocs = METADATA_PAGES.map(async (page) => {
+    const filePath = `content/metadata/${page.id}-${lang}.md`;
+    const response = await fetch(filePath);
+    if (!response.ok) return null;
+    const markdown = await response.text();
+    return { profile: { title: lang === "fr" ? page.titleFr : page.titleEn }, url: buildHref(lang, `metadata:${page.id}`), text: normalizeText(markdown), snippet: markdown.replace(/[#>*`\-]/g, " ").replace(/\s+/g, " ").trim().slice(0, 220) };
+  });
+  const docs = await Promise.all([...depDocs, ...metadataDocs]);
   searchIndex = { lang, docs: docs.filter(Boolean) };
   return searchIndex.docs;
 }
@@ -92,12 +107,12 @@ async function renderSearch(container, lang, query) {
 function renderHome(container, lang) { const t = I18N[lang]; container.innerHTML = `<gcds-heading tag="h1">${t.kb}</gcds-heading><p class="kb-meta">${lang === "fr" ? "Documentation DEP bilingue avec fichiers séparés par profil." : "Bilingual DEP documentation with profile-per-file content."}</p>`; }
 
 async function init() {
-  const lang = getLang(); const dep = getDepId(); const q = getSearchQuery(); const t = I18N[lang];
+  const lang = getLang(); const pageId = getPageId(); const q = getSearchQuery(); const t = I18N[lang];
   document.documentElement.lang = lang;
   document.title = `${t.kb}`;
 
   const header = document.getElementById("site-header");
-  header.setAttribute("lang-href", buildHref(lang === "en" ? "fr" : "en", dep, q));
+  header.setAttribute("lang-href", buildHref(lang === "en" ? "fr" : "en", pageId, q));
 
   const searchInput = document.getElementById("kb-header-search-input");
   searchInput.placeholder = t.searchPlaceholder;
@@ -109,10 +124,11 @@ async function init() {
     window.location.href = buildHref(lang, "", query);
   });
 
-  renderNav(lang); setActive(dep);
+  renderNav(lang); setActive(pageId);
   const c = document.getElementById("kb-content");
   if (q) await renderSearch(c, lang, q);
-  else if (dep) await renderMarkdown(c, lang, dep);
+  else if (pageId.startsWith("dep:")) await renderMarkdown(c, lang, `content/dep/${pageId.replace("dep:","")}-${lang}.md`);
+  else if (pageId.startsWith("metadata:")) await renderMarkdown(c, lang, `content/metadata/${pageId.replace("metadata:","")}-${lang}.md`);
   else renderHome(c, lang);
 
   const side = document.querySelector(".kb-sidebar");
