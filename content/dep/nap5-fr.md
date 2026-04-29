@@ -3,19 +3,23 @@
 _Source YAML: `nap5.yaml`_
 
 
-## [Table of Contents](#table-of-contents)
+Table des matières
 
-- [Ressources publiées](#ressources-publies)
-- [Légende](#lgende)
-- [Données PAN](#donnes-pan)
+- [Ressources publiées](#published-resources)
+- [Légende](#legend)
+- [Données PAN](#nap-data)
 
-## [Ressources publiées](#ressources-publies)
+<div id="published-resources"></div>
 
-- [Données PAN](https://ouvert.canada.ca/data/fr/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
-- Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/nap5.json
+## Ressources publiées
+
+Published data: [Données PAN](https://ouvert.canada.ca/data/fr/dataset/e0d1f0bf-699f-437e-805d-4aaa428f96b8/resource/0305a157-9d10-4ec2-8ca4-e39ab2b34396)
+Schéma recombinant: https://ouvert.canada.ca/data/fr/recombinant-schema/nap5.json
 
 
-## [Légende](#lgende)
+<div id="legend"></div>
+
+## Légende
 
 Le tableau qui suit décrit chaque zone que vous trouverez dans le document modèle pour tous les éléments :
 
@@ -38,7 +42,9 @@ Valeurs de la liste contrôlée :
 | CODE1 | Description en anglais 1 | Description en français 1 |
 | CODE2 | Description en anglais 2 | Description en français 2 |
 
-## [Données PAN](#donnes-pan)
+<div id="nap-data"></div>
+
+## Données PAN
 
 ### 1-1 Période de déclaration
 

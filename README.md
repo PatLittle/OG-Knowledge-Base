@@ -18,8 +18,8 @@ Open `http://localhost:8000`.
 - Agent skill: `content/skills/deplane-dep-markdown/SKILL.md`
 - `SKILLS.md`
 - Repeatable DEP generator: `content/skills/deplane-dep-markdown/generate_dep_markdown.py`
-- DEP document UX: each per-profile DEP page now includes a top Table of Contents that links to anchored H2 sections, self-linking H2 headings, and a collapsible Legend section (`<details>`).
-- Resource section naming: each published-resource section heading is sourced from CKAN `resource_show` titles (`name_translated`, fallback `name`) to match recombinant schema resource names.
+- DEP document UX: each per-profile DEP page now includes a top plain-text Table of Contents that links to explicit in-page anchors (for example, `<div id="...">` before each H2) plus a collapsible Legend section (`<details>`).
+- Resource section naming: in published-resource sections, each resource line is labeled `Published data:` followed by a CKAN `resource_show` title (`name_translated`, fallback `name`) link.
 
 ## GitHub Pages
 
