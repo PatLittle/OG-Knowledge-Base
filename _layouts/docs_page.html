@@ -6,5 +6,12 @@ layout: docs
     <h1>{{ page.title }}</h1>
     {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
   </header>
+
+  <form class="docs-search" data-lang="{{ page.lang }}" role="search">
+    <label for="site-search">{% if page.lang == 'fr' %}Rechercher{% else %}Search{% endif %}</label>
+    <input id="site-search" name="q" type="search" placeholder="{% if page.lang == 'fr' %}Chercher dans la documentation{% else %}Search docs{% endif %}">
+    <ul id="search-results"></ul>
+  </form>
+
   {{ content }}
 </article>

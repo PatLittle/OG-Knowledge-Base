@@ -1,14 +1,12 @@
 ---
-title: Welcome
-description: Start here to explore the knowledge base.
+title: Open Docs for Open Data
 layout: docs
+lang: en
+lang_ref: home
+collection: docs_en
 ---
 
-# {{ site.title }}
+# Open Docs for Open Data
 
-This is a fresh Jekyll documentation site with a GC Design System powered shell and sidebar navigation similar to MkDocs/Read the Docs.
-
-## Quick links
-
-- [Getting started]({{ '/docs/getting-started/' | relative_url }})
-- [GC Design System setup]({{ '/docs/gcds-cdn-setup/' | relative_url }})
+- [English documentation]({{ '/en/' | relative_url }})
+- [Documentation en français]({{ '/fr/' | relative_url }})

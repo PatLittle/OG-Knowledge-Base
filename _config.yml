@@ -1,13 +1,15 @@
 title: OG Knowledge Base
-description: Documentation site powered by Jekyll + GC Design System
-theme: null
+description: Open Docs for Open Data
 markdown: kramdown
 permalink: pretty
 
 collections:
-  docs:
+  docs_en:
     output: true
-    permalink: /docs/:path/
+    permalink: /en/docs/:path/
+  docs_fr:
+    output: true
+    permalink: /fr/docs/:path/
 
 plugins:
   - jekyll-seo-tag
@@ -21,11 +23,16 @@ defaults:
       layout: docs
   - scope:
       path: ""
-      type: docs
+      type: docs_en
     values:
       layout: docs_page
+      lang: en
+  - scope:
+      path: ""
+      type: docs_fr
+    values:
+      layout: docs_page
+      lang: fr
 
 exclude:
   - README.md
-  - Gemfile
-  - Gemfile.lock
