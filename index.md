@@ -1,10 +1,14 @@
 ---
-title: GCWeb Jekyll website example
+title: Welcome
+description: Start here to explore the knowledge base.
+layout: docs
 ---
 
-This is a simple website using the GCWeb Jekyll theme
+# {{ site.title }}
 
-## Minimum requirement
+This is a fresh Jekyll documentation site with a GC Design System powered shell and sidebar navigation similar to MkDocs/Read the Docs.
 
- * Create a `_config.yml`
- * Define a layout globally or per page
+## Quick links
+
+- [Getting started]({{ '/docs/getting-started/' | relative_url }})
+- [GC Design System setup]({{ '/docs/gcds-cdn-setup/' | relative_url }})
