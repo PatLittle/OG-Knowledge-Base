@@ -1,5 +1,7 @@
 title: OG Knowledge Base
 description: Open Docs for Open Data
+url: https://patlittle.github.io
+baseurl: /OG-Knowledge-Base
 markdown: kramdown
 permalink: pretty
 
