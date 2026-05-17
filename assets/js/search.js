@@ -1,12 +1,15 @@
 (function () {
   const form = document.querySelector('.docs-search');
   if (!form) return;
-  const lang = form.getAttribute('data-lang') || 'en';
+
   const input = form.querySelector('#site-search');
   const results = form.querySelector('#search-results');
+  const indexUrl = form.getAttribute('data-search-index');
   let index = [];
 
-  fetch(`/${lang}/search.json`)
+  if (!input || !results || !indexUrl) return;
+
+  fetch(indexUrl)
     .then((r) => r.json())
     .then((data) => { index = data; })
     .catch(() => { index = []; });
@@ -15,7 +18,11 @@
     const q = input.value.trim().toLowerCase();
     results.innerHTML = '';
     if (q.length < 2) return;
-    const hits = index.filter((d) => (d.title + ' ' + d.content).toLowerCase().includes(q)).slice(0, 8);
+
+    const hits = index
+      .filter((d) => (d.title + ' ' + d.content).toLowerCase().includes(q))
+      .slice(0, 8);
+
     hits.forEach((hit) => {
       const li = document.createElement('li');
       const a = document.createElement('a');

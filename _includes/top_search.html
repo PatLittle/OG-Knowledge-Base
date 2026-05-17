@@ -1,0 +1,7 @@
+{% assign search_index = '/' | append: page.lang | append: '/search.json' | relative_url %}
+<section class="top-search" aria-label="{% if page.lang == 'fr' %}Recherche{% else %}Search{% endif %}">
+  <form class="docs-search" data-lang="{{ page.lang }}" data-search-index="{{ search_index }}" role="search" autocomplete="off">
+    <gcds-search search-id="site-search" action="javascript:void(0)" label="{% if page.lang == 'fr' %}Rechercher{% else %}Search{% endif %}"></gcds-search>
+    <ul id="search-results" class="search-results"></ul>
+  </form>
+</section>
