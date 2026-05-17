@@ -1,0 +1,58 @@
+{
+  "version": "1",
+  "media_path": "/assets/images",
+  "ssg_framework": "jekyll",
+  "frontmatter_format": "yaml",
+  "publishing_mode": "editorial_workflow",
+  "i18n": {
+    "enabled": true,
+    "locales": [
+      "en",
+      "fr"
+    ],
+    "default_locale": "en",
+    "prefix_default_locale": true
+  },
+  "collections": [
+    {
+      "name": "dep",
+      "git_path": "/content/dep/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "flat"
+    },
+    {
+      "name": "metadata",
+      "git_path": "/content/metadata/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "flat"
+    },
+    {
+      "name": "home",
+      "git_path": "/content/home/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "flat"
+    },
+    {
+      "name": "skills",
+      "git_path": "/content/skills/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "grouped",
+      "frontmatter_schema": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name"
+        },
+        {
+          "name": "description",
+          "type": "richtext",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
