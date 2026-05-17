@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  <gcds-header
+    lang-href="/"
+    skip-to-href="#main-content"
+    signature-variant="colour"
+  ></gcds-header>
+
+  <main id="main-content" class="docs-shell">
+    {% include sidebar.html %}
+    <section class="docs-content">
+      {{ content }}
+    </section>
+  </main>
+
+  <gcds-footer display="full" contextual-heading="{{ site.title }}"></gcds-footer>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@cdssnc/gcds-components@latest/dist/gcds/gcds.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@cdssnc/gcds-components@latest/dist/gcds/gcds.js"></script>
+</body>
+</html>

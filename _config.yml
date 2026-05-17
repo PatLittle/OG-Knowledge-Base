@@ -1,10 +1,31 @@
-remote_theme: wet-boew/gcweb-jekyll
-title: Sample website with GCWeb Jekyll theme
+title: OG Knowledge Base
+description: Documentation site powered by Jekyll + GC Design System
+theme: null
+markdown: kramdown
+permalink: pretty
 
-#
-# Page front matter defaults
+collections:
+  docs:
+    output: true
+    permalink: /docs/:path/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
 defaults:
   - scope:
-      path: "" # Ensure it's applied to all pages
+      path: ""
     values:
-      layout: default
+      layout: docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: docs_page
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

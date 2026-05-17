@@ -1,0 +1,13 @@
+<aside class="docs-sidebar">
+  <h2 class="docs-sidebar-title">Documentation</h2>
+  <nav aria-label="Documentation navigation">
+    <ul>
+      {% assign docs_pages = site.docs | sort: 'order' %}
+      {% for item in docs_pages %}
+      <li>
+        <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</aside>
