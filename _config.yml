@@ -1,10 +1,38 @@
-remote_theme: wet-boew/gcweb-jekyll
-title: Sample website with GCWeb Jekyll theme
+title: OG Knowledge Base
+description: Open Docs for Open Data
+markdown: kramdown
+permalink: pretty
 
-#
-# Page front matter defaults
+collections:
+  docs_en:
+    output: true
+    permalink: /en/docs/:path/
+  docs_fr:
+    output: true
+    permalink: /fr/docs/:path/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
 defaults:
   - scope:
-      path: "" # Ensure it's applied to all pages
+      path: ""
     values:
-      layout: default
+      layout: docs
+  - scope:
+      path: ""
+      type: docs_en
+    values:
+      layout: docs_page
+      lang: en
+  - scope:
+      path: ""
+      type: docs_fr
+    values:
+      layout: docs_page
+      lang: fr
+
+exclude:
+  - README.md

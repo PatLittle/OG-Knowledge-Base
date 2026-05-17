@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ page.lang | default: 'en' }}">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  {% assign alt = nil %}
+  {% if page.lang_ref %}
+    {% if page.lang == 'en' %}
+      {% assign siblings = site.docs_fr | where: 'lang_ref', page.lang_ref %}
+    {% else %}
+      {% assign siblings = site.docs_en | where: 'lang_ref', page.lang_ref %}
+    {% endif %}
+    {% assign alt = siblings | first %}
+  {% endif %}
+
+  <gcds-header
+    lang-href="{{ alt.url | default: '/' | relative_url }}"
+    skip-to-href="#main-content"
+    signature-variant="colour"
+  ></gcds-header>
+
+  <main id="main-content" class="docs-shell">
+    {% include sidebar.html %}
+    <section class="docs-content">
+      {{ content }}
+    </section>
+  </main>
+
+  <gcds-footer
+    contextual-heading="Open Docs for Open Data "
+    contextual-links='{ "Open Data Portal": "https://open.canada.ca", "OG Registry (🔒 authorized GC data stewards)": "https://registry.open.canada.ca", "API Documentation": "https://open.canada.ca/data/en/dataset/2d90548d-50ef-4802-91f8-c59c5cf68251/resource/36830ed0-cd83-4fea-b2ae-15890116c68e" }'
+  ></gcds-footer>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@cdssnc/gcds-components@latest/dist/gcds/gcds.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@cdssnc/gcds-components@latest/dist/gcds/gcds.js"></script>
+  <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+</body>
+</html>
