@@ -1,10 +1,12 @@
 ---
-title: GCWeb Jekyll website example
+title: Open Docs for Open Data
+layout: docs
+lang: en
+lang_ref: home
+collection: docs_en
 ---
 
-This is a simple website using the GCWeb Jekyll theme
+# Open Docs for Open Data
 
-## Minimum requirement
-
- * Create a `_config.yml`
- * Define a layout globally or per page
+- [English documentation]({{ '/en/' | relative_url }})
+- [Documentation en français]({{ '/fr/' | relative_url }})

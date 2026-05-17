@@ -1,0 +1,11 @@
+<aside class="docs-sidebar">
+  <h2 class="docs-sidebar-title">{% if page.lang == 'fr' %}Documentation{% else %}Documentation{% endif %}</h2>
+  <nav aria-label="Documentation navigation">
+    <ul>
+      {% assign docs_pages = site[page.collection] | sort: 'order' %}
+      {% for item in docs_pages %}
+      <li><a href="{{ item.url | relative_url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</aside>
