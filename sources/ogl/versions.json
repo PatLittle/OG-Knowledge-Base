@@ -1,6 +1,4 @@
 {
-  "gist": "https://gist.github.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae",
-  "gist_revision": "12f98dbcf44ba02821d381ceff0a345c6e2c193b",
   "imported": "2026-10-12",
   "versions": [
     {
@@ -11,15 +9,17 @@
           "filename": "OGL-Canada_v2_0_1E.md",
           "date": "2022-12-02",
           "archive": null,
-          "screenshot": "https://gist.github.com/user-attachments/assets/2548382d-0266-490b-8008-f6074efa5880",
-          "raw": "https://gist.githubusercontent.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae/raw/e788a7706551acfd0db4b57905be493b1fc870d1/OGL-Canada_v2_0_1E.md"
+          "screenshot": "assets/ogl/en/v2.0.png",
+          "width": 922,
+          "height": 4508
         },
         "fr": {
           "filename": "OGL-Canada_v2_0_1F.md",
           "date": "2022-12-02",
           "archive": null,
-          "screenshot": "https://gist.github.com/user-attachments/assets/5ba2dfac-2a34-4a8e-a307-7a44414ba888",
-          "raw": "https://gist.githubusercontent.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae/raw/fe59a9905c0ed0d73fb1456c4ec0755f7c01a2b9/OGL-Canada_v2_0_1F.md"
+          "screenshot": "assets/ogl/fr/v2.0.png",
+          "width": 937,
+          "height": 5080
         }
       }
     },
@@ -31,15 +31,17 @@
           "filename": "OGL-Canada_v1_1E.md",
           "date": "2011-12-01",
           "archive": "https://web.archive.org/web/20120129112810/http://www.data.gc.ca/default.asp?lang=En&n=46D15882-1",
-          "screenshot": "https://gist.github.com/user-attachments/assets/7eb678b7-1bd8-444b-8373-70c6ed5c2b50",
-          "raw": "https://gist.githubusercontent.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae/raw/28989fff3071278f6dc167d5131fab16950a510a/OGL-Canada_v1_1E.md"
+          "screenshot": "assets/ogl/en/v1.1.png",
+          "width": 651,
+          "height": 2142
         },
         "fr": {
           "filename": "OGL-Canada_v1_1F.md",
           "date": "2012-03-11",
           "archive": "https://web.archive.org/web/20120425204132/http://www.data.gc.ca/default.asp?lang=Fr&n=46D15882-1",
-          "screenshot": "https://gist.github.com/user-attachments/assets/04906afc-162e-4c8f-911f-080fc1e9a59b",
-          "raw": "https://gist.githubusercontent.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae/raw/f124b0f13d8876b711d0de66bdfd27b6dde34c16/OGL-Canada_v1_1F.md"
+          "screenshot": "assets/ogl/fr/v1.1.png",
+          "width": 651,
+          "height": 2299
         }
       }
     },
@@ -51,15 +53,17 @@
           "filename": "OGL-Canada_v1_0E.md",
           "date": "2011-03-18",
           "archive": "https://web.archive.org/web/20110321162152/http://www.data.gc.ca/default.asp?lang=En&n=46D15882-1",
-          "screenshot": "https://gist.github.com/user-attachments/assets/b4637521-0215-48ea-815c-77aea0ce97ce",
-          "raw": "https://gist.githubusercontent.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae/raw/347cb3c0ce956c6df43d7e2a0a93474837bf2053/OGL-Canada_v1_0E.md"
+          "screenshot": "assets/ogl/en/v1.0.png",
+          "width": 749,
+          "height": 3194
         },
         "fr": {
           "filename": "OGL-Canada_v1_0F.md",
           "date": "2011-03-18",
           "archive": "https://web.archive.org/web/20110403155953/http://www.data.gc.ca/default.asp?lang=Fr&n=46D15882-1",
-          "screenshot": "https://gist.github.com/user-attachments/assets/1fed84b2-96c2-4709-9277-29fbceba14bd",
-          "raw": "https://gist.githubusercontent.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae/raw/3a0bd45f698cbc4fc330b2859b8bbe34d88eae51/OGL-Canada_v1_0F.md"
+          "screenshot": "assets/ogl/fr/v1.0.png",
+          "width": 620,
+          "height": 3490
         }
       }
     }

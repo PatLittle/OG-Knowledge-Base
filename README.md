@@ -33,13 +33,13 @@ Visit `http://localhost:8000/OG-Knowledge-Base/`.
 - `assets/site.css`: responsive documentation layout and small shared visual overrides.
 - `scripts/build.mjs`: static generation, bilingual page pairing and licence rendering.
 - `scripts/check_site.py`: links, anchors, language pairs, metadata and source integrity checks.
-- `content/ogl/{en,fr}/`: unchanged licence source Markdown.
+- `content/ogl/{en,fr}/`: licence source Markdown with local screenshot references.
 - `content/ogl/versions.json`: language-specific provenance and version metadata.
 
 Each major section should own its content directory and localized URL paths. Reuse the page template, provide both language versions, and pair matching pages through the builder. Canonical URLs are self-referencing; reciprocal `hreflang` alternatives and the GCDS language toggle point to the corresponding translated page. The root offers a bilingual language choice.
 
 ## Licence collection
 
-Imported from [PatLittle's bilingual licence gist](https://gist.github.com/PatLittle/f7c475d2c47ad30ec73c3b1e9f52f7ae) on 2026-10-12. Includes versions 1.0, 1.1 and 2.0. The files named `v2_0_1` describe themselves as **version 2.0** and are displayed accordingly. Source dates, archive URLs and screenshots are preserved. The English and French version 1.1 source pages have different modification dates; neither has been substituted for the other.
+Imported from the supplied bilingual licence collection on 2026-10-12. Includes versions 1.0, 1.1 and 2.0. The files named `v2_0_1` describe themselves as **version 2.0** and are displayed accordingly. Source dates, archive URLs and screenshot images are preserved. The English and French version 1.1 source pages have different modification dates; neither has been substituted for the other.
 
-Legal text is reproduced without editorial rewriting. Source capture metadata and screenshots appear separately below it; full original Markdown is downloadable. The repository's MIT licence applies to the site code; reproduced licence documents retain their original terms.
+Legal text is reproduced without editorial rewriting. Source capture metadata and screenshots appear separately below it; the Markdown is downloadable at the bottom of each version page. Screenshot references use locally stored PNG files in `assets/ogl/{en,fr}/`; the six original screenshot images appear directly in the “Archived Original” section. The repository's MIT licence applies to the site code; reproduced licence documents retain their original terms.

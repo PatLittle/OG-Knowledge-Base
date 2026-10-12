@@ -1,4 +1,4 @@
-"""Validate the published navigation, language pairs and unchanged source downloads."""
+"""Validate the published navigation, language pairs and local source downloads."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
@@ -49,6 +49,8 @@ assert len(files) == 12, f'Expected 12 pages including 404; got {len(files)}'
 for file, page in pages.items():
     assert page.lang in ('en','fr'), file
     assert '{{' not in file.read_text(), f'Unexpanded template: {file}'
+    assert 'gcds-breadcrumbs' not in file.read_text(), f'Redundant breadcrumbs: {file}'
+    assert 'gist' not in file.read_text().lower(), f'External collection reference: {file}'
     for url in page.links:
         target, fragment = local(url, file)
         if target is None: continue
@@ -75,4 +77,7 @@ for lang, section in [('en','open-government-licence'),('fr','licence-du-gouvern
     for version, ending in [('1.0','8.6'),('1.1','7.3'),('2.0','Versioning' if lang=='en' else 'Version')]:
         text=(ROOT/lang/section/f'v{version}'/'index.html').read_text()
         assert ending in text, f'Truncated licence: {lang} {version}'
-print(f'Validated {len(files)} HTML pages: project paths, anchors, language pairs, canonicals and six original downloads.')
+        assert text.index('download-source') > text.index('</figure>'), f'Download above archive: {lang} {version}'
+        assert 'Back to all versions' not in text and 'Retour à toutes les versions' not in text
+        assert 'assets/ogl/' in text, f'Missing stored screenshot: {lang} {version}'
+print(f'Validated {len(files)} HTML pages: project paths, anchors, language pairs, canonicals and six licence downloads and repository-hosted screenshots.')
