@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://patlittle.github.io/OG-Knowledge-Base/sitemap.xml

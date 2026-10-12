@@ -1,0 +1,9 @@
+{
+  "name": "og-knowledge-base",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"build": "node scripts/build.mjs", "test": "python3 scripts/check_site.py"},
+  "dependencies": {"marked": "17.0.5"},
+  "engines": {"node": ">=22"}
+}

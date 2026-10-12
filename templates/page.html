@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} | {{siteTitle}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="alternate" hreflang="en" href="{{english}}">
+  <link rel="alternate" hreflang="fr" href="{{french}}">
+  <link rel="stylesheet" href="https://cdn.design-system.canada.ca/@gcds-core/components@1.6.0/dist/gcds/gcds.css">
+  <script type="module" src="https://cdn.design-system.canada.ca/@gcds-core/components@1.6.0/dist/gcds/gcds.esm.js"></script>
+  <link rel="stylesheet" href="{{base}}/assets/site.css">
+</head>
+<body>
+  <gcds-header lang-href="{{opposite}}" skip-to-href="#main-content">
+    <a class="site-brand" slot="signature" href="{{home}}"><span class="brand-mark" aria-hidden="true">OG</span><span>{{siteTitle}}</span></a>
+    <gcds-top-nav slot="menu" label="{{navLabel}}">
+      <gcds-nav-link slot="home" href="{{home}}" {{homeCurrent}}>{{homeLabel}}</gcds-nav-link>
+      <gcds-nav-link href="{{sectionUrl}}" {{sectionCurrent}}>{{licenceLabel}}</gcds-nav-link>
+      <gcds-nav-link href="https://open.canada.ca/{{lang}}">Open.Canada.ca</gcds-nav-link>
+    </gcds-top-nav>
+    {{breadcrumbs}}
+  </gcds-header>
+  <gcds-container layout="page">
+    <main id="main-content" tabindex="-1">
+      {{body}}
+      <div class="page-date"><gcds-date-modified>2026-10-12</gcds-date-modified></div>
+    </main>
+  </gcds-container>
+  <gcds-footer display="compact" sub-links='{{footerLinks}}'></gcds-footer>
+</body>
+</html>
