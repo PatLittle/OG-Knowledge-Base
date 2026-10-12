@@ -1,0 +1,8 @@
+{
+  "api_base": "https://open.canada.ca/data/api/action/",
+  "documented": [
+    {"kind": "dataset", "type": "dataset", "title": {"en": "Open data", "fr": "Données ouvertes"}},
+    {"kind": "dataset", "type": "info", "title": {"en": "Open information", "fr": "Information ouverte"}},
+    {"kind": "organization", "type": "organization", "title": {"en": "Organizations", "fr": "Organisations"}}
+  ]
+}

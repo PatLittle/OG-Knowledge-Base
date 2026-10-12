@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { marked } from 'marked';
+import {buildSchemaPages,schemaBase,referenceBase,schemaLabels} from './schema-pages.mjs';
 
 const base = '/OG-Knowledge-Base';
 const origin = 'https://patlittle.github.io';
@@ -21,13 +22,13 @@ await cp('assets',`${out}/assets`,{recursive:true});
 await cp('content/ogl',`${out}/sources/ogl`,{recursive:true});
 async function page(lang, path, title, description, body, counterpart, kind='section') {
   const t=labels[lang];
-  const values={portalUrl:lang==='en'?'https://open.canada.ca/en':'https://ouvert.canada.ca/fr',portalLabel:lang==='en'?'Open.Canada.ca':'Ouvert.Canada.ca',lang,title:esc(title),siteTitle:esc(t.siteTitle),description:esc(description),canonical:origin+path,english:origin+(lang==='en'?path:counterpart),french:origin+(lang==='fr'?path:counterpart),base,opposite:counterpart,home:home(lang),navLabel:t.nav,homeLabel:t.home,licenceLabel:t.licence,sectionUrl:section(lang),homeCurrent:kind==='home'?'current':'',sectionCurrent:kind==='section'?'current':'',body,footerLinks:esc(JSON.stringify({[t.repo]:'https://github.com/PatLittle/OG-Knowledge-Base',[t.home]:home(lang)}))};
+  const values={portalUrl:lang==='en'?'https://open.canada.ca/en':'https://ouvert.canada.ca/fr',portalLabel:lang==='en'?'Open.Canada.ca':'Ouvert.Canada.ca',lang,title:esc(title),siteTitle:esc(t.siteTitle),description:esc(description),canonical:origin+path,english:origin+(lang==='en'?path:counterpart),french:origin+(lang==='fr'?path:counterpart),base,opposite:counterpart,home:home(lang),navLabel:t.nav,homeLabel:t.home,referenceLabel:lang==='en'?'Reference':'Références',sectionUrl:referenceBase(base,lang),homeCurrent:kind==='home'?'current':'',sectionCurrent:kind!=='home'?'current':'',body,footerLinks:esc(JSON.stringify({[t.repo]:'https://github.com/PatLittle/OG-Knowledge-Base',[t.home]:home(lang)}))};
   const html=template.replace(/\{\{(\w+)\}\}/g,(_,k)=>values[k]);
   const file=`${out}${path.slice(base.length)}index.html`;await mkdir(file.slice(0,file.lastIndexOf('/')),{recursive:true});await writeFile(file,html);urls.push(path);
 }
 for (const lang of ['en','fr']) {
  const t=labels[lang],other=lang==='en'?'fr':'en';
- await page(lang,home(lang),t.homeTitle,t.homeIntro,`<p class="eyebrow">${lang==='en'?'Open.Canada.ca':'Ouvert.Canada.ca'} · ${t.audiences}</p>${heading(t.homeTitle,'h1')}<p class="lead">${t.homeIntro}</p>${heading(t.explore)}<gcds-grid columns="1fr" columns-desktop="1fr 1fr" gap="400"><gcds-card card-title="${esc(t.title)}" card-title-tag="h3" href="${section(lang)}" badge="${lang==='en'?'Reference':'Référence'}"><p>${t.cardDescription}</p></gcds-card><div class="section-intro">${heading(t.audiences,'h3')}<p>${t.audienceText}</p></div></gcds-grid>`,home(other),'home');
+ await page(lang,home(lang),t.homeTitle,t.homeIntro,`<p class="eyebrow">${lang==='en'?'Open.Canada.ca':'Ouvert.Canada.ca'} · ${t.audiences}</p>${heading(t.homeTitle,'h1')}<p class="lead">${t.homeIntro}</p>${heading(t.explore)}<gcds-grid columns="1fr" columns-desktop="1fr 1fr" gap="400"><gcds-card card-title="${esc(t.title)}" card-title-tag="h3" href="${section(lang)}" badge="${lang==='en'?'Reference':'Référence'}"><p>${t.cardDescription}</p></gcds-card><gcds-card card-title="${schemaLabels[lang].title}" card-title-tag="h3" href="${schemaBase(base,lang)}" badge="${lang==='en'?'Reference':'Référence'}"><p>${schemaLabels[lang].description}</p></gcds-card></gcds-grid>${heading(t.audiences,'h3')}<p class="section-intro">${t.audienceText}</p>`,home(other),'home');
  const cards=data.versions.filter(x=>!x.current).map(v=>`<gcds-card card-title="${esc(t['v'+v.version.replace('.','')])}" card-title-tag="h3" href="${section(lang)}v${v.version}/" badge="${t.version} ${v.version}"><p>${esc(t['period'+v.version.replace('.','')])}</p><p>${t.sourceDate} : <time datetime="${v.sources[lang].date}">${v.sources[lang].date}</time></p></gcds-card>`).join('');
  await page(lang,section(lang),t.title,t.intro,`<p class="eyebrow">${t.reference}</p>${heading(t.title,'h1')}<p class="lead">${t.intro}</p><section class="current-panel"><span class="status">${t.current}</span><h2>${t.v20} · ${t.version} 2.0</h2><p>${t.sourceDate} : <time datetime="2022-12-02">2022-12-02</time></p><div class="actions">${link(section(lang)+'v2.0/',t.read)} ${link(official(lang),t.official)}</div></section>${heading(t.previous)}<gcds-grid columns="1fr" columns-tablet="1fr 1fr" gap="400">${cards}</gcds-grid>${heading(t.source)}<p class="section-intro">${t.notes}</p><p>${t.note2}</p><p>${t.dateNote}</p>`,section(other));
  for(const v of data.versions) {
@@ -46,6 +47,7 @@ for (const lang of ['en','fr']) {
    await page(lang,section(lang)+`v${v.version}/`,t['v'+v.version.replace('.','')]+' · '+t.version+' '+v.version,t.intro,body,section(other)+`v${v.version}/`,'version');
  }
 }
+await buildSchemaPages({base,page,esc,heading,link});
 function official(lang){return lang==='en'?'https://open.canada.ca/en/open-government-licence-canada':'https://ouvert.canada.ca/fr/licence-du-gouvernement-ouvert-canada';}
 await writeFile(`${out}/index.html`, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Open Government Knowledge Base / Base de connaissances du gouvernement ouvert</title><link rel="canonical" href="${origin}${base}/"><link rel="alternate" hreflang="en" href="${origin}${home('en')}"><link rel="alternate" hreflang="fr" href="${origin}${home('fr')}"><link rel="alternate" hreflang="x-default" href="${origin}${base}/"><link rel="stylesheet" href="${base}/assets/site.css"></head><body><main class="language-choice"><span class="brand-mark" aria-hidden="true">OG</span><div class="language-grid"><section><h1>Open Government Knowledge Base</h1><p>Resources for data publishers and advanced users of Open.Canada.ca.</p><a href="${home('en')}" lang="en">English</a></section><section lang="fr"><h1>Base de connaissances du gouvernement ouvert</h1><p>Ressources pour les responsables de la publication de données et les utilisateurs avancés d’Ouvert.Canada.ca.</p><a href="${home('fr')}" lang="fr">Français</a></section></div></main></body></html>`);
 await writeFile(`${out}/404.html`, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found / Page introuvable</title><link rel="stylesheet" href="${base}/assets/site.css"></head><body><main class="language-choice"><h1>Page not found</h1><p><a href="${home('en')}">Return to the knowledge base</a></p><section lang="fr"><h2>Page introuvable</h2><p><a href="${home('fr')}">Retour à la base de connaissances</a></p></section></main></body></html>`);
@@ -55,6 +57,6 @@ await writeFile(`${out}/sitemap.xml`,`<?xml version="1.0" encoding="UTF-8"?>\n<u
 console.log(`Built ${urls.length+1} bilingual site pages in dist/`);
 
 // Keep the branch-published site identical to the workflow artifact.
-for (const name of ['en','fr','sources','index.html','404.html','.nojekyll','robots.txt','sitemap.xml']) {
+for (const name of ['en','fr','sources','data','index.html','404.html','.nojekyll','robots.txt','sitemap.xml']) {
   await cp(`${out}/${name}`,name,{recursive:true});
 }

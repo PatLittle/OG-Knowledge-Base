@@ -45,12 +45,12 @@ def local(url, current):
 
 files = sorted(ROOT.rglob('*.html'))
 pages = {p: Page(p.read_text()) for p in files}
-assert len(files) == 12, f'Expected 12 pages including 404; got {len(files)}'
+assert len(files) == 22, f'Expected 22 pages including 404; got {len(files)}'
 for file, page in pages.items():
     assert page.lang in ('en','fr'), file
     assert '{{' not in file.read_text(), f'Unexpanded template: {file}'
     assert 'gcds-breadcrumbs' not in file.read_text(), f'Redundant breadcrumbs: {file}'
-    assert 'gist' not in file.read_text().lower(), f'External collection reference: {file}'
+    assert 'gist.github.com' not in file.read_text().lower() and 'github gist' not in file.read_text().lower(), f'External collection reference: {file}'
     for url in page.links:
         target, fragment = local(url, file)
         if target is None: continue

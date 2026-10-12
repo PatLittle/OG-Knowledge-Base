@@ -43,3 +43,20 @@ Each major section should own its content directory and localized URL paths. Reu
 Imported from the supplied bilingual licence collection on 2026-10-12. Includes versions 1.0, 1.1 and 2.0. The files named `v2_0_1` describe themselves as **version 2.0** and are displayed accordingly. Source dates, archive URLs and screenshot images are preserved. The English and French version 1.1 source pages have different modification dates; neither has been substituted for the other.
 
 Legal text is reproduced without editorial rewriting. Source capture metadata and screenshots appear separately below it; the Markdown is downloadable at the bottom of each version page. Screenshot references use locally stored PNG files in `assets/ogl/{en,fr}/`; the six original screenshot images appear directly in the “Archived Original” section. The repository's MIT licence applies to the site code; reproduced licence documents retain their original terms.
+
+## CKAN metadata schemas
+
+The [English CKAN reference](https://patlittle.github.io/OG-Knowledge-Base/en/ckan-schemas/) and [French reference](https://patlittle.github.io/OG-Knowledge-Base/fr/schemas-ckan/) document the `dataset`, `info` and `organization` schemas. They share the Reference navigation with the licences.
+
+Each definition offers a single full-width Tree, Diagram or JSON view. The tree expands field properties, choices and repeated subfields on demand. The diagram has field-group selection, paging, zoom and a complete field inspector. Both views support field search and an explicit `required: true` filter. JSON can show the schema definition or the entire CKAN API response, with copying and a downloadable snapshot. Labels use the schema's original bilingual values; all JSON keys and values are preserved.
+
+- `content/schemas/config.json`: API base and the initial documented schema types.
+- `content/schemas/snapshots/`: full API discovery responses, definitions and retrieval manifest.
+- `scripts/fetch_schemas.py`: discovers every dataset and organization type from the list actions, requests all schema definitions, and replaces snapshots only after every request validates. Dataset requests use `expanded=true`; organization requests use the provided parameters.
+- `scripts/schema-pages.mjs`: bilingual reference index and schema-page generation.
+- `assets/schema-viewer.js`: standalone interactive views, without third-party diagram dependencies.
+- `.github/workflows/update-schemas.yml`: daily refresh at 07:15 UTC, manual dispatch, and initial execution when the collector/configuration/workflow changes. Builds, tests, commits snapshots and generated pages, then deploys directly. A bot commit does not trigger another fetch loop.
+
+`prop` is discovered and stored automatically; it has a JSON download on the index. Add a bilingual entry to `config.json` to give a discovered type its own documented page. Removed or unavailable documented types fail validation and preserve the last complete snapshot. Each schema records its last content-change timestamp and SHA-256; the manifest records the last successful API check.
+
+Run `python3 scripts/fetch_schemas.py` before `npm run build` to refresh locally. The ordinary Pages build uses committed snapshots and continues to work when the source API is unavailable.

@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": {"build": "node scripts/build.mjs", "test": "python3 scripts/check_site.py"},
-  "dependencies": {"marked": "17.0.5"},
-  "engines": {"node": ">=22"}
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "python3 scripts/check_site.py && node scripts/check_schemas.mjs"
+  },
+  "dependencies": {
+    "marked": "17.0.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }
