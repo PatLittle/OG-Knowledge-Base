@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { marked } from 'marked';
+import { integrateFeatureAtlas } from './integrate-feature-atlas.mjs';
 import {buildSchemaPages,schemaBase,referenceBase,schemaLabels} from './schema-pages.mjs';
 
 const base = '/OG-Knowledge-Base';
@@ -55,6 +56,9 @@ await writeFile(`${out}/.nojekyll`,'');
 await writeFile(`${out}/robots.txt`,`User-agent: *\nAllow: /\nSitemap: ${origin}${base}/sitemap.xml\n`);
 await writeFile(`${out}/sitemap.xml`,`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[base+'/',...urls].map(u=>`<url><loc>${origin}${u}</loc></url>`).join('')}</urlset>\n`);
 console.log(`Built ${urls.length+1} bilingual site pages in dist/`);
+
+// Add the English-only Tools and Feature Atlas pages before branch/publication copies.
+await integrateFeatureAtlas(out);
 
 // Keep the branch-published site identical to the workflow artifact.
 for (const name of ['en','fr','sources','data','index.html','404.html','.nojekyll','robots.txt','sitemap.xml']) {
