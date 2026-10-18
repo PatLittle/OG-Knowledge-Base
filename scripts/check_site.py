@@ -28,7 +28,7 @@ class Page(HTMLParser):
         if tag == 'h1' or (tag == 'gcds-heading' and a.get('tag') == 'h1'): self.h1 += 1
         if tag == 'link' and a.get('rel') == 'canonical': self.canonical = a['href']
         if tag == 'link' and a.get('rel') == 'alternate': self.alternates[a['hreflang']] = a['href']
-        if tag == 'gcds-header': self.toggle = a['lang-href']
+        if tag == 'gcds-header': self.toggle = a.get('lang-href')
         for attr in ('href', 'lang-href', 'skip-to-href', 'src'):
             if attr in a: self.links.append(a[attr])
         if tag == 'gcds-footer': self.links.extend(json.loads(a['sub-links']).values())
@@ -45,7 +45,7 @@ def local(url, current):
 
 files = sorted(ROOT.rglob('*.html'))
 pages = {p: Page(p.read_text()) for p in files}
-assert len(files) == 22, f'Expected 22 pages including 404; got {len(files)}'
+assert len(files) == 24, f'Expected 24 pages including English tools and Atlas; got {len(files)}'
 for file, page in pages.items():
     assert page.lang in ('en','fr'), file
     assert '{{' not in file.read_text(), f'Unexpanded template: {file}'
@@ -61,6 +61,10 @@ for file, page in pages.items():
         assert page.h1 == 1, f'{file}: expected one h1'
         expected = ORIGIN + BASE + '/' + relative.removesuffix('index.html')
         assert page.canonical == expected, f'{file}: canonical mismatch'
+        if relative.startswith('en/tools/'):
+            assert page.lang == 'en' and page.alternates == {'en': expected}, f'{file}: English-only Atlas metadata'
+            assert page.toggle is None, f'{file}: French version must not be advertised before review'
+            continue
         assert set(page.alternates) == {'en','fr'}, file
         opposite = 'fr' if page.lang == 'en' else 'en'
         assert page.alternates[page.lang] == expected, file
