@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open.Canada.ca/data · Interactive CKAN Atlas with Guided Tour</title>
+<meta name="description" content="Diagram-first interactive atlas for open.canada.ca/data based on two PostgreSQL databases and their downstream portal features.">
+<style>
+  :root{
+    --bg:#ececec;
+    --ink:#122b3b;
+    --muted:#5b6c77;
+    --panel:#ffffff;
+    --line:#d7e0e5;
+    --orange:#ef7a2f;
+    --orange-soft:#efb08a;
+    --teal-dark:#083c53;
+    --teal-mid:#0d5976;
+    --teal-resource:#145774;
+    --blue-view:#58b2df;
+    --org-blue:#1fa2da;
+    --lic-green:#418d1e;
+    --rss-purple:#c03ac8;
+    --profile-indigo:#413cae;
+    --validation-blue:#4f8fd6;
+    --metadata-green:#2aa868;
+    --dict-green:#7bae26;
+    --shadow:0 16px 36px rgba(8,28,40,.10);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink)}
+  a{color:#0d6c8d;text-decoration:none} a:hover{text-decoration:underline}
+  button,input,select{font:inherit}
+  .wrap{max-width:1800px;margin:0 auto;padding:18px 18px 42px}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+  h1{font-size:clamp(29px,3.2vw,50px);line-height:1.08;letter-spacing:-.04em;margin:0 0 8px}
+  .lede{max-width:1100px;font-size:14px;line-height:1.58;color:#536673;margin:0}
+  .mini-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .mini-actions button{border:1px solid #cfd8dd;background:#fff;border-radius:10px;padding:10px 13px;font-size:12px;font-weight:750;color:#24546d;box-shadow:var(--shadow)}
+
+  .intro-note{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:18px;font-size:13px;line-height:1.6;color:#5e7280}
+  .intro-note strong{color:#203e53}
+
+  .diagram-shell{background:#f0f0f0;border:1px solid #d8d8d8;border-radius:24px;padding:22px 22px 20px;box-shadow:var(--shadow)}
+  .diagram-top{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:end;margin-bottom:8px}
+  .db-tag{display:flex;align-items:flex-start;gap:14px}
+  .db-icon{width:86px;height:86px;flex:0 0 86px;display:grid;place-items:center;font-size:58px;line-height:1;filter:drop-shadow(0 6px 8px rgba(0,0,0,.15))}
+  .db-tag h2{font-size:31px;line-height:1.05;letter-spacing:-.03em;margin:10px 0 0;color:#111}
+  .db-tag .sub{font-size:14px;color:#5f6b75;margin-top:4px}
+
+  .diagram-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:start}
+  .diagram-card{position:relative;border-radius:34px;color:#fff;padding:18px;min-width:0}
+  .diagram-card h3{margin:0;font-size:39px;letter-spacing:-.03em;line-height:1.02;font-weight:500}
+  .diagram-card .small-kicker{position:absolute;top:14px;right:18px;font-size:11px;text-transform:uppercase;letter-spacing:.10em;color:rgba(255,255,255,.78);font-weight:800}
+  .clickable{cursor:pointer;transition:transform .15s ease, box-shadow .15s ease, filter .15s ease}
+  .clickable:hover{transform:translateY(-1px);filter:brightness(1.02)}
+  .clickable.selected{box-shadow:0 0 0 5px rgba(255,255,255,.55), 0 0 0 9px rgba(24,121,151,.25)}
+  .clickable.related{box-shadow:0 0 0 3px rgba(255,255,255,.36)}
+  .diagram-dim .clickable:not(.selected):not(.related){opacity:.42}
+
+  .datastore-card{background:var(--orange);padding-top:28px;padding-bottom:26px;min-height:530px}
+  .datastore-layout{display:grid;grid-template-columns:132px 1fr;gap:18px;margin-top:14px;align-items:stretch}
+  .index-box{background:#f3ebe5;border-radius:18px;color:#111;padding:18px 12px;border:3px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;text-align:center;min-height:395px}
+  .index-box span{display:block;font-size:27px;line-height:1.07;letter-spacing:.02em}
+  .tables-shell{background:var(--orange-soft);border-radius:32px;border:4px solid rgba(255,255,255,.80);padding:24px 22px 18px;min-height:400px;display:flex;flex-direction:column;justify-content:space-between}
+  .tables-shell h4{margin:0;color:#fff;font-size:62px;line-height:.95;font-weight:500;letter-spacing:-.04em}
+  .tables-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+  .data-box,.dict-box{background:#f5efeb;color:#111;border-radius:22px;padding:18px 16px 14px;border:4px solid var(--dict-green);display:flex;align-items:center;justify-content:center;text-align:center;min-height:180px}
+  .data-box span,.dict-box span{font-size:26px;line-height:1.12}
+  .dict-box{border-color:#1f8a39}
+
+  .meta-card{background:var(--teal-dark);min-height:530px;padding-top:16px}
+  .meta-card h3{font-size:32px;margin-bottom:10px}
+  .meta-layout{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start}
+  .meta-left{display:grid;gap:12px}
+  .rss-box,.profiles-box{background:#eceeef;color:#151515;border-radius:18px;padding:16px 12px;min-height:134px;display:flex;align-items:center;justify-content:center;text-align:center;border:4px solid var(--rss-purple)}
+  .profiles-box{border-color:var(--profile-indigo);min-height:168px}
+  .rss-box span,.profiles-box span{font-size:22px;line-height:1.08}
+  .resource-shell{background:var(--teal-resource);border-radius:30px;border:4px solid rgba(255,255,255,.88);padding:18px 18px 16px;min-height:290px}
+  .resource-shell h4{font-size:39px;line-height:1;margin:0 0 12px;color:#fff;font-weight:500}
+  .resource-grid{display:grid;grid-template-columns:145px 1fr;gap:16px;align-items:stretch}
+  .resource-side{display:grid;gap:10px}
+  .validation-box,.metadata-box{background:#eceeef;color:#111;border-radius:16px;padding:14px 10px;display:flex;align-items:center;justify-content:center;text-align:center;min-height:80px;border:4px solid var(--validation-blue)}
+  .metadata-box{border-color:var(--metadata-green)}
+  .validation-box span,.metadata-box span{font-size:17px;line-height:1.15}
+  .view-shell{background:var(--blue-view);border-radius:20px;border:4px solid rgba(255,255,255,.7);padding:14px 14px 12px;display:flex;flex-direction:column;justify-content:space-between;min-height:170px}
+  .view-shell h5{margin:0 0 12px;color:#fff;font-size:34px;font-weight:500}
+  .filters-box{background:#dfe7ea;color:#111;border-radius:14px;min-height:78px;border:4px solid #61b223;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px 14px}
+  .filters-box span{font-size:20px;line-height:1.12}
+
+  .bottom-strip{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+  .orgs-card,.lic-card{border-radius:14px;padding:10px 12px 8px;min-height:120px;color:#fff}
+  .orgs-card{background:var(--org-blue)}
+  .lic-card{background:var(--lic-green)}
+  .card-label{font-size:18px;line-height:1;font-weight:500;margin:0 0 8px}
+  .orgs-inner{display:grid;grid-template-columns:68px 1fr;gap:10px;align-items:stretch}
+  .orgs-rss,.users-box{background:#e9eef1;color:#111;border-radius:12px;padding:10px;border:4px solid rgba(255,255,255,.65);display:flex;align-items:center;justify-content:center;text-align:center;min-height:74px}
+  .users-box{background:#147ca4;color:#fff;border-color:rgba(255,255,255,.9)}
+  .orgs-rss span,.users-box span{font-size:18px;line-height:1.06}
+  .lic-card .lic-placeholder{height:74px;border-radius:12px;border:4px solid rgba(255,255,255,.0)}
+
+  .info-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}
+  .detail-card,.context-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;min-width:0}
+  .detail-head{background:linear-gradient(180deg,#0f3045,#1a4e69);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .detail-head .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9dd8e2;font-weight:800;margin-bottom:6px}
+  .detail-head h2{margin:0;font-size:29px;line-height:1.05;letter-spacing:-.03em}
+  .detail-head p{margin:6px 0 0;color:#c5d5df;font-size:13px;max-width:780px;line-height:1.5}
+  .detail-head .head-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .detail-head button{border:1px solid rgba(255,255,255,.35);background:#fff;color:#204a60;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:800}
+  .detail-body{padding:18px 20px 20px}
+  .section-title{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#7691a0;margin:0 0 8px}
+  .pill-row{display:flex;flex-wrap:wrap;gap:7px}.pill-row span{font-size:11px;color:#4f6d7d;background:#eef5f8;border:1px solid #d7e4ea;border-radius:999px;padding:6px 8px}
+  .two-col{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}
+  .detail-copy p,.detail-copy li{font-size:13px;line-height:1.63;color:#586f7c}.detail-copy ul{padding-left:18px;margin:8px 0 0}
+  .api-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .api-card{border:1px solid #dbe6eb;border-radius:12px;background:#f8fbfc;overflow:hidden;min-width:0}
+  .api-card .api-top{display:flex;justify-content:space-between;gap:6px;background:#edf4f7;padding:8px 9px;font-size:10px;font-weight:800;color:#5b7888}
+  .api-card pre{margin:0;padding:10px;font-size:10px;white-space:pre-wrap;word-break:break-word;color:#285064;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;min-height:78px}
+  .api-actions{display:flex;gap:6px;flex-wrap:wrap;padding:0 9px 10px}.api-actions a,.api-actions button{border:1px solid #cfe0e7;background:#fff;color:#176c88;border-radius:7px;padding:5px 7px;font-size:10px;text-decoration:none}
+  .docs-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}.docs-row a{font-size:12px;font-weight:800}
+  .context-card{padding:18px 18px 16px}
+  .context-card h3{margin:0 0 6px;font-size:19px}.context-card p,.context-card li{font-size:13px;line-height:1.62;color:#5b6f7c}.context-card ul{padding-left:18px;margin:8px 0 0}
+  .context-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.context-links button{background:#eef6f9;color:#23546c;border:1px solid #d0e2ea;border-radius:8px;padding:8px 9px;font-size:11px;font-weight:700}
+  .foot{font-size:12px;color:#687f8d;line-height:1.65;margin:16px 6px 0}
+
+  @media (max-width:1460px){
+    .diagram-grid,.diagram-top,.info-layout,.two-col{grid-template-columns:1fr}
+    .api-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:980px){
+    .wrap{padding:12px 12px 32px}
+    .datastore-layout,.meta-layout,.bottom-strip,.tables-grid,.resource-grid,.info-layout,.two-col{grid-template-columns:1fr}
+    .db-tag h2{font-size:24px}
+    .diagram-card h3{font-size:28px}
+    .tables-shell h4{font-size:42px}
+    .resource-shell h4{font-size:30px}
+    .api-grid{grid-template-columns:1fr}
+  }
+
+/* Extension-focused inspector; diagram visual composition remains unchanged. */
+.extensions-panel{border-top:1px solid #dce7eb;margin-top:20px;padding-top:18px}
+.ext-title-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.ext-title-row h3{font-size:18px;margin:0 0 4px;color:#173f56}
+.ext-title-row p{font-size:12px;color:#647b89;margin:0}
+.ext-count{font-size:11px;background:#eaf3f6;border:1px solid #d5e3e9;padding:7px 10px;border-radius:20px;color:#527384;font-weight:750}
+.ext-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:13px}
+.ext-chip{font-size:12px;font-weight:700;border:1px solid #cfdee5;background:#f3f8fa;border-radius:9px;color:#31586f;padding:8px 10px;cursor:pointer}
+.ext-chip:hover{border-color:#6ca8bd}.ext-chip.active{background:#0d506d;color:#fff;border-color:#0d506d}
+.ext-chip.context:not(.active){border-style:dashed;color:#735d72;background:#f8f5f8}
+.ext-detail{border:1px solid #dce6eb;background:#fbfdfe;border-radius:14px;padding:15px}
+.ext-topline{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:8px}
+.ext-topline h4{font-size:18px;margin:0;color:#15435a}.ext-type{font-size:11px;color:#637d8c;font-weight:700}
+.ext-scope{font-size:10px;color:#195f63;background:#e3f5f2;border:1px solid #c9e5df;border-radius:6px;padding:5px 7px;font-weight:800}
+.ext-scope.registry{color:#79576c;background:#f8eefa;border-color:#ead4eb}
+.ext-summary{font-size:13px;color:#526f7e;line-height:1.6;margin:0 0 9px}
+.ext-refs{display:flex;flex-wrap:wrap;gap:13px;margin:0 0 14px}.ext-refs a{font-size:12px;font-weight:750}
+.ext-examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ext-example{border:1px solid #dce7ed;background:#fff;border-radius:10px;overflow:hidden;min-width:0}
+.ext-example-head{background:#eef4f7;display:flex;justify-content:space-between;align-items:center;gap:6px;padding:9px 10px;flex-wrap:wrap}
+.ext-example-head strong{font-size:11px;color:#365f74}.ext-example-head span{font-size:10px;color:#738996}
+.ext-example-code{font-size:10px;color:#254c64;font-family:ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;min-height:66px;padding:10px;margin:0}
+.ext-example p{font-size:11px;color:#67818d;line-height:1.48;padding:0 10px;margin:0 0 10px}
+.ext-example-actions{display:flex;flex-wrap:wrap;gap:6px;padding:0 9px 10px}
+.ext-example-actions a,.ext-example-actions button{font-size:10px;text-decoration:none;color:#176e89;background:#f8fcfe;border:1px solid #d1e2e9;border-radius:6px;padding:5px 7px;cursor:pointer}
+.directory-dialog{border:0;padding:0;background:transparent;width:min(740px,calc(100vw - 30px));max-height:calc(100vh - 36px)}
+.directory-dialog::backdrop{background:#071e2baf;backdrop-filter:blur(3px)}
+.directory-surface{background:#fff;border-radius:16px;box-shadow:0 23px 70px #071d2a88;overflow:hidden;display:flex;flex-direction:column;max-height:calc(100vh - 36px)}
+.directory-head{background:#0d3b52;color:white;padding:18px 20px;display:flex;gap:10px;justify-content:space-between}
+.directory-head h2{font-size:21px;margin:0 0 3px}.directory-head p{font-size:12px;color:#c5d9e3;margin:0;line-height:1.45}
+.directory-head button{align-self:flex-start;font-size:22px;color:white;background:#ffffff20;border:1px solid #ffffff55;border-radius:8px;padding:5px 11px}
+.directory-body{padding:15px 18px 20px;overflow:auto}
+.directory-tools{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:12px}
+.directory-tools input{border:1px solid #cadde5;border-radius:9px;padding:9px 11px;min-width:230px;flex:1;font-size:13px}
+.directory-tools span{font-size:12px;color:#718b97}
+.directory-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.directory-row{border:1px solid #d8e5eb;border-radius:9px;background:#f9fcfd;text-align:left;padding:11px 12px;cursor:pointer;min-width:0}
+.directory-row:hover{background:#eaf5f9}.directory-title{display:block;font-size:13px;font-weight:800;color:#1c4e67;overflow-wrap:anywhere}.directory-type{display:block;font-size:11px;color:#718896;margin-top:4px}
+.ext-key-note{color:#7a8c99;font-size:11px;line-height:1.5;margin:13px 0 0}
+@media(max-width:1150px){.ext-examples{grid-template-columns:1fr 1fr}}
+@media(max-width:780px){.ext-examples,.directory-list{grid-template-columns:1fr}}
+
+/* Diagram-first HTTP route documentation: deliberately outside the Action API column. */
+.routes-panel{margin-top:18px;border:1px solid #c7dce6;border-radius:14px;overflow:hidden;background:#f5fafc}
+.routes-head{padding:14px 15px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-bottom:1px solid #d9e8ef}
+.routes-head h3{font-size:16px;font-weight:800;color:#1b4962;margin:0 0 3px}
+.routes-head p{font-size:11px;color:#667f8f;line-height:1.5;margin:0}
+.routes-count{font-size:11px;background:#e5f2f8;color:#1b6c89;border:1px solid #cce4ec;border-radius:999px;padding:6px 9px;white-space:nowrap;font-weight:800}
+.routes-grid{padding:13px 14px 15px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.route-card{background:#fff;border:1px solid #d8e7ed;border-radius:11px;overflow:hidden;min-width:0}
+.route-card-top{display:flex;justify-content:space-between;gap:7px;padding:9px 10px 7px;align-items:center}
+.route-card-top strong{font-size:12px;color:#23536d;line-height:1.32}
+.route-kind{font-size:9px;letter-spacing:.06em;text-transform:uppercase;background:#ecf4f7;border:1px solid #dbe8ee;border-radius:6px;padding:4px 6px;color:#52778b;white-space:nowrap;font-weight:800}
+.route-url{font-size:10px;color:#224b63;font-family:ui-monospace,Consolas,monospace;word-break:break-all;white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;margin:0 10px 10px;background:#f5f8fa;border:1px solid #e4edf1;border-radius:7px;min-height:74px}
+.route-note{font-size:11px;line-height:1.52;color:#668090;padding:0 10px;margin:0 0 10px}
+.route-actions{padding:0 10px 12px;display:flex;gap:6px;flex-wrap:wrap}
+.route-actions a,.route-actions button{padding:5px 7px;background:#fff;border:1px solid #cfe2e9;color:#166c87;border-radius:7px;font-size:10px;font-weight:700;cursor:pointer;text-decoration:none}
+.route-actions a:hover,.route-actions button:hover{background:#ecf6fa;text-decoration:none}
+.route-foot{font-size:11px;color:#658293;line-height:1.5;margin:0;padding:0 15px 13px}
+@media(max-width:1200px){.routes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:780px){.routes-grid{grid-template-columns:1fr}}
+
+/* Iteration: more authoritative outlines and accessible keyboard focus. */
+:root { --line:#9eafba; --shadow:0 13px 30px rgba(8,28,40,.13); }
+:focus-visible { outline:3px solid #ffcc57; outline-offset:4px; }
+.mini-actions button, .detail-head button, .context-links button,
+.api-actions button,.api-actions a,.route-actions button,.route-actions a,
+.ext-example-actions button,.ext-example-actions a,.ext-chip {
+  border-width:2px;
+}
+.mini-actions button { border-color:#819aa9; box-shadow:0 3px 0 rgba(18,46,64,.10); }
+.mini-actions .tour-launch { color:#fff; background:#104e69; border-color:#08354c; }
+.mini-actions .tour-launch:hover { background:#0a3d55; }
+.intro-note,.detail-card,.context-card { border:2px solid #9caeb9; }
+.diagram-shell { border:2px solid #899ea9; background:#edf0f2; }
+.diagram-card { border:3px solid rgba(12,44,62,.46); }
+.datastore-card { border-color:#b9561b; }
+.meta-card { border-color:#052d40; }
+.index-box { border:3px solid #b58b76; }
+.tables-shell { border:4px solid #fff7ef; box-shadow:inset 0 0 0 2px rgba(143,70,35,.25); }
+.data-box { border-color:#6e9b17; }
+.dict-box { border-color:#117834; }
+.resource-shell { border:4px solid #f8fcff; box-shadow:inset 0 0 0 2px rgba(2,39,57,.19); }
+.view-shell { border:4px solid #e7f8ff; box-shadow:inset 0 0 0 2px rgba(13,82,126,.24); }
+.filters-box { border-color:#5b991f; }
+.orgs-card,.lic-card { border:3px solid rgba(6,57,76,.42); }
+.orgs-card { border-color:#0b78a6; }
+.lic-card { border-color:#326d19; }
+.orgs-rss { border-color:#e9f7fd; }
+.users-box { border-color:#e9f9ff; }
+.pill-row span,.ext-count,.ext-scope,.route-kind,.route-url { border-color:#b6cbd6; }
+.api-card,.ext-detail,.ext-example,.route-card,.routes-panel,.directory-row { border-width:2px; border-color:#b1c6d1; }
+.directory-tools input { border:2px solid #9db7c6; }
+.ext-chip { border-color:#aac4d1; }
+.clickable:hover { filter:brightness(1.025); }
+.clickable:focus-visible { outline:4px solid #ffdc72; outline-offset:3px; }
+
+/* Keep the two core databases paired at normal desktop widths.
+   At tablet/mobile widths the diagram still stacks for legibility. */
+@media (min-width:1301px) and (max-width:1460px) {
+  .diagram-grid { grid-template-columns:1.05fr 1fr; }
+  .diagram-top { grid-template-columns:1fr 1fr; }
+}
+
+/* Tour: an adjustable four-piece spotlight mask and an independently positioned dialog. */
+#tourHost[hidden]{display:none!important}
+#tourHost {position:fixed;inset:0;z-index:9000;pointer-events:none;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.tour-shade{position:fixed;background:rgba(6,23,35,.67);z-index:1;pointer-events:auto}
+#tourSpotlight{position:fixed;z-index:2;border:3px solid #ffd16b;border-radius:14px;box-shadow:0 0 0 5px rgba(255,209,107,.24),0 0 26px rgba(255,209,107,.24);pointer-events:none;transition:top .13s ease,left .13s ease,width .13s ease,height .13s ease}
+.tour-popover{position:fixed;z-index:3;width:min(400px,calc(100vw - 28px));max-height:min(72vh,570px);overflow:auto;pointer-events:auto;background:#fff;border:2px solid #24475c;border-radius:16px;color:#183447;box-shadow:0 16px 60px rgba(0,0,0,.35);padding:0}
+.tour-popover .tour-header{background:#103a52;color:white;padding:14px 15px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tour-popover .tour-header strong{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#c0e5ee}
+.tour-popover .tour-header button{font-size:19px;font-weight:700;width:32px;height:32px;color:#fff;background:#ffffff18;border:1px solid #d5e8f288;border-radius:8px;cursor:pointer}
+.tour-progress-track{height:5px;background:#d9e7ee}
+.tour-progress-fill{height:100%;background:#e8a941;transition:width .18s ease}
+.tour-popover .tour-content{padding:17px 17px 6px}
+.tour-popover h2{font-size:21px;letter-spacing:-.025em;line-height:1.19;margin:0 0 9px}
+.tour-popover p{font-size:13px;line-height:1.58;color:#526d7b;margin:0 0 12px}
+.tour-popover .tour-tip{font-size:11px;color:#355d70;background:#e9f4f8;border-left:4px solid #2589a7;padding:9px 10px;margin-bottom:8px;border-radius:4px 8px 8px 4px}
+.tour-footer{padding:12px 16px 15px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #cbdce5}
+.tour-footer-actions{display:flex;gap:7px}
+.tour-popover .tour-footer button{font-size:12px;font-weight:800;cursor:pointer;padding:9px 12px;border-radius:8px;border:2px solid #afc3cd;background:#fff;color:#264d61}
+.tour-popover .tour-footer button.primary{background:#145b79;border-color:#124b65;color:#fff}
+.tour-popover .tour-footer button:disabled{opacity:.4;cursor:not-allowed}
+.tour-popover .tour-footer button:hover:not(:disabled){filter:brightness(.95)}
+.tour-hint{font-size:10px;color:#678090;display:block;text-align:right;padding:0 17px 12px}
+@media(max-width:680px){
+  .tour-popover{width:auto;left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;max-height:57vh}
+  .tour-popover h2{font-size:18px}
+  .tour-popover .tour-content{padding:13px 14px 3px}
+  .tour-popover p{font-size:12px}
+  .tour-footer{padding:10px 12px 12px}
+}
+@media(prefers-reduced-motion:reduce){#tourSpotlight,.tour-progress-fill,.clickable{transition:none!important}}
+
+
+/* The index is a DataStore relation inventory, not a row-level full-text index. */
+.index-box .relation-hint{display:block;margin-top:14px;padding:5px 3px;border:1px solid #8c9da5;border-radius:6px;background:#fff;color:#304e60;font-size:10px;font-weight:800;line-height:1.2;letter-spacing:-.01em;overflow-wrap:anywhere}
+
+/* Put the contextual extensions where the commentary card used to be. */
+.extensions-side{padding:0;background:#fff;align-self:start}
+.extensions-side .extensions-panel{border-top:0;margin:0;padding:18px 18px 20px}
+.extensions-side .ext-title-row{align-items:flex-start}
+.extensions-side .ext-chips{gap:6px}
+.extensions-side .ext-chip{padding:7px 9px}
+.extensions-side .ext-examples{grid-template-columns:1fr}
+.extensions-side .ext-example-code{min-height:0}
+.detail-card .two-col{grid-template-columns:1fr}
+.detail-card .api-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.detail-card .routes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:1100px) and (max-width:1460px){.info-layout{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}}
+@media(min-width:1650px){.extensions-side .ext-examples{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1099px){.info-layout{grid-template-columns:1fr}}
+@media(max-width:780px){.detail-card .api-grid,.detail-card .routes-grid,.extensions-side .ext-examples{grid-template-columns:1fr}}
+
+
+/* Layout refinement: one full-width blue-header panel containing both columns. */
+.info-layout {display:block;width:100%;margin-top:18px;}
+.info-layout > .detail-card {width:100%;}
+.detail-content-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);
+  align-items:stretch;
+  min-width:0;
+}
+.detail-content-grid > .detail-body {
+  min-width:0;
+  padding:20px 22px 24px;
+}
+.detail-content-grid > .extensions-side {
+  min-width:0;
+  align-self:stretch;
+  border:0;
+  border-left:2px solid #91aab9;
+  border-radius:0;
+  box-shadow:none;
+  background:#f5f9fb;
+  margin:0;
+}
+.detail-content-grid > .extensions-side .extensions-panel {
+  padding:20px 20px 24px;
+  background:transparent;
+}
+.detail-content-grid > .extensions-side .ext-detail {background:#fff;}
+@media (max-width:1050px) {
+  .detail-content-grid {grid-template-columns:minmax(0,1fr);}
+  .detail-content-grid > .extensions-side {
+    border-left:0;
+    border-top:2px solid #91aab9;
+  }
+  .detail-content-grid > .extensions-side .extensions-panel {padding:20px 18px 22px;}
+}
+@media (max-width:680px) {
+  .detail-content-grid > .detail-body {padding:16px 14px 18px;}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>Diagram-first CKAN feature atlas · <code>open.canada.ca/data</code></h1>
+      <p class="lede">Explore the two PostgreSQL databases through the original diagram-inspired layout. Click any element to see its related features, CKAN extensions, practical API calls, example workflows and documentation below.</p>
+    </div>
+    <div class="mini-actions">
+      <button id="tourLaunch" class="tour-launch" type="button" aria-haspopup="dialog">▶ Start guided tour</button>
+      <button id="resetFocus">Reset focus</button>
+      <button id="openApiView">Jump to API-rich item</button>
+      <button id="extensionDirectoryButton">Browse extensions & routes</button>
+    </div>
+  </div>
+
+  <div class="intro-note">
+    <strong>Scope control:</strong> this concept is limited to the public portal at <code>open.canada.ca/data</code>. It uses normal portal behaviour and a normal public example dataset — <strong>Open Government Analytics</strong> — instead of recombinant-managed special cases. The design intentionally stays close to your schematic, with only minor adjustments for readability, responsiveness and click interaction.
+  </div>
+
+  <section class="diagram-shell">
+    <div class="diagram-top">
+      <div class="db-tag">
+        <div class="db-icon" aria-hidden="true">🛢️</div>
+        <div>
+          <h2>Datastore DB, and<br>Datastore API</h2>
+          <div class="sub">Tabular data, field metadata, and queryable records.</div>
+        </div>
+      </div>
+      <div class="db-tag">
+        <div class="db-icon" aria-hidden="true">🛢️</div>
+        <div>
+          <h2>Metadata DB, and<br>Metadata API</h2>
+          <div class="sub">Datasets, resources, organizations, licences, and delivery configuration.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="diagram-grid" id="diagramRoot">
+      <div class="diagram-card datastore-card clickable" data-id="datastore-api" data-entities="datastoredb datastore tabledata dictionary datastoreapi">
+        <div class="small-kicker">Left side = DataStore DB</div>
+        <h3>Datastore (Data API)</h3>
+        <div class="datastore-layout">
+          <div class="index-box clickable" data-id="index-records" data-entities="datastoredb datastore tabledata datastoreapi">
+            <span>Index<br>of<br>records<small class="relation-hint">_table_metadata</small></span>
+          </div>
+          <div class="tables-shell clickable" data-id="datastore-tables" data-entities="datastoredb datastore tabledata dictionary datastoreapi">
+            <h4>Datastore<br>Tables</h4>
+            <div class="tables-grid">
+              <div class="data-box clickable" data-id="tabular-data" data-entities="datastoredb datastore tabledata datastoreapi">
+                <span>Tabular Data</span>
+              </div>
+              <div class="dict-box clickable" data-id="table-metadata" data-entities="datastoredb dictionary datastore datastoreapi">
+                <span>Data Dictionary<br>and Table Metadata</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="diagram-card meta-card clickable" data-id="dataset-package" data-entities="ckandb package resource organization license feeds schema resourceview">
+          <div class="small-kicker">Right side = CKAN metadata DB</div>
+          <h3>Dataset (Package)</h3>
+          <div class="meta-layout">
+            <div class="meta-left">
+              <div class="rss-box clickable" data-id="rss-feed" data-entities="ckandb feeds package organization">
+                <span>RSS Feed</span>
+              </div>
+              <div class="profiles-box clickable" data-id="profiles" data-entities="ckandb schema package feeds">
+                <span>Different<br>Profiles<br>(DCAT,<br>Schema.org,<br>ISO-19115,<br>CKAN<br>Default)</span>
+              </div>
+            </div>
+            <div class="resource-shell clickable" data-id="resource-files" data-entities="ckandb resource package resourceview hash validation metadata datastorebridge">
+              <h4>Resource (Files)</h4>
+              <div class="resource-grid">
+                <div class="resource-side">
+                  <div class="validation-box clickable" data-id="validation" data-entities="ckandb validation resource metadata">
+                    <span>Validation</span>
+                  </div>
+                  <div class="metadata-box clickable" data-id="resource-metadata" data-entities="ckandb metadata resource hash">
+                    <span>Metadata</span>
+                  </div>
+                </div>
+                <div class="view-shell clickable" data-id="view" data-entities="ckandb resourceview resource datastorebridge datastoredb">
+                  <h5>View</h5>
+                  <div class="filters-box clickable" data-id="filters-definitions" data-entities="ckandb resourceview datastorebridge datastoredb dictionary">
+                    <span>Filters / definitions</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-strip">
+          <div class="orgs-card clickable" data-id="organizations" data-entities="ckandb organization package feeds users">
+            <div class="card-label">Organizations</div>
+            <div class="orgs-inner">
+              <div class="orgs-rss clickable" data-id="org-rss" data-entities="ckandb feeds organization">
+                <span>RSS<br>feed</span>
+              </div>
+              <div class="users-box clickable" data-id="users" data-entities="ckandb users organization">
+                <span>Users</span>
+              </div>
+            </div>
+          </div>
+          <div class="lic-card clickable" data-id="licences" data-entities="ckandb license package">
+            <div class="card-label">Licences</div>
+            <div class="lic-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-layout">
+    <section class="detail-card">
+      <div class="detail-head">
+        <div>
+          <div class="eyebrow" id="detailEyebrow">Diagram focus</div>
+          <h2 id="detailTitle">Dataset (Package)</h2>
+          <p id="detailSubtitle">Click any feature in the diagram above. This panel expands what that feature means, where it lives, and which public APIs expose it.</p>
+        </div>
+        <div class="head-actions">
+          <button id="focusDatastore">Focus DataStore side</button>
+          <button id="focusMetadata">Focus Metadata side</button>
+        </div>
+      </div>
+      <div class="detail-content-grid">
+        <div class="detail-body">
+          <div class="section-title">Connected concepts</div>
+        <div class="pill-row" id="detailPills"></div>
+        <div class="two-col" style="margin-top:16px;">
+          <div class="detail-copy">
+            <div class="section-title">Explanation</div>
+            <p id="detailCopy"></p>
+            <div class="section-title" style="margin-top:14px;">Why it matters in open.canada.ca/data</div>
+            <ul id="detailBullets"></ul>
+          </div>
+          <div>
+            <div class="section-title">Relevant Action API methods</div>
+            <div class="api-grid" id="apiGrid"></div>
+            <div class="docs-row" id="docsRow"></div>
+          </div>
+        </div>
+        <section class="routes-panel" id="publicRoutes" aria-label="HTTP routes related to selected diagram object" hidden>
+          <div class="routes-head">
+            <div><h3>Direct HTTP routes and exported formats</h3><p>URLs that return Atom, RDF or downloaded table data. These are <strong>not</strong> CKAN Action API method calls.</p></div>
+            <span id="routeCount" class="routes-count"></span>
+          </div>
+          <div id="routeGrid" class="routes-grid"></div>
+          <p class="route-foot">Routes are provided as direct links and examples. The exact public URLs below were supplied for this atlas; CKAN documentation supports their format, but automated retrieval of the portal responses was restricted during this revision.</p>
+        </section>
+
+        </div>
+        <aside class="context-card extensions-side" aria-label="Connected extensions and routes">
+        <section class="extensions-panel" id="extensionInspector" aria-label="CKAN extensions related to selected diagram element">
+          <div class="ext-title-row">
+            <div><h3>CKAN extensions and route families connected to this element</h3>
+            <p>Select a capability to reveal its role, practical examples and source documentation.</p></div>
+            <span id="extCount" class="ext-count"></span>
+          </div>
+          <div id="extChips" class="ext-chips" role="group" aria-label="Related CKAN extensions"></div>
+          <article class="ext-detail">
+            <div class="ext-topline">
+              <h4 id="extName">activity</h4>
+              <span class="ext-type" id="extType"></span>
+              <span class="ext-scope" id="extScope"></span>
+            </div>
+            <p class="ext-summary" id="extSummary"></p>
+            <div id="extRefs" class="ext-refs"></div>
+            <div id="extExamples" class="ext-examples"></div>
+            <p class="ext-key-note">Public examples are read-only; documentation-only templates and background workflows are explicitly labelled. The presence of an extension in source configuration does not independently confirm every endpoint's current public availability.</p>
+          </article>
+        </section>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <p class="foot">Example grounding: <a href="https://open.canada.ca/data/en/dataset/2916fad5-ebcc-4c86-b0f3-4f619b29f412" target="_blank" rel="noopener">Open Government Analytics dataset ↗</a> and the public <a href="https://open.canada.ca/data/en/api/3/action/datastore_search?resource_id=02a92b0f-b26d-4fbd-9601-d27651703715&amp;limit=5" target="_blank" rel="noopener">Number of Visits, Downloads DataStore resource ↗</a>. CKAN docs: <a href="https://docs.ckan.org/en/2.11/api/" target="_blank" rel="noopener">Action API</a> and <a href="https://docs.ckan.org/en/2.11/maintaining/datastore.html" target="_blank" rel="noopener">DataStore</a>. This concept remains scoped to <code>open.canada.ca/data</code> and deliberately avoids using recombinant-managed example datasets. Direct Atom, DCAT and DataStore export URLs are shown separately from Action API methods.</p>
+</div>
+
+<dialog class="directory-dialog" id="extensionDirectory" aria-labelledby="directoryHeading">
+  <div class="directory-surface">
+    <div class="directory-head">
+      <div><h2 id="directoryHeading">Extensions & HTTP routes</h2>
+      <p>Find a CKAN extension or built-in HTTP route family, then jump to the diagram element it supports.</p></div>
+      <button id="closeExtensionDirectory" aria-label="Close extension directory">×</button>
+    </div>
+    <div class="directory-body">
+      <div class="directory-tools"><input id="extensionSearch" placeholder="Search extensions or capabilities…" aria-label="Search extensions"><span id="directoryCount"></span></div>
+      <div id="extensionDirectoryList" class="directory-list"></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Guided tour remains separate from the diagram and does not affect the regular browsing workflow. -->
+<div id="tourHost" hidden>
+  <div id="tourShadeTop" class="tour-shade" aria-hidden="true"></div>
+  <div id="tourShadeLeft" class="tour-shade" aria-hidden="true"></div>
+  <div id="tourShadeRight" class="tour-shade" aria-hidden="true"></div>
+  <div id="tourShadeBottom" class="tour-shade" aria-hidden="true"></div>
+  <div id="tourSpotlight" aria-hidden="true"></div>
+  <section id="tourPopover" class="tour-popover" role="dialog" aria-modal="true" aria-labelledby="tourTitle" aria-describedby="tourDescription" tabindex="-1">
+    <div class="tour-header"><strong id="tourCounter">Step 1 of 15</strong><button id="tourClose" type="button" aria-label="Close guided tour">×</button></div>
+    <div class="tour-progress-track" aria-hidden="true"><div class="tour-progress-fill" id="tourProgress"></div></div>
+    <div class="tour-content">
+      <h2 id="tourTitle">Explore the diagram</h2>
+      <p id="tourDescription"></p>
+      <p id="tourTip" class="tour-tip"></p>
+    </div>
+    <div class="tour-footer">
+      <button id="tourSkip" type="button">Skip tour</button>
+      <div class="tour-footer-actions"><button id="tourBack" type="button">← Back</button><button id="tourNext" class="primary" type="button">Next →</button></div>
+    </div>
+    <span class="tour-hint">← → navigate · Esc close</span>
+  </section>
+</div>
+
+<script>
+'use strict';
+const API = 'https://open.canada.ca/data/en/api/3/action/';
+const DOC = 'https://docs.ckan.org/en/2.11/api/#ckan.logic.action.get.';
+const STORE_DOC = 'https://docs.ckan.org/en/2.11/maintaining/datastore.html#ckanext.datastore.logic.action.datastore_search';
+const DATASET = '2916fad5-ebcc-4c86-b0f3-4f619b29f412';
+const ANALYTICS = '02a92b0f-b26d-4fbd-9601-d27651703715';
+const qs = obj => new URLSearchParams(obj).toString();
+const req = (method, params={}) => API + method + '?' + qs(params);
+const $ = s => document.querySelector(s);
+const nodes = [...document.querySelectorAll('.clickable')];
+const root = $('#diagramRoot');
+
+const apiDefs = {
+  package_show: {doc:DOC+'package_show', examples:[['Open Government Analytics',{id:DATASET}], ['Without default schema',{id:DATASET,use_default_schema:false}], ['Repeat example',{id:DATASET}]]},
+  package_search: {doc:DOC+'package_search', examples:[['Search analytics',{q:'analytics',rows:5}], ['Datasets only',{q:'type:dataset',rows:5}], ['Facet collection',{q:'type:dataset',rows:0,'facet.field':'["collection"]'}]]},
+  resource_show: {doc:DOC+'resource_show', examples:[['Visits/downloads resource',{id:ANALYTICS}], ['Template resource',{id:'REPLACE_WITH_RESOURCE_ID'}], ['Repeat live example',{id:ANALYTICS}]]},
+  resource_view_list: {doc:DOC+'resource_view_list', examples:[['Views on the resource',{id:ANALYTICS}], ['Template resource',{id:'REPLACE_WITH_RESOURCE_ID'}], ['Repeat template',{id:'REPLACE_WITH_RESOURCE_ID'}]]},
+  resource_view_show: {doc:DOC+'resource_view_show', examples:[['Template view ID',{id:'REPLACE_WITH_VIEW_ID'}], ['Template view ID 2',{id:'REPLACE_WITH_VIEW_ID'}], ['Template view ID 3',{id:'REPLACE_WITH_VIEW_ID'}]]},
+  datastore_search: {doc:STORE_DOC, examples:[['Five rows',{resource_id:ANALYTICS,limit:5}], ['Rows for 2026',{resource_id:ANALYTICS,filters:JSON.stringify({year_annee:2026}),limit:10}], ['Column discovery',{resource_id:ANALYTICS,limit:0}]]},
+  datastore_info: {doc:'https://docs.ckan.org/en/2.11/maintaining/datastore.html', examples:[['Field metadata',{resource_id:ANALYTICS}], ['Repeat example',{resource_id:ANALYTICS}], ['Template resource',{resource_id:'REPLACE_WITH_RESOURCE_ID'}]]},
+  organization_show: {doc:DOC+'organization_show', examples:[['Treasury Board',{id:'tbs-sct'}], ['Include dataset count',{id:'tbs-sct',include_dataset_count:true}], ['Include extras',{id:'tbs-sct',include_extras:true}]]},
+  license_list: {doc:DOC+'license_list', examples:[['List licences',{}], ['English context',{lang:'en'}], ['French context',{lang:'fr'}]]},
+  scheming_dataset_schema_show: {doc:'https://github.com/ckan/ckanext-scheming#api', examples:[['Expanded dataset schema',{type:'dataset',expanded:true}], ['Info schema',{type:'info',expanded:true}], ['Compact schema',{type:'dataset'}]]},
+  recently_changed_packages_activity_list: {doc:DOC+'recently_changed_packages_activity_list', examples:[['Latest 5',{limit:5}], ['Latest 10',{limit:10}], ['Latest 20',{limit:20}]]}
+};
+
+const defs = {
+  'datastore-api': {
+    eyebrow:'DataStore side',
+    title:'Datastore (Data API)',
+    subtitle:'Left side of the diagram: the DataStore DB and its query-oriented API.',
+    copy:'This large orange area represents the separate DataStore PostgreSQL database plus the public API methods that query it. It is where tabular data records and table-level metadata live once a resource has been loaded into DataStore.',
+    bullets:[
+      'It is conceptually distinct from the CKAN metadata database.',
+      'The same resource ID is used as the bridge between metadata and tabular data.',
+      'This is the engine behind row-level filtering, sorting, and table exploration.'
+    ],
+    pills:['DataStore DB','tabular rows','field metadata','queryable records'],
+    apis:['datastore_search','datastore_info','resource_show'],
+    entities:['datastoredb','datastoreapi']
+  },
+  'index-records': {
+    eyebrow:'DataStore database · system catalogue',
+    title:'Index of DataStore tables and aliases',
+    subtitle:'The _table_metadata view lists the DataStore’s PostgreSQL relations, including resource tables and named aliases.',
+    copy:'CKAN exposes a special DataStore view called _table_metadata. It is an inventory of tables (each named for its CKAN resource ID) and mnemonic aliases (implemented as PostgreSQL views). It is not a full-text index or an index of the individual data rows. Query it with datastore_search?resource_id=_table_metadata — the parameter is resource_id, not id.',
+    bullets:[
+      '_id — unique key identifying a relation listed in the system view.',
+      'name — resource UUID for a base table, or the alias name for a named view.',
+      'alias_of — underlying relation name when the entry is an alias; null for a base table.',
+      'oid — PostgreSQL object identifier of the relation.',
+      'Use a result’s name (or alias) as resource_id in subsequent DataStore queries; DataStore resources also have CKAN resource records.'
+    ],
+    pills:['_table_metadata','relation inventory','resource tables','PostgreSQL views','aliases'],
+    apis:['datastore_search'],
+    apiExamples:[
+      ['List DataStore tables and aliases',{resource_id:'_table_metadata',limit:10}],
+      ['Inspect _table_metadata columns',{resource_id:'_table_metadata',limit:0}],
+      ['Next page of relation entries',{resource_id:'_table_metadata',limit:10,offset:10}]
+    ],
+    doc:'https://docs.ckan.org/en/2.11/maintaining/datastore.html#internal-structure-of-the-database',
+    entities:['datastoredb','tabledata','datastoreapi']
+  },
+  'datastore-tables': {
+    eyebrow:'DataStore object',
+    title:'Datastore Tables',
+    subtitle:'The underlying tables for DataStore-enabled resources.',
+    copy:'A DataStore-enabled resource corresponds to an underlying PostgreSQL table. That table stores rows, fields, and field metadata. The diagram puts this near the center because it is the core concept behind interactive table views and Data API access.',
+    bullets:[
+      'One resource ID can correspond to one queryable DataStore table.',
+      'The table underlies both raw data access and richer portal views.',
+      'It is more precise to think of this as a DB table than as “just a CSV.”'
+    ],
+    pills:['PostgreSQL table','resource_id bridge','underlying source'],
+    apis:['datastore_search','datastore_info','resource_show'],
+    entities:['datastoredb','datastore','tabledata']
+  },
+  'tabular-data': {
+    eyebrow:'DataStore content',
+    title:'Tabular Data',
+    subtitle:'The actual rows and values stored in a DataStore-backed table.',
+    copy:'This element focuses specifically on the row-level data values. In the portal, this is what users typically browse in table previews or consume through the Data API.',
+    bullets:[
+      'Example resource: Open Government Analytics → Number of Visits, Downloads.',
+      'Values can be filtered without changing the underlying resource.',
+      'Best API method to demonstrate: datastore_search.'
+    ],
+    pills:['rows','values','filtering','preview'],
+    apis:['datastore_search'],
+    entities:['datastoredb','tabledata']
+  },
+  'table-metadata': {
+    eyebrow:'DataStore metadata',
+    title:'Data Dictionary and Table Metadata',
+    subtitle:'Field definitions, types, and bilingual descriptions that live with the table.',
+    copy:'This box emphasizes a point that is easy to miss: important descriptive information for a DataStore table is stored with the DataStore field metadata, not only on the dataset page. That includes machine-readable types and, on open.canada.ca/data, bilingual labels and descriptions for fields.',
+    bullets:[
+      'Useful for explaining why field-level EN/FR definitions are part of the DataStore side.',
+      'Helps separate “table metadata” from dataset-level metadata.',
+      'Supports the “Filters / definitions” concept inside the View box.'
+    ],
+    pills:['label_en','label_fr','notes_en','notes_fr','type'],
+    apis:['datastore_info','datastore_search'],
+    entities:['datastoredb','dictionary']
+  },
+  'dataset-package': {
+    eyebrow:'Metadata side',
+    title:'Dataset (Package)',
+    subtitle:'The main CKAN metadata record on the right side of the diagram.',
+    copy:'This large dark panel represents the CKAN metadata database. In CKAN terms, the dataset is a package: the central metadata record that organizes description, publisher, licence, resource list, subject tagging, dates and other catalogue fields.',
+    bullets:[
+      'This is the main unit returned by package_show.',
+      'It is the public-facing container that most users first encounter.',
+      'Resources, organizations and licences are all related through this metadata record.'
+    ],
+    pills:['CKAN DB','package','catalogue metadata','public dataset page'],
+    apis:['package_show','package_search','scheming_dataset_schema_show'],
+    entities:['ckandb','package']
+  },
+  'rss-feed': {
+    eyebrow:'Metadata-side output',
+    title:'RSS Feed',
+    subtitle:'Feed-style discovery and update outputs generated from metadata.',
+    copy:'The RSS Feed box represents feed-style outputs that are derived from catalogue metadata. The point of placing it outside the resource block is to show that not all public outputs are direct file downloads or DataStore queries.',
+    bullets:[
+      'Feeds are downstream delivery features, not primary data stores.',
+      'They are more naturally explained from the metadata side than the DataStore side.',
+      'Useful for showing alternate discovery pathways.'
+    ],
+    pills:['feeds','discovery','metadata-derived'],
+    apis:['package_search','organization_show'],
+    entities:['ckandb','feeds']
+  },
+  'profiles': {
+    eyebrow:'Metadata profiles',
+    title:'Different Profiles',
+    subtitle:'Alternative metadata serializations and profiles such as DCAT and CKAN default.',
+    copy:'This box is a compact visual way to show that the same underlying catalogue metadata can be expressed through multiple profiles or standards-oriented outputs. It reinforces that the metadata database does more than power one webpage.',
+    bullets:[
+      'Good place to discuss DCAT, Schema.org or other metadata profiles.',
+      'These are best understood as alternate views over metadata, not over DataStore rows.',
+      'This complements the dataset/package concept.'
+    ],
+    pills:['DCAT','Schema.org','ISO-19115','CKAN default'],
+    apis:['package_show','scheming_dataset_schema_show'],
+    entities:['ckandb','schema','feeds']
+  },
+  'resource-files': {
+    eyebrow:'CKAN resource layer',
+    title:'Resource (Files)',
+    subtitle:'The resource block is the most important bridge on the metadata side.',
+    copy:'Resources are metadata records attached to a dataset. They may describe downloadable files, linked applications, supporting pages, or DataStore-backed tables. A resource is also the bridge to DataStore when datastore_active is true.',
+    bullets:[
+      'Use this to explain that not all resources are identical in behaviour.',
+      'Some resources lead to downloads, some to views, some to DataStore.',
+      'Resource metadata includes technical provenance fields such as hash, URLs and timestamps.'
+    ],
+    pills:['resource.id','format','url','datastore_active','hash'],
+    apis:['resource_show','package_show','resource_view_list'],
+    entities:['ckandb','resource','datastorebridge']
+  },
+  'validation': {
+    eyebrow:'Resource technical metadata',
+    title:'Validation',
+    subtitle:'Validation-related fields attached to resource metadata.',
+    copy:'Validation status and related metadata are part of the technical information that can be attached to a resource. This helps explain quality signals and the distinction between structural validation and substantive data meaning.',
+    bullets:[
+      'Validation metadata is not the same as DataStore field definitions.',
+      'Useful for advanced users assessing technical quality.',
+      'Helps illustrate behind-the-scenes resource metadata.'
+    ],
+    pills:['validation_status','validation_timestamp','resource metadata'],
+    apis:['resource_show'],
+    entities:['ckandb','validation','metadata']
+  },
+  'resource-metadata': {
+    eyebrow:'Resource metadata',
+    title:'Metadata',
+    subtitle:'Technical and descriptive metadata attached to individual resources.',
+    copy:'This box highlights the per-resource metadata that sits on the CKAN side: format, URLs, hashes, timestamps, language indicators, validation fields and other descriptive details. It helps users understand that important information about a resource exists beyond the dataset description.',
+    bullets:[
+      'A strong place to explain reproducibility-relevant details such as hashes and last-modified timestamps.',
+      'Also helps explain why resource_show matters.',
+      'Reinforces that file-level metadata is not the same as table-level metadata.'
+    ],
+    pills:['hash','size','last_modified','original_url'],
+    apis:['resource_show'],
+    entities:['ckandb','metadata','hash']
+  },
+  'view': {
+    eyebrow:'Delivery feature',
+    title:'View',
+    subtitle:'Configured user-facing presentations layered on top of resources.',
+    copy:'The View box represents portal-facing presentations derived from a resource. Some views may be powered by DataStore content, while others may present linked or downloadable content. This makes “View” a downstream feature rather than a primary data structure.',
+    bullets:[
+      'Good for explaining the difference between stored data and presented data.',
+      'Some views can apply saved configuration or filtering.',
+      'The concept bridges the metadata side and the DataStore side.'
+    ],
+    pills:['presentation','saved configuration','preview layer'],
+    apis:['resource_view_list','resource_view_show','resource_show'],
+    entities:['resourceview','datastorebridge']
+  },
+  'filters-definitions': {
+    eyebrow:'View + DataStore connection',
+    title:'Filters / definitions',
+    subtitle:'Where saved view behaviour meets DataStore filtering and field definitions.',
+    copy:'This element is especially useful because it connects the right-hand presentation layer to the left-hand DataStore concepts. Filters often depend on the structure of the underlying table, and definitions help explain what the filtered fields mean.',
+    bullets:[
+      'A natural place to explain “one table, many filtered views.”',
+      'Connects view configuration to DataStore field metadata.',
+      'Clarifies why table definitions matter to end users.'
+    ],
+    pills:['filtering','definitions','field meaning','view logic'],
+    apis:['resource_view_list','resource_view_show','datastore_search','datastore_info'],
+    entities:['resourceview','dictionary','datastorebridge']
+  },
+  'organizations': {
+    eyebrow:'Metadata-side object',
+    title:'Organizations',
+    subtitle:'Publisher identity and organization-level catalogue structure.',
+    copy:'Organizations are a core CKAN-side concept. They represent publishers and help organize datasets. Their place below the main package box reinforces that they are related to — but distinct from — any single dataset.',
+    bullets:[
+      'Best for explaining publisher pages and publisher relationships.',
+      'Can support feeds or discovery by organization.',
+      'Useful for showing that the portal is not only about datasets and files.'
+    ],
+    pills:['publisher','organization_show','ownership'],
+    apis:['organization_show','package_search'],
+    entities:['ckandb','organization']
+  },
+  'org-rss': {
+    eyebrow:'Organization output',
+    title:'Organization RSS feed',
+    subtitle:'Feed-style discovery scoped to organizations.',
+    copy:'This small RSS feed inside the Organizations block reinforces that feed-like outputs can also be scoped around publisher entities.',
+    bullets:[
+      'Useful but secondary concept.',
+      'Supports the discovery story.',
+      'Still belongs conceptually to the metadata side.'
+    ],
+    pills:['organization','feed','discovery'],
+    apis:['organization_show','package_search'],
+    entities:['ckandb','feeds','organization']
+  },
+  'users': {
+    eyebrow:'Organization context',
+    title:'Users',
+    subtitle:'A simplified visual placeholder for user-related or publisher-adjacent context.',
+    copy:'This part of the diagram can help remind viewers that the application has actors and management context around published content. In a simplified public explanation, it can stand in for administrative or publisher-side participation without overcomplicating the main model.',
+    bullets:[
+      'Less central than datasets, resources and DataStore.',
+      'May be worth simplifying further depending on audience.',
+      'Useful in internal or semi-technical presentations.'
+    ],
+    pills:['actors','publisher context'],
+    apis:['organization_show'],
+    entities:['ckandb','users']
+  },
+  'licences': {
+    eyebrow:'Metadata-side governance',
+    title:'Licences',
+    subtitle:'Reuse permissions attached at the metadata level.',
+    copy:'The Licences box is intentionally separate to show that reuse permissions are a governing metadata concept. They are not stored in the DataStore table and they are not merely file attributes.',
+    bullets:[
+      'Important for explaining open data reuse conditions.',
+      'Attached to datasets in metadata, not to DataStore rows.',
+      'Can be discovered through licence-related CKAN methods.'
+    ],
+    pills:['reuse permissions','license_list','dataset metadata'],
+    apis:['license_list','package_show'],
+    entities:['ckandb','license']
+  }
+};
+
+function makeApiCard(method, label, params){
+  const def = apiDefs[method] || {doc:null,examples:[]};
+  const live = req(method, params);
+  const templated = live.includes('REPLACE_WITH');
+  const card = document.createElement('article');
+  card.className = 'api-card';
+  card.innerHTML = `<div class="api-top"><span>${label}</span><span>GET</span></div><pre>${method}?${qs(params)}</pre>`;
+  const actions = document.createElement('div');
+  actions.className = 'api-actions';
+  const copy = document.createElement('button');
+  copy.type='button'; copy.textContent='Copy URL';
+  copy.onclick = async () => { try{ await navigator.clipboard.writeText(live); copy.textContent='Copied ✓'; } catch { copy.textContent='Copy failed'; } };
+  actions.append(copy);
+  if(!templated){
+    const a = document.createElement('a');
+    a.href = live; a.target='_blank'; a.rel='noopener'; a.textContent='Open live ↗';
+    actions.append(a);
+  } else {
+    const span = document.createElement('span');
+    span.style.fontSize='10px'; span.style.color='#647c8a'; span.textContent='Template — replace placeholder';
+    actions.append(span);
+  }
+  card.append(actions);
+  return card;
+}
+
+function showDetail(id){
+  const def = defs[id]; if(!def) return;
+  const selectedNode = nodes.find(n => n.dataset.id === id);
+  const entities = new Set((selectedNode?.dataset.entities || '').split(/\s+/).filter(Boolean));
+  root.classList.add('diagram-dim');
+  nodes.forEach(n => {
+    const mine = n.dataset.id === id;
+    const theirs = (n.dataset.entities || '').split(/\s+/).filter(Boolean).some(x => entities.has(x));
+    n.classList.toggle('selected', mine);
+    n.classList.toggle('related', !mine && theirs);
+  });
+
+  $('#detailEyebrow').textContent = def.eyebrow;
+  $('#detailTitle').textContent = def.title;
+  $('#detailSubtitle').textContent = def.subtitle;
+  $('#detailCopy').textContent = def.copy;
+  $('#detailPills').replaceChildren(...def.pills.map(p => { const s=document.createElement('span'); s.textContent=p; return s; }));
+  $('#detailBullets').replaceChildren(...def.bullets.map(b => { const li=document.createElement('li'); li.textContent=b; return li; }));
+
+  const apiCards = [];
+  if (def.apiExamples) {
+    // System catalog examples are about _table_metadata, not sample row queries.
+    def.apiExamples.forEach(ex => apiCards.push(makeApiCard('datastore_search', ex[0], ex[1])));
+  } else {
+    def.apis.forEach((method, idx) => {
+      const exs = (apiDefs[method]?.examples || []).slice(0, idx===0 ? 2 : 1);
+      exs.forEach(ex => apiCards.push(makeApiCard(method, ex[0], ex[1])));
+    });
+  }
+  $('#apiGrid').replaceChildren(...apiCards.slice(0,3));
+
+  const docs = [];
+  def.apis.forEach(method => {
+    const meta = apiDefs[method];
+    if(meta?.doc){
+      const a=document.createElement('a');
+      a.href = meta.doc; a.target='_blank'; a.rel='noopener'; a.textContent = `Docs: ${method} ↗`;
+      docs.push(a);
+    }
+  });
+  if (def.doc) {
+    const a = document.createElement('a');
+    a.href = def.doc; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = 'CKAN docs: internal structure / _table_metadata ↗';
+    docs.unshift(a);
+  }
+  $('#docsRow').replaceChildren(...docs);
+}
+
+nodes.forEach(node => node.addEventListener('click', e => { e.stopPropagation(); showDetail(node.dataset.id); }));
+document.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.open)));
+$('#resetFocus').addEventListener('click', () => showDetail('dataset-package'));
+$('#openApiView').addEventListener('click', () => showDetail('filters-definitions'));
+$('#focusDatastore').addEventListener('click', () => showDetail('datastore-api'));
+$('#focusMetadata').addEventListener('click', () => showDetail('dataset-package'));
+
+showDetail('dataset-package');
+</script>
+<script>
+'use strict';
+// Extension evidence is deliberately separated from the database schematic.
+// GET examples are read-only; non-public, write, and workflow examples are descriptive only.
+const exAction = (method,params,label,note='') => ({kind:'Public read example',label,display:'GET '+req(method,params),href:req(method,params),note});
+const exRoute = (pathname,label,note='') => ({kind:'Public HTTP route',label,display:'GET https://open.canada.ca'+pathname,href:'https://open.canada.ca'+pathname,note});
+const exStep = (label,display,note='',href=null) => ({kind:'UI or workflow example',label,display,note,href});
+const exTemplate = (label,display,note='') => ({kind:'Documentation example — not run on the portal',label,display,note});
+const extCatalog = {
+ activity:{label:'activity',kind:'Action API · change tracking',scope:'portal',description:'Tracks CKAN dataset and organization activity. The published Canada portal configuration lists activity. Activity records explain metadata changes; they do not replace resource file byte checks.',doc:'https://docs.ckan.org/en/2.10/api/#ckanext.activity.logic.action.package_activity_list',extraDoc:'https://github.com/open-data/ckanext-canada/blob/master/README.md',examples:[exAction('package_activity_list',{id:DATASET,limit:5},'Inspect changes to a public dataset','CKAN action; visibility depends on public activity and site settings.'),exAction('organization_activity_list',{id:'tbs-sct',limit:5},'Inspect publisher activity','The installed plugin may restrict or suppress activity in public responses.'),exAction('recently_changed_packages_activity_list',{limit:5},'Recent changes across datasets','Activity API is distinct from RSS/Atom feed routes.')]},
+ dcat:{label:'dcat',kind:'RDF catalogue and dataset serializations',scope:'portal',description:'Serializes CKAN catalogue metadata as RDF, including the catalogue-level Turtle and JSON-LD endpoints. These are downloadable HTTP documents derived from the CKAN metadata database; they are NOT Action API calls.',doc:'https://docs.ckan.org/projects/ckanext-dcat/en/latest/endpoints/',extraDoc:'https://github.com/ckan/ckanext-dcat/blob/master/README.md',examples:[exRoute('/data/catalog.ttl','Full catalogue in Turtle (TTL)','Direct RDF catalogue document. The .ttl extension denotes Turtle RDF, not a DataStore tabular export.'),exRoute('/data/catalog.jsonld','Full catalogue as JSON-LD','DCAT JSON-LD serializes catalogue metadata. Distinct from native CKAN package_show JSON.'),exRoute('/data/en/dataset/'+DATASET+'.xml','One dataset as DCAT XML','Dataset-level XML representation documented by the Canada public dataset page template.')]},
+ dcat_json_interface:{label:'dcat_json_interface',kind:'JSON-LD dataset representation',scope:'portal',description:'Exposes JSON-LD versions of CKAN dataset metadata. The Canada dataset page template includes .jsonld links when the plugin is enabled. The full-catalogue JSON-LD output is also shown in the dcat catalog endpoint family.',doc:'https://github.com/open-data/ckanext-canada/blob/master/ckanext/canada/templates/package/read_base.html',extraDoc:'https://docs.ckan.org/projects/ckanext-dcat/en/latest/endpoints/',examples:[exRoute('/data/en/dataset/'+DATASET+'.jsonld','One dataset as JSON-LD','Dataset-level JSON-LD pattern from the Canada dataset page template.'),exRoute('/data/catalog.jsonld','Whole catalogue as DCAT JSON-LD','Catalogue-wide RDF serialization; model it as a DCAT catalogue endpoint rather than implying this plugin alone owns it.'),exAction('package_show',{id:DATASET},'Compare native CKAN JSON','This returns CKAN action JSON, not a DCAT JSON-LD document.')]},
+ atom_feeds:{label:'Atom feeds (core CKAN routes)',kind:'Core CKAN Atom HTTP feed routes',scope:'core',description:'Returns Atom XML feeds for individual datasets and publishing organizations. Feeds are metadata-driven HTTP routes, not new Activity Action API methods; the organization feed supports pagination using ?page=3.',doc:'https://ckan.org/blog/atom-feeds/',extraDoc:'https://github.com/open-data/ckanext-canada/blob/master/ckanext/canada/templates/package/read_base.html',examples:[exRoute('/data/en/feeds/organization/tbs-sct.atom','TBS organization Atom feed','Shows entries for one publishing organization using the English-language route.'),exRoute('/data/feeds/organization/rcmp-grc.atom?page=3','RCMP organization feed — page 3','Demonstrates the organization feed pagination parameter.'),exRoute('/data/feeds/dataset/6a09c998-cddb-4a22-beff-4dca67ab892f.atom','Feed for one dataset','Dataset-scoped Atom route, distinct from package_activity_list Action API.')]},
+ datastore:{label:'datastore',kind:'DataStore API + download routes',scope:'portal',description:'Powers the separate PostgreSQL DataStore DB. datastore_search and datastore_info are JSON Action API methods. The /datastore/dump/{resource-id} route is a separate public HTTP export interface supporting CSV, UTF-8 BOM, TSV, JSON and XML. The special _table_metadata relation lists DataStore tables and aliases (not individual data rows).',doc:'https://docs.ckan.org/en/2.11/maintaining/datastore.html#downloading-resources',extraDoc:'https://docs.ckan.org/en/2.11/maintaining/datastore.html',examples:[exAction('datastore_search',{resource_id:ANALYTICS,limit:5},'Read five records (Action API)','A public row query, not a file download.'),exAction('datastore_info',{resource_id:ANALYTICS},'Inspect field metadata (Action API)','Returns field information, potentially including bilingual data dictionary values.'),exRoute('/data/en/datastore/dump/3733106d-74f1-428e-beda-cad530b473cf?bom=True','Download CSV with UTF-8 BOM','For Excel-friendly UTF-8 CSV; it does not create an XLSX spreadsheet.'),exRoute('/data/en/datastore/dump/3733106d-74f1-428e-beda-cad530b473cf?format=xml','Download DataStore rows as XML','This is the tabular data export, not a DCAT XML metadata serialization.'),exAction('datastore_search',{resource_id:ANALYTICS,filters:JSON.stringify({year_annee:2026}),limit:10},'Filter visits to 2026 (Action API)','Uses an actual column from the analytics resource.')]},
+ dsaudit:{label:'dsaudit',kind:'DataStore change audit',scope:'registry',description:'Records activity for DataStore changes in the publishing workflow. The published Canada configuration places dsaudit on the registry side, not in the public portal plugin list. It is important background context, but not a public /data API method.',doc:'https://github.com/ckan/ckanext-dsaudit',extraDoc:'https://github.com/open-data/ckanext-canada/blob/master/README.md',examples:[exTemplate('Audit ingestion activity','Registry-side DataStore change audit → publication synchronization → public DataStore table.','Workflow diagram only; no public dsaudit action is asserted.'),exAction('resource_show',{id:ANALYTICS},'Public-facing resource state','Inspect the published resource; not a dsaudit endpoint.'),exAction('datastore_search',{resource_id:ANALYTICS,limit:5},'Published rows after synchronization','Shows the output of the process, not the registry audit trail.')]},
+ fluent:{label:'fluent',kind:'Multilingual metadata extension',scope:'portal',description:'Provides translated metadata fields on CKAN-side dataset, organization and resource objects. It is separate from the DataStore field-level bilingual dictionary.',doc:'https://github.com/ckan/ckanext-fluent/blob/master/README.md',extraDoc:'https://github.com/ckan/ckanext-scheming/blob/master/README.md',examples:[exAction('package_show',{id:DATASET},'Inspect translated dataset fields','Look for translated objects where available (for example title_translated), rather than assuming a language parameter changes the JSON.'),exAction('organization_show',{id:'tbs-sct'},'Inspect organization metadata','Organization multilingual values are catalogue-side metadata.'),exAction('scheming_dataset_schema_show',{type:'dataset',expanded:true},'See multilingual field definitions','Schemas can describe fluent field presets and validators.')]},
+ scheming_organizations:{label:'scheming_organizations',kind:'Organization metadata schema',scope:'portal',description:'The ckanext-scheming organization plugin exposes a public organization metadata schema, defining its fields, labels, validators and forms. It acts on the CKAN DB side.',doc:'https://github.com/ckan/ckanext-scheming/blob/master/README.md#action-api-endpoints',extraDoc:'https://open.canada.ca/data/api/action/scheming_organization_schema_show?type=organization',examples:[exAction('scheming_organization_schema_show',{type:'organization'},'Read the organization schema','Use the portal-specific organization schema type.'),exAction('scheming_organization_schema_list',{},'List configured organization schemas','The method name is documented by ckanext-scheming; public availability depends on the portal.'),exAction('organization_show',{id:'tbs-sct'},'Inspect a real organization','Compare a record to its schema.')]},
+ cloudstorage:{label:'cloudstorage',kind:'File storage adapter',scope:'portal',description:'Connects CKAN resource uploads and downloads to supported cloud object stores (including Azure and S3). The public consequence is resource URLs and downloads, not a separate public cloudstorage read API.',doc:'https://github.com/open-data/ckanext-cloudstorage/blob/master/README.md',extraDoc:'https://github.com/open-data/ckanext-canada/blob/master/README.md',examples:[exAction('resource_show',{id:ANALYTICS},'Inspect the file access URL','Look at url, url_type and size where available; do not assume the file bytes live in the CKAN DB.'),exAction('package_show',{id:DATASET},'Enumerate downloadable resources','Each resource can have an independent file URL and format.'),exStep('Download a published file','Follow the resource.url returned by resource_show.','The storage provider and signed-URL behaviour are configuration-dependent; do not assume a public cloudstorage action.')]},
+ text_view:{label:'text_view',kind:'Resource viewer plugin',scope:'portal',description:'Renders suitable plain-text content on a resource page. The resource-view configuration is CKAN metadata; its content is retrieved from the linked file or resource URL.',doc:'https://docs.ckan.org/en/2.10/maintaining/data-viewer.html',extraDoc:'https://github.com/ckan/ckan/blob/master/setup.cfg',examples:[exAction('resource_view_list',{id:ANALYTICS},'Discover view records','For a text resource, inspect whether a text_view is configured; the analytics CSV need not have one.'),exTemplate('Inspect a text view','GET /data/en/api/3/action/resource_view_show?id={text-view-id}','Use a real view ID returned by resource_view_list.'),exStep('Portal preview','Open a TXT or suitable text resource page → Preview / View.','Presentation action; no special text_view query action is implied.')]},
+ image_view:{label:'image_view',kind:'Resource viewer plugin',scope:'portal',description:'Renders supported images from resources. View configuration is stored with CKAN metadata; image bytes are loaded via the resource URL or storage service.',doc:'https://docs.ckan.org/en/2.10/maintaining/data-viewer.html',extraDoc:'https://github.com/ckan/ckan/blob/master/setup.cfg',examples:[exAction('resource_view_list',{id:ANALYTICS},'Inspect view list for a resource','An example of the standard view discovery method; not a claim that this CSV has an image view.'),exTemplate('Inspect an image view','GET /data/en/api/3/action/resource_view_show?id={image-view-id}','Replace with an actual view ID from an image resource.'),exStep('Image resource workflow','Find a resource with format PNG/JPEG/SVG → open its resource page → select the image preview.','Files remain separate from CKAN database records.')]},
+ datatables_view:{label:'datatables_view',kind:'Tabular viewer plugin',scope:'portal',description:'The DataTables resource viewer supports sorting, column filtering, visibility, search, and richer table interactions. The view is configured in CKAN while records are commonly served by the DataStore DB.',doc:'https://docs.ckan.org/en/2.10/maintaining/data-viewer.html#datatables-view',extraDoc:'https://docs.ckan.org/en/2.10/maintaining/datastore.html',examples:[exAction('resource_view_list',{id:ANALYTICS},'Find the table viewer configuration','A given resource may have one or more views.'),exAction('datastore_search',{resource_id:ANALYTICS,filters:JSON.stringify({year_annee:2026}),limit:5},'Replicate a 2026 view filter in the API','Underlying rows can be reused by multiple presentations.'),exAction('datastore_info',{resource_id:ANALYTICS},'Inspect columns powering filters','Field types and descriptions inform filtering.')]},
+ openapi_view:{label:'openapi_view',kind:'OpenAPI resource viewer plugin',scope:'portal',description:'The open-data OpenAPI viewer displays Swagger/OpenAPI v3 documentation from a JSON resource. It is a configured resource view, not a new CKAN query API.',doc:'https://github.com/open-data/ckanext-openapiview/blob/main/README.md',extraDoc:'https://docs.ckan.org/en/2.10/maintaining/data-viewer.html',examples:[exAction('resource_view_list',{id:ANALYTICS},'Read generic resource-view configurations','Example of the shared view API; the analytics CSV does not imply an OpenAPI view.'),exTemplate('Inspect a configured OpenAPI view','GET /data/en/api/3/action/resource_view_show?id={openapi-view-id}','Use a real view ID from a JSON resource containing an OpenAPI specification.'),exStep('Create a visible API documentation view','Attach a JSON OpenAPI 3 specification as a resource → configure an Open API resource view → open the generated documentation.','User workflow; creation requires publisher permissions.')]},
+ power_bi_view:{label:'power_bi_view',kind:'Power BI resource viewer plugin',scope:'portal',description:'Embeds a Power BI report within a CKAN resource view. The extension documentation says its embed tokens are view-only. Report IDs and workspace settings are configuration, not additional dataset rows in DataStore.',doc:'https://github.com/open-data/ckanext-power-bi/blob/main/README.md',extraDoc:'https://docs.ckan.org/en/2.10/maintaining/data-viewer.html',examples:[exAction('resource_view_list',{id:ANALYTICS},'Inspect the standard CKAN view list','Viewer discovery does not prove the sample CSV has a Power BI view.'),exTemplate('Inspect a configured Power BI view','GET /data/en/api/3/action/resource_view_show?id={power-bi-view-id}','The returned view config identifies the report; use a real view ID.'),exStep('View a published report','Select the configured Power BI view on its resource page.','Report display uses view-only embedding; it is not a public CKAN Power BI Action API.')]},
+ validation:{label:'ckanext-validation',kind:'Validation workflow / actions',scope:'registry',description:'ckanext-validation documents resource_validation_show/run/delete actions and a validation report. In the published Canada setup the validation plugin is registry-side; the public portal exposes resulting resource status fields but a public validation action should not be assumed.',doc:'https://github.com/ckan/ckanext-validation/blob/master/README.md#action-functions',extraDoc:'https://github.com/open-data/ckanext-canada/blob/master/README.md',examples:[exTemplate('Documented validation read action','resource_validation_show(resource_id="'+ANALYTICS+'")','The action is documented by ckanext-validation; do not treat it as confirmed on open.canada.ca/data.'),exAction('resource_show',{id:ANALYTICS},'Inspect public validation fields','Published metadata can include validation status or timestamps.'),exTemplate('Run validation in the publishing workflow','resource_validation_run(resource_id="{resource-id}")','Registry-side write action requiring publisher or administrative privileges; no live button.')]},
+ xloader:{label:'ckanext-xloader',kind:'Background DataStore loading',scope:'registry',description:'ckanext-xloader loads CSV and similar files into the DataStore DB, using a background queue and PostgreSQL COPY. In Canada’s published configuration xloader is registry-side. It helps explain how queryable rows arrive in the public DataStore, but is not a public portal query API.',doc:'https://github.com/ckan/ckanext-xloader/blob/master/README.md',extraDoc:'https://github.com/open-data/ckanext-canada/blob/master/README.md',examples:[exTemplate('Behind-the-scenes data flow','CSV resource → xloader job in publishing environment → DataStore table → public datastore_search.','Conceptual workflow; no public xloader submission endpoint is asserted.'),exAction('resource_show',{id:ANALYTICS},'Inspect DataStore activation','Check datastore_active on a published CKAN resource.'),exAction('datastore_search',{resource_id:ANALYTICS,limit:5},'Query resulting published rows','Read the output of the loading process, not the background job itself.')]}
+};
+
+const publicRouteCatalog={
+  tbs_atom:{label:'TBS organization feed',format:'Atom XML',url:'https://open.canada.ca/data/en/feeds/organization/tbs-sct.atom',note:'Organization-scoped feed; published updates are exposed as Atom entries.',doc:'https://ckan.org/blog/atom-feeds/'},
+  rcmp_atom_page3:{label:'RCMP organization feed — page 3',format:'Atom XML',url:'https://open.canada.ca/data/feeds/organization/rcmp-grc.atom?page=3',note:'Demonstrates pagination of an organization Atom feed, distinct from API pagination.',doc:'https://ckan.org/blog/atom-feeds/'},
+  dataset_atom:{label:'One dataset’s Atom feed',format:'Atom XML',url:'https://open.canada.ca/data/feeds/dataset/6a09c998-cddb-4a22-beff-4dca67ab892f.atom',note:'Dataset-scoped metadata changes; distinct from package_show JSON or an activity Action API.',doc:'https://ckan.org/blog/atom-feeds/'},
+  catalog_ttl:{label:'DCAT whole catalogue — Turtle',format:'RDF / TTL',url:'https://open.canada.ca/data/catalog.ttl',note:'Linked-data serialization for the entire CKAN catalogue, not an individual dataset or a DataStore table.',doc:'https://docs.ckan.org/projects/ckanext-dcat/en/latest/endpoints/'},
+  catalog_jsonld:{label:'DCAT whole catalogue — JSON-LD',format:'RDF / JSON-LD',url:'https://open.canada.ca/data/catalog.jsonld',note:'Whole-catalogue semantic metadata. Unlike package_show, this output uses RDF/JSON-LD.',doc:'https://docs.ckan.org/projects/ckanext-dcat/en/latest/endpoints/'},
+  dump_bom:{label:'DataStore export — CSV with BOM',format:'CSV / UTF-8 BOM',url:'https://open.canada.ca/data/en/datastore/dump/3733106d-74f1-428e-beda-cad530b473cf?bom=True',note:'Exports table rows in Excel-friendly UTF-8 CSV (byte-order mark); not an XLSX file.',doc:'https://docs.ckan.org/en/2.11/maintaining/datastore.html#downloading-resources'},
+  dump_xml:{label:'DataStore export — XML',format:'Tabular XML',url:'https://open.canada.ca/data/en/datastore/dump/3733106d-74f1-428e-beda-cad530b473cf?format=xml',note:'Exports tabular DataStore records as XML. Do not confuse with DCAT metadata in RDF/XML.',doc:'https://docs.ckan.org/en/2.11/maintaining/datastore.html#downloading-resources'}
+};
+// The choice of node preserves the original drawing's conceptual separation.
+const routesForNode={
+ 'datastore-api':['dump_bom','dump_xml'],
+ 'datastore-tables':['dump_bom','dump_xml'],
+ 'tabular-data':['dump_bom','dump_xml'],
+ 'resource-files':['dump_bom','dump_xml'],
+ 'dataset-package':['dataset_atom'],
+ 'rss-feed':['dataset_atom','tbs_atom','rcmp_atom_page3'],
+ 'profiles':['catalog_ttl','catalog_jsonld'],
+ 'organizations':['tbs_atom','rcmp_atom_page3'],
+ 'org-rss':['tbs_atom','rcmp_atom_page3']
+};
+function renderRoutesForNode(nodeId){
+ const keys=routesForNode[nodeId]||[];
+ const panel=document.getElementById('publicRoutes');
+ if(!keys.length){panel.hidden=true;document.getElementById('routeGrid').replaceChildren();return}
+ panel.hidden=false;
+ document.getElementById('routeCount').textContent=keys.length+' related route'+(keys.length===1?'':'s');
+ const cards=keys.map(key=>{
+   const example=publicRouteCatalog[key];
+   const card=extEl('article','route-card');
+   const heading=extEl('div','route-card-top');
+   heading.append(extEl('strong','',example.label),extEl('span','route-kind',example.format));
+   card.append(heading);
+   card.append(extEl('pre','route-url','GET '+example.url));
+   card.append(extEl('p','route-note',example.note));
+   const buttons=extEl('div','route-actions');
+   const copy=extEl('button','','Copy URL');copy.type='button';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(example.url);copy.textContent='Copied ✓'}catch{copy.textContent='Clipboard unavailable'}});buttons.append(copy);
+   const open=extEl('a','','Open example ↗');open.href=example.url;open.target='_blank';open.rel='noopener';buttons.append(open);
+   const docs=extEl('a','','CKAN docs ↗');docs.href=example.doc;docs.target='_blank';docs.rel='noopener';buttons.append(docs);
+   card.append(buttons);return card;
+ });
+ document.getElementById('routeGrid').replaceChildren(...cards);
+}
+
+// For every diagram hotspot, show relevant extensions in priority order.
+const extForNode={
+'datastore-api':['datastore','xloader','dsaudit'],
+'index-records':['datastore','dsaudit','xloader'],
+'datastore-tables':['datastore','xloader','dsaudit','datatables_view'],
+'tabular-data':['datastore','datatables_view','xloader'],
+'table-metadata':['datastore','datatables_view'],
+'dataset-package':['activity','atom_feeds','dcat','dcat_json_interface','fluent','scheming_organizations'],
+'rss-feed':['atom_feeds','activity','dcat','dcat_json_interface'],
+'profiles':['dcat','dcat_json_interface','fluent'],
+'resource-files':['cloudstorage','datastore','validation','xloader','text_view','image_view','datatables_view','openapi_view','power_bi_view'],
+'validation':['validation','xloader','cloudstorage'],
+'resource-metadata':['cloudstorage','fluent','validation','xloader','activity'],
+'view':['datatables_view','text_view','image_view','openapi_view','power_bi_view'],
+'filters-definitions':['datatables_view','datastore','text_view','image_view','openapi_view','power_bi_view'],
+'organizations':['atom_feeds','scheming_organizations','fluent','activity'],
+'org-rss':['atom_feeds','activity'],
+'users':['activity','scheming_organizations'],
+'licences':['dcat','dcat_json_interface','fluent']
+};
+let currentNodeExt='dataset-package';
+let selectedExtKey='activity';
+const extRoot=document.getElementById('extensionInspector');
+function extEl(tag,cls='',str=''){
+  const el=document.createElement(tag);if(cls)el.className=cls;if(str)el.textContent=str;return el;
+}
+function showExtension(key){
+  if(!extCatalog[key])return;
+  selectedExtKey=key;
+  const ext=extCatalog[key];
+  extRoot.querySelectorAll('[data-ext]').forEach(b=>{const current=b.dataset.ext===key;b.classList.toggle('active',current);b.setAttribute('aria-pressed',String(current))});
+  document.getElementById('extName').textContent=ext.label;
+  document.getElementById('extType').textContent=ext.kind;
+  const badge=document.getElementById('extScope');
+  badge.textContent=ext.scope==='portal'?'Listed in portal configuration':ext.scope==='core'?'Built-in CKAN HTTP route':'Registry-side / background context';
+  badge.classList.toggle('registry',ext.scope==='registry');
+  document.getElementById('extSummary').textContent=ext.description;
+  const refs=document.getElementById('extRefs');refs.replaceChildren();
+  const main=extEl('a','','Extension documentation ↗');main.href=ext.doc;main.target='_blank';main.rel='noopener';refs.append(main);
+  if(ext.extraDoc){const second=extEl('a','','Related source ↗');second.href=ext.extraDoc;second.target='_blank';second.rel='noopener';refs.append(second)}
+  if (key === 'datastore' && currentNodeExt === 'index-records') { const structure=extEl('a','','_table_metadata specification ↗');structure.href='https://docs.ckan.org/en/2.11/maintaining/datastore.html#internal-structure-of-the-database';structure.target='_blank';structure.rel='noopener';refs.append(structure); }
+  const examples=document.getElementById('extExamples');examples.replaceChildren();
+  const examplesToShow = key === 'datastore' && currentNodeExt === 'index-records' ? [
+    exAction('datastore_search',{resource_id:'_table_metadata',limit:10},'List tables and aliases','The special view enumerates DataStore relations. It is not a row-level index.'),
+    exAction('datastore_search',{resource_id:'_table_metadata',limit:0},'Inspect relation field names','The relation defines _id, alias_of, name and oid.'),
+    exAction('datastore_search',{resource_id:'_table_metadata',limit:10,offset:10},'Page through relations','Use standard DataStore pagination on the _table_metadata view.')
+  ] : ext.examples;
+  examplesToShow.forEach((example,i)=>{
+    const article=extEl('article','ext-example');
+    const head=extEl('div','ext-example-head');head.append(extEl('strong','',`${i+1}. ${example.label}`),extEl('span','',example.kind));article.append(head);
+    const code=extEl('pre','ext-example-code',example.display);article.append(code);
+    if(example.note) article.append(extEl('p','',example.note));
+    const acts=extEl('div','ext-example-actions');
+    const copy=extEl('button','','Copy example');copy.type='button';copy.onclick=async()=>{try{await navigator.clipboard.writeText(example.display);copy.textContent='Copied ✓'}catch{copy.textContent='Clipboard unavailable'}};acts.append(copy);
+    if(example.href){const a=extEl('a','','Open ↗');a.href=example.href;a.target='_blank';a.rel='noopener';acts.append(a)}
+    article.append(acts);examples.append(article);
+  });
+}
+function renderExtForNode(id){
+  if(!extForNode[id])return;
+  currentNodeExt=id;
+  const keys=extForNode[id];
+  const chips=document.getElementById('extChips');chips.replaceChildren();
+  keys.forEach(key=>{
+    const item=extCatalog[key];const btn=extEl('button','ext-chip',item.label);
+    btn.type='button';btn.dataset.ext=key;btn.title=item.kind+(item.scope==='registry'?' — registry-side/background':item.scope==='core'?' — built-in CKAN route':' — portal configuration');
+    if(item.scope==='registry')btn.classList.add('context');
+    btn.onclick=()=>showExtension(key);chips.append(btn);
+  });
+  document.getElementById('extCount').textContent=keys.length+' related capabilities';
+  showExtension(keys[0]);
+}
+const showOldDetail=showDetail;
+showDetail=function(id){showOldDetail(id);renderExtForNode(id);renderRoutesForNode(id)};
+const directory=document.getElementById('extensionDirectory');
+const directoryList=document.getElementById('extensionDirectoryList');
+function renderDirectory(filter=''){
+ directoryList.replaceChildren();let count=0;
+ Object.entries(extCatalog).forEach(([key,ext])=>{
+   const hay=(ext.label+' '+ext.kind+' '+ext.description).toLowerCase();if(filter&&!hay.includes(filter.toLowerCase()))return;
+   const row=extEl('button','directory-row');row.type='button';
+   const left=extEl('span','directory-title',ext.label);const right=extEl('span','directory-type',ext.kind+(ext.scope==='registry'?' · registry/background':ext.scope==='core'?' · built-in route':''));row.append(left,right);
+   row.onclick=()=>{
+     const node=Object.entries(extForNode).find(([_,keys])=>keys.includes(key));
+     if(node)showDetail(node[0]);
+     showExtension(key);
+     directory.close();document.getElementById('extensionInspector').scrollIntoView({behavior:'smooth',block:'start'});
+   }; directoryList.append(row);count++;
+ });
+ document.getElementById('directoryCount').textContent=count+' entries';
+}
+document.getElementById('extensionDirectoryButton').onclick=()=>{document.getElementById('extensionSearch').value='';renderDirectory();directory.showModal()};
+document.getElementById('closeExtensionDirectory').onclick=()=>directory.close();
+document.getElementById('extensionSearch').oninput=e=>renderDirectory(e.target.value);
+directory.addEventListener('click',e=>{if(e.target===directory)directory.close()});
+renderExtForNode('dataset-package');
+renderRoutesForNode('dataset-package');
+// Initial view should show both PostgreSQL database halves at full strength.
+// Selection-focused dimming begins only after the user clicks a diagram hotspot.
+root.classList.remove('diagram-dim');
+nodes.forEach(n=>n.classList.remove('selected','related'));
+
+</script>
+
+<script>
+'use strict';
+// A guided tour over the original, still-clickable diagram. It never fetches data
+// or changes the atlas's source examples. Each stop reuses the existing inspector.
+(() => {
+  const tourSteps = [
+    {target:'#diagramRoot', focus:null, title:'The big picture: two PostgreSQL databases', text:'This is the entire Open.Canada.ca/data delivery model in one view. Orange on the left represents the DataStore database. Dark teal on the right represents the CKAN metadata database. Everything else branches from these two foundations.', tip:'Use Next to move through highlighted features; when the tour ends, click any block to explore its APIs, examples and documentation.'},
+    {target:'[data-id="datastore-api"]', focus:'datastore-api', title:'1. DataStore DB and Data API', text:'The orange half stores queryable tabular records and field metadata. The Data API exposes those rows through methods such as datastore_search, and exports can provide CSV or XML.', tip:'The detail panel below has live read-only queries and downloadable-route examples.'},
+    {target:'[data-id="index-records"]', focus:'index-records', title:'2. Inventory of DataStore tables and aliases', text:'This is not a search index of all individual rows. CKAN provides a system view called _table_metadata that lists the DataStore tables (named after resource IDs) and aliases (PostgreSQL views).', tip:'Use datastore_search?resource_id=_table_metadata to inspect _id, alias_of, name and oid.'},
+    {target:'[data-id="datastore-tables"]', focus:'datastore-tables', title:'3. A resource can have one DataStore table', text:'A DataStore-enabled resource is represented by a PostgreSQL table, reached using the resource ID. One underlying table can serve many API queries and portal previews.', tip:'The file and the table are different concepts: not every resource is DataStore-enabled.'},
+    {target:'[data-id="table-metadata"]', focus:'table-metadata', title:'4. Table metadata and bilingual dictionaries', text:'Alongside the records, DataStore stores field names, types, and optional English and French labels and definitions. This helps analysts understand what columns actually mean.', tip:'Inspect datastore_info and its fields[].info metadata in the supporting panel.'},
+    {target:'[data-id="dataset-package"]', focus:'dataset-package', title:'5. CKAN metadata DB: Dataset (Package)', text:'The right-hand dark teal area represents the CKAN catalogue database. A dataset, also called a package, brings together its title, descriptions, publishing organization, licence, keywords and resources.', tip:'Try package_show or package_search in the Action API examples.'},
+    {target:'[data-id="resource-files"]', focus:'resource-files', title:'6. Resources connect both databases', text:'A resource is a CKAN metadata record describing a file, URL, format and other technical details. If DataStore is enabled, its resource ID also identifies a queryable table in the orange database.', tip:'The resource ID is the bridge, while datastore_active tells you whether rows can be queried.'},
+    {target:'[data-id="validation"]', focus:'validation', title:'7. Validation and data quality', text:'Resources can have validation states, timestamps and reports. These are technical quality signals, not a guarantee that the underlying data is correct. Ingestion and validation workflows can run behind the scenes.', tip:'Check the linked validation/xloader documentation; some operational actions are registry-side rather than public APIs.'},
+    {target:'[data-id="view"]', focus:'view', title:'8. One resource, multiple presentations', text:'The blue View area is a delivery layer. A resource can be presented through a DataTable, text, image, OpenAPI or Power BI view when the appropriate configuration and extension are available.', tip:'Click the viewer extension chips in the details for specific formats and usage examples.'},
+    {target:'[data-id="filters-definitions"]', focus:'filters-definitions', title:'9. Filters and view definitions', text:'Views may have saved display settings or filters. The same DataStore table can produce different subsets or presentations without duplicating the dataset or resource.', tip:'Compare resource_view_list with datastore_search: one reads presentation configuration, the other retrieves actual rows.'},
+    {target:'[data-id="profiles"]', focus:'profiles', title:'10. Metadata profiles and DCAT', text:'The catalogue metadata can be serialized into DCAT RDF and other machine-readable forms. In the details below, catalog.ttl and catalog.jsonld illustrate two whole-catalogue outputs.', tip:'These describe metadata, rather than exporting the tabular records from DataStore.'},
+    {target:'[data-id="rss-feed"]', focus:'rss-feed', title:'11. Dataset and organization Atom feeds', text:'Atom feeds publish metadata updates outside the normal dataset web page. The examples include a dataset-specific feed and organization feeds, including a paginated organization feed.', tip:'These feed URLs are direct HTTP routes, not Action API methods.'},
+    {target:'[data-id="organizations"]', focus:'organizations', title:'12. Publishers, organization feeds and licences', text:'Organizations and licences are separate CKAN metadata objects. The organization area includes users and publisher-scoped feeds; the nearby green block represents licence information governing reuse.', tip:'Use organization_show and license_list to explore the two supporting metadata objects.'},
+    {target:'.detail-card', focus:'datastore-api', title:'13. Inspect the connected explanation and APIs', text:'When you select a shape, this panel explains it and shows example requests with copyable URLs, read-only links and CKAN method documentation. The diagram remains the navigation surface.', tip:'The same panel switches its content each time you choose another diagram element.'},
+    {target:'#extensionInspector .ext-title-row', focus:'view', title:'14. Dive into extension-specific functionality', text:'Select a related extension to see what it contributes, how it is configured, examples and documentation. This is where complex topics are explained without packing more labels into the main diagram.', tip:'You can also use Browse extensions & routes at the top of the page to search all capabilities.'},
+    {target:'#publicRoutes', focus:'profiles', title:'15. Distinguish direct routes from Action API calls', text:'Some outputs use ordinary HTTP routes instead of /api/action. Here are the DCAT catalogue serializations; other shapes reveal Atom feeds and DataStore downloads, including CSV with BOM and XML.', tip:'You now know how to navigate the atlas. Reopen this tour any time with the Start guided tour button.'}
+  ];
+  const host = document.getElementById('tourHost');
+  const popover = document.getElementById('tourPopover');
+  const title = document.getElementById('tourTitle');
+  const description = document.getElementById('tourDescription');
+  const tip = document.getElementById('tourTip');
+  const counter = document.getElementById('tourCounter');
+  const progress = document.getElementById('tourProgress');
+  const btnNext = document.getElementById('tourNext');
+  const btnBack = document.getElementById('tourBack');
+  const btnClose = document.getElementById('tourClose');
+  const btnSkip = document.getElementById('tourSkip');
+  const btnLaunch = document.getElementById('tourLaunch');
+  const spot = document.getElementById('tourSpotlight');
+  const mask = ['tourShadeTop','tourShadeLeft','tourShadeRight','tourShadeBottom'].map(id => document.getElementById(id));
+  let active = false;
+  let stepIndex = 0;
+  let prevFocusNode = 'dataset-package';
+  let returnFocus = null;
+  let pendingLayout = false;
+  let currentTarget = null;
+  const mobile = () => window.matchMedia('(max-width:680px)').matches;
+  const setRect = (node, top, left, width, height) => {
+    Object.assign(node.style, {
+      top: `${Math.round(top)}px`,
+      left: `${Math.round(left)}px`,
+      width: `${Math.max(0,Math.round(width))}px`,
+      height: `${Math.max(0,Math.round(height))}px`
+    });
+  };
+  function positionTour() {
+    if (!active || !currentTarget) return;
+    const width = window.innerWidth, height = window.innerHeight;
+    const r = currentTarget.getBoundingClientRect();
+    // Oversize nodes on narrow screens may extend beyond the viewport. The
+    // spotlight is clipped to the visible portion, not an invented smaller node.
+    const x1 = Math.max(7,Math.min(width-7,r.left-7));
+    const y1 = Math.max(7,Math.min(height-7,r.top-7));
+    const x2 = Math.max(x1+1,Math.min(width-7,r.right+7));
+    const y2 = Math.max(y1+1,Math.min(height-7,r.bottom+7));
+    const w = x2-x1, h = y2-y1;
+    setRect(mask[0],0,0,width,y1);
+    setRect(mask[1],y1,0,x1,h);
+    setRect(mask[2],y1,x2,width-x2,h);
+    setRect(mask[3],y2,0,width,height-y2);
+    setRect(spot,y1,x1,w,h);
+
+    if (mobile()) {
+      popover.style.left = '10px'; popover.style.right='10px';
+      popover.style.top = 'auto'; popover.style.bottom = '10px';
+    } else {
+      popover.style.right='auto'; popover.style.bottom='auto';
+      const popW = Math.min(400,width-28);
+      // offsetHeight tracks variable content; keep the call after text updates.
+      const popH = Math.min(popover.offsetHeight,height-24);
+      let px, py;
+      if (width-x2>=popW+26) {
+        px=x2+18; py=y1+Math.min(0,(h-popH)/2);
+      } else if (x1>=popW+26) {
+        px=x1-popW-18; py=y1+Math.min(0,(h-popH)/2);
+      } else if (height-y2>=popH+26) {
+        px=Math.min(width-popW-14,Math.max(14,x1+(w-popW)/2));py=y2+16;
+      } else if (y1>=popH+26) {
+        px=Math.min(width-popW-14,Math.max(14,x1+(w-popW)/2));py=y1-popH-16;
+      } else {
+        // Full-width or oversized diagram: keep the card at bottom-right.
+        px=width-popW-14; py=height-popH-14;
+      }
+      px=Math.max(14,Math.min(width-popW-14,px));
+      py=Math.max(12,Math.min(height-popH-12,py));
+      popover.style.left=`${Math.round(px)}px`;
+      popover.style.top=`${Math.round(py)}px`;
+    }
+  }
+  function requestLayout() {
+    if (!active || pendingLayout) return;
+    pendingLayout=true;
+    requestAnimationFrame(()=>{pendingLayout=false;positionTour()});
+  }
+  function focusStep(index) {
+    if (!active) return;
+    stepIndex = Math.max(0,Math.min(tourSteps.length-1,index));
+    const step = tourSteps[stepIndex];
+    if(step.focus) {
+      showDetail(step.focus);
+    } else {
+      root.classList.remove('diagram-dim');
+      nodes.forEach(n=>n.classList.remove('selected','related'));
+    }
+    // Avoid darkening the rest of the diagram while touring its two halves.
+    root.classList.remove('diagram-dim');
+    title.textContent=step.title;
+    description.textContent=step.text;
+    tip.textContent=step.tip;
+    counter.textContent=`Step ${stepIndex+1} of ${tourSteps.length}`;
+    progress.style.width=`${(stepIndex+1)*100/tourSteps.length}%`;
+    btnBack.disabled=stepIndex===0;
+    btnNext.textContent=stepIndex===tourSteps.length-1?'Finish tour ✓':'Next →';
+    currentTarget=document.querySelector(step.target);
+    // Be resilient if a conditional detail block is unexpectedly absent.
+    if (!currentTarget || currentTarget.hidden || currentTarget.getClientRects().length===0) currentTarget=document.querySelector('.diagram-shell');
+    if (currentTarget) {
+      // Ensure the focused element is visible before placing the spotlight.
+      currentTarget.scrollIntoView({block:mobile()?'start':'center',inline:'nearest',behavior:'instant'});
+      if(mobile()) window.scrollBy({top:-76,behavior:'instant'});
+    }
+    requestLayout();
+    // Recalculate after layout/scroll and dynamic detail rendering settle.
+    requestAnimationFrame(()=>requestAnimationFrame(positionTour));
+    popover.focus({preventScroll:true});
+  }
+  function startTour(){
+    if(active) return;
+    if(document.getElementById('extensionDirectory')?.open)document.getElementById('extensionDirectory').close();
+    returnFocus=document.activeElement;
+    const selected=nodes.find(n=>n.classList.contains('selected'));
+    prevFocusNode=selected?.dataset.id || 'dataset-package';
+    active=true;
+    host.hidden=false;
+    document.body.dataset.tour='active';
+    focusStep(0);
+  }
+  function stopTour(completed=false){
+    if(!active)return;
+    active=false;
+    host.hidden=true;
+    delete document.body.dataset.tour;
+    if (!completed) showDetail(prevFocusNode);
+    // Restore ordinary diagram contrast on exit, as on the initial page.
+    root.classList.remove('diagram-dim');
+    nodes.forEach(n=>n.classList.remove('selected','related'));
+    (returnFocus?.isConnected?returnFocus:btnLaunch)?.focus({preventScroll:true});
+  }
+  function next(){if(stepIndex===tourSteps.length-1)stopTour(true);else focusStep(stepIndex+1)}
+  function back(){if(stepIndex>0)focusStep(stepIndex-1)}
+  btnLaunch.addEventListener('click',startTour);
+  btnNext.addEventListener('click',next);
+  btnBack.addEventListener('click',back);
+  btnSkip.addEventListener('click',()=>stopTour(false));
+  btnClose.addEventListener('click',()=>stopTour(false));
+  window.addEventListener('keydown',event=>{
+    if(!active)return;
+    if(event.key==='Escape'){event.preventDefault();stopTour(false);return}
+    if(event.key==='ArrowRight'){event.preventDefault();next();return}
+    if(event.key==='ArrowLeft'){event.preventDefault();back();return}
+    if(event.key==='Tab'){
+      // Contain keyboard navigation within the guided dialog.
+      const controls=[btnClose,btnSkip,btnBack,btnNext].filter(b=>!b.disabled);
+      const i=controls.indexOf(document.activeElement);
+      if(i<0){event.preventDefault();(event.shiftKey?controls.at(-1):controls[0]).focus();return}
+      if(event.shiftKey&&i===0){event.preventDefault();controls.at(-1).focus()}
+      else if(!event.shiftKey&&i===controls.length-1){event.preventDefault();controls[0].focus()}
+    }
+  },true);
+  window.addEventListener('resize',requestLayout);
+  window.addEventListener('scroll',requestLayout,{passive:true});
+  // Add keyboard access to the diagram without changing any nested layout.
+  nodes.forEach(node=>{
+    const nodeId=node.dataset.id;
+    if(!defs[nodeId])return;
+    node.tabIndex=0;
+    node.setAttribute('role','button');
+    node.setAttribute('aria-label',`Explore ${defs[nodeId].title}`);
+    node.addEventListener('keydown',event=>{
+      if(active)return;
+      if(event.key==='Enter'||event.key===' '){event.preventDefault();event.stopPropagation();showDetail(nodeId)}
+    });
+  });
+  window.ckanAtlasTour={start:startTour,close:stopTour,get active(){return active},get step(){return stepIndex+1},get total(){return tourSteps.length}};
+})();
+</script>
+
+</body>
+</html>
