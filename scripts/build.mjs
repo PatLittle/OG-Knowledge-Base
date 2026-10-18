@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { marked } from 'marked';
 import { integrateFeatureAtlas } from './integrate-feature-atlas.mjs';
+import { integrateFrenchAtlas } from './integrate-feature-atlas-fr.mjs';
 import {buildSchemaPages,schemaBase,referenceBase,schemaLabels} from './schema-pages.mjs';
 
 const base = '/OG-Knowledge-Base';
@@ -59,6 +60,7 @@ console.log(`Built ${urls.length+1} bilingual site pages in dist/`);
 
 // Add the English-only Tools and Feature Atlas pages before branch/publication copies.
 await integrateFeatureAtlas(out);
+await integrateFrenchAtlas(out);
 
 // Keep the branch-published site identical to the workflow artifact.
 for (const name of ['en','fr','sources','data','index.html','404.html','.nojekyll','robots.txt','sitemap.xml']) {
