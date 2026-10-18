@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "python3 scripts/check_site.py && node scripts/check_schemas.mjs"
+    "test": "python3 scripts/check_site.py && node scripts/check_schemas.mjs && node scripts/check_atlas_scripts.mjs"
   },
   "dependencies": {
     "marked": "17.0.5"
