@@ -60,3 +60,13 @@ Each definition offers a single full-width Tree, Diagram or JSON view. The tree 
 `prop` is discovered and stored automatically; it has a JSON download on the index. Add a bilingual entry to `config.json` to give a discovered type its own documented page. Removed or unavailable documented types fail validation and preserve the last complete snapshot. Each schema records its last content-change timestamp and SHA-256; the manifest records the last successful API check.
 
 Run `python3 scripts/fetch_schemas.py` before `npm run build` to refresh locally. The ordinary Pages build uses committed snapshots and continues to work when the source API is unavailable.
+
+## Tools: CKAN Feature Atlas (English preview)
+
+The [Feature Atlas](https://patlittle.github.io/OG-Knowledge-Base/en/tools/feature-atlas/) is an interactive, diagram-first explanation of the two PostgreSQL databases powering Open.Canada.ca/data, with CKAN extensions, public Action API examples and a 16-step guided tour. It belongs to the new [Tools](https://patlittle.github.io/OG-Knowledge-Base/en/tools/) section.
+
+- `content/tools/feature-atlas.html`: reviewed standalone Atlas source, kept intact.
+- `scripts/integrate-feature-atlas.mjs`: builds the GCDS-framed English page, full-width infographic, Tools navigation, homepage entry and sitemap records.
+- No sidebar or iframe is used for the interactive page.
+- No French equivalent or `hreflang="fr"` is published until the English feature and French terminology have been reviewed.
+
