@@ -27,6 +27,11 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+      - name: Verify committed English Tools pages
+        run: |
+          test -f en/tools/index.html
+          test -f en/tools/feature-atlas/index.html
+          test -z "$(git status --porcelain -- en/tools)"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
