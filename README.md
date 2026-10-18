@@ -70,3 +70,16 @@ The [Feature Atlas](https://patlittle.github.io/OG-Knowledge-Base/en/tools/featu
 - No sidebar or iframe is used for the interactive page.
 - No French equivalent or `hreflang="fr"` is published until the English feature and French terminology have been reviewed.
 
+
+
+## Feature Atlas / Atlas des fonctionnalités
+
+The interactive feature atlas documents CKAN's PostgreSQL metadata and DataStore databases, resource views, API methods, HTTP routes, extensions and a 16-step guided tour.
+
+- [English — Tools / Feature Atlas](https://patlittle.github.io/OG-Knowledge-Base/en/tools/feature-atlas/)
+- [Français — Outils / Atlas des fonctionnalités](https://patlittle.github.io/OG-Knowledge-Base/fr/outils/atlas-des-fonctionnalites/)
+
+Both editions are generated from the same interactive source, `content/tools/feature-atlas.html`. French text is maintained in the structured dictionaries `content/tools/fr/{main,extensions,tour,ui}.json`, applied by `scripts/integrate-feature-atlas-fr.mjs` after the English integration. CKAN method names, field identifiers, UUIDs, documentation links and live portal endpoint examples remain unchanged between languages.
+
+The tools section uses the standard GCDS site header, navigation and footer, but deliberately has **no sidebar navigation** to preserve the full width of the database diagram. Reciprocal language toggles and `hreflang` links pair the two Tools indexes and the two Atlas pages. Generated pages in both languages must be committed alongside source changes, because the repository can also publish directly from its branch. The site validator enforces that requirement.
+
