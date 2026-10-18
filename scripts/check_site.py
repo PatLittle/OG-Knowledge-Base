@@ -1,5 +1,6 @@
 """Validate the published navigation, language pairs and local source downloads."""
 from html.parser import HTMLParser
+import subprocess
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import json
@@ -43,6 +44,11 @@ def local(url, current):
     if u.path.endswith('/'): path = path / 'index.html'
     return path, unquote(u.fragment)
 
+# Ensure branch-hosted Pages also has the actual, committed HTML output.
+tracked = ['en/tools/index.html', 'en/tools/feature-atlas/index.html']
+assert subprocess.run(['git', 'ls-files', '--error-unmatch', *tracked], capture_output=True).returncode == 0, 'Tools pages must be committed to the main branch, not just generated into dist/'
+changes = subprocess.run(['git', 'status', '--porcelain', '--', 'en/tools'], capture_output=True, text=True, check=True).stdout
+assert not changes.strip(), f'Generated Tools pages are missing or out of sync with committed files: {changes}'
 files = sorted(ROOT.rglob('*.html'))
 pages = {p: Page(p.read_text()) for p in files}
 assert len(files) == 24, f'Expected 24 pages including English tools and Atlas; got {len(files)}'
