@@ -64,6 +64,18 @@ if (root) {
       notice.setAttribute('notice-role',group.role);
       notice.setAttribute('notice-title',String(issue.title || (fr ? 'Avis de service' : 'Service notice')));
       notice.setAttribute('notice-title-tag','h2');
+      // The notice heading is inside GCDS's shadow DOM, so size it there.
+      customElements.whenDefined('gcds-notice').then(() => {
+        const apply = () => {
+          if (!notice.shadowRoot || notice.shadowRoot.querySelector('[data-compact-notice-style]')) return;
+          const style = document.createElement('style');
+          style.setAttribute('data-compact-notice-style','');
+          style.textContent = 'h2, h3, [class*="title"], [class*="heading"] { font-size: 14px !important; line-height: 1.3 !important; margin-block: 0 2px !important; } :host { font-size: 14px !important; }';
+          notice.shadowRoot.append(style);
+        };
+        apply();
+        if (!notice.shadowRoot) requestAnimationFrame(apply);
+      });
       const detail = document.createElement('gcds-text');
       detail.setAttribute('margin-bottom','0');
       const date = formatDate(issue.created_at);
