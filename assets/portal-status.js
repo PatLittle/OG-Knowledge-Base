@@ -70,7 +70,7 @@ if (root) {
           if (!notice.shadowRoot || notice.shadowRoot.querySelector('[data-compact-notice-style]')) return;
           const style = document.createElement('style');
           style.setAttribute('data-compact-notice-style','');
-          style.textContent = 'h2, h3, [class*="title"], [class*="heading"] { font-size: 14px !important; line-height: 1.3 !important; margin-block: 0 2px !important; } :host { font-size: 14px !important; }';
+          style.textContent = 'h2, h3, gcds-heading, [class*="title"], [class*="heading"] { font-size: 14px !important; line-height: 1.3 !important; margin-block: 0 2px !important; } :host { font-size: 14px !important; }';
           notice.shadowRoot.append(style);
         };
         apply();
