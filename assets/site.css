@@ -123,9 +123,11 @@ main { padding: 40px 0 0; }
 .empty-state { padding: 24px; }
 @media (max-width: 1050px) { .schema-layout { grid-template-columns: 1fr; gap: 24px; }.schema-sidebar { position: static; } }
 @media (max-width: 550px) { .schema-explorer { padding: 16px; }.view-tabs button { padding: 12px; }.json-leaf { grid-template-columns: 1fr; gap: 4px; }.field-badges { margin-left: 0; }.zoom-controls { flex-wrap: wrap; } }
-.portal-notices { margin: 0 0 32px; max-width: 900px; }
-.portal-notices[hidden] { display: none; }
-.portal-notice-section + .portal-notice-section { margin-top: 22px; }
-.portal-notice-heading { font-size: 1.3rem; line-height: 1.4; margin: 0 0 12px; color: var(--ink); }
-.portal-notice-section gcds-notice { display: block; margin: 0 0 12px; }
-.portal-notice-section gcds-text { font-size: 0.95rem; }
+.portal-notices { margin: 0 0 24px; max-width: 900px; }
+.portal-notices[hidden] { display:none; }
+.portal-notice-section + .portal-notice-section { margin-top: 10px; }
+.portal-notice-section gcds-notice { display:block; margin: 0 0 8px; }
+.portal-notice-section gcds-text { font-size: .875rem; line-height:1.4; }
+.portal-notice-section gcds-notice::part(title) { font-size: 1rem; line-height:1.4; }
+gcds-nav-link[data-status-level="danger"] { background:#fce8eb; border-radius:4px; }
+gcds-nav-link[data-status-level="warning"] { background:#ffe69c; border-radius:4px; }
