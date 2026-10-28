@@ -62,6 +62,7 @@ export async function integrateFrenchAtlas(out='dist'){
  index=index.replace('card-title="Feature Atlas"','card-title="Atlas des fonctionnalités"').replace('href="'+EN_A+'"','href="'+FR_A+'"').replace('badge="Interactive"','badge="Interactif"');
  index=index.replace('Interactive guide to CKAN metadata, DataStore, public API routes and extensions, with a guided tour.','Guide interactif des métadonnées CKAN, de DataStore, des routes d’API publiques et des extensions, avec visite guidée.');
  index=index.replace('Available in English and French.','Consultez l’atlas interactif en français ou en anglais.');
+ index=index.replace("<gcds-card card-title=\"Canadian Open Data API Lab\" card-title-tag=\"h2\" href=\"https://open-data.github.io/open-data-api-lab\"><p>A collection of practical examples and interactive demonstrations for working with Canada's Open Data APIs.</p></gcds-card>","<gcds-card card-title=\"Laboratoire des API de données ouvertes du Canada\" card-title-tag=\"h2\" href=\"https://open-data.github.io/open-data-api-lab\"><p>Une collection d’exemples pratiques et de démonstrations interactives pour utiliser les API de données ouvertes du Canada.</p></gcds-card>");
  index=index.replace(/<gcds-footer[\s\S]*?<\/gcds-footer>/,frFooter);
  await mkdir(join(out,'fr','outils','atlas-des-fonctionnalites'),{recursive:true});
  await writeFile(join(out,'fr','outils','index.html'),index);
