@@ -123,3 +123,4 @@ main { padding: 40px 0 0; }
 .empty-state { padding: 24px; }
 @media (max-width: 1050px) { .schema-layout { grid-template-columns: 1fr; gap: 24px; }.schema-sidebar { position: static; } }
 @media (max-width: 550px) { .schema-explorer { padding: 16px; }.view-tabs button { padding: 12px; }.json-leaf { grid-template-columns: 1fr; gap: 4px; }.field-badges { margin-left: 0; }.zoom-controls { flex-wrap: wrap; } }
+\n.portal-notices { margin: 0 0 32px; max-width: 900px; }\n.portal-notices[hidden] { display: none; }\n.portal-notice-section + .portal-notice-section { margin-top: 22px; }\n.portal-notice-heading { font-size: 1.3rem; line-height: 1.4; margin: 0 0 12px; color: var(--ink); }\n.portal-notice-section gcds-notice { display: block; margin: 0 0 12px; }\n.portal-notice-section gcds-text { font-size: 0.95rem; }\n
