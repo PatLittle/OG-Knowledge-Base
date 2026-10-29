@@ -62,6 +62,9 @@ console.log(`Built ${urls.length+1} bilingual site pages in dist/`);
 await integrateFeatureAtlas(out);
 await integrateFrenchAtlas(out);
 
+// Include the standalone, single-file bilingual WhatTF8 app in the deploy artifact.
+await cp('tools/whattf8',out+'/tools/whattf8',{recursive:true});
+
 // Keep the branch-published site identical to the workflow artifact.
 for (const name of ['en','fr','sources','data','index.html','404.html','.nojekyll','robots.txt','sitemap.xml']) {
   await cp(`${out}/${name}`,name,{recursive:true});
