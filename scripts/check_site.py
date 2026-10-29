@@ -53,7 +53,9 @@ assert not changes.strip(), f'Generated Tools pages are missing or out of sync w
 files = sorted(ROOT.rglob('*.html'))
 pages = {p: Page(p.read_text()) for p in files}
 assert len(files) == 27, f'Expected 27 pages including WhatTF8; got {len(files)}'
-assert (ROOT/'tools/whattf8/index.html').is_file(), 'Missing standalone WhatTF8 app'\nassert 'WhatTF8' in (ROOT/'en/tools/index.html').read_text() and 'WhatTF8' in (ROOT/'fr/outils/index.html').read_text(), 'Missing WhatTF8 Tools cards'\nfor file, page in pages.items():
+assert (ROOT/'tools/whattf8/index.html').is_file(), 'Missing standalone WhatTF8 app'
+assert 'WhatTF8' in (ROOT/'en/tools/index.html').read_text() and 'WhatTF8' in (ROOT/'fr/outils/index.html').read_text(), 'Missing WhatTF8 Tools cards'
+for file, page in pages.items():
     assert page.lang in ('en','fr'), file
     assert '{{' not in file.read_text(), f'Unexpanded template: {file}'
     assert 'gcds-breadcrumbs' not in file.read_text(), f'Redundant breadcrumbs: {file}'
