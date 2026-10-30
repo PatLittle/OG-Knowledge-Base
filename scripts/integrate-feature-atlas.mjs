@@ -19,7 +19,8 @@ export async function integrateFeatureAtlas(out='dist'){
  const listingWithWhatTF8=listing.replace('</gcds-grid>',whattf8+'</gcds-grid>');
  const content=body.replace('Diagram-first CKAN feature atlas ·','Feature Atlas ·');
  const atlas=head('Feature Atlas',A,'CKAN Feature Atlas for Open.Canada.ca/data.')+'<style>'+css+'</style>'+override+'</head><body class="feature-atlas-page">'+menu+'<main id="main-content" class="kb-wide" tabindex="-1"><div class="wrap"><nav class="kb-crumb" aria-label="Breadcrumb"><a href="'+T+'">Tools</a> / Feature Atlas</nav><p class="kb-english">English edition for review · French edition to follow.</p></div>'+content+'</main>'+footer+'</body></html>';
+ const atlasWithOriginalDate=atlas.replace('<gcds-date-modified>2026-10-28</gcds-date-modified>','<gcds-date-modified>2026-10-18</gcds-date-modified>');
  const withStatusScript = html => html.replace('</head>','<script type="module" src="'+B+'/assets/portal-status.js"></script></head>');
- await mkdir(join(out,'en','tools','feature-atlas'),{recursive:true});await writeFile(join(out,'en','tools','index.html'),withStatusScript(listingWithWhatTF8));await writeFile(join(out,'en','tools','feature-atlas','index.html'),withStatusScript(atlas));
+ await mkdir(join(out,'en','tools','feature-atlas'),{recursive:true});await writeFile(join(out,'en','tools','index.html'),withStatusScript(listingWithWhatTF8));await writeFile(join(out,'en','tools','feature-atlas','index.html'),withStatusScript(atlasWithOriginalDate));
  const site=join(out,'sitemap.xml'),xml=await readFile(site,'utf8');const entries=[T,A].map(p=>'<url><loc>'+O+p+'</loc></url>').join('');await writeFile(site,xml.replace('</urlset>',entries+'</urlset>'));
 }
