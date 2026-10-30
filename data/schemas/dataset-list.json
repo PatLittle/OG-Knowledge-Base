@@ -1,9 +1,0 @@
-{
-  "help": "https://open.canada.ca/data/api/3/action/help_show?name=scheming_dataset_schema_list",
-  "success": true,
-  "result": [
-    "dataset",
-    "info",
-    "prop"
-  ]
-}

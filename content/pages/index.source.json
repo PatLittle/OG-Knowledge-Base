@@ -1,0 +1,6 @@
+{
+  "description": "HTML-first source; the build substitutes the site base URL.",
+  "sources": [
+    "site/templates/language-choice.html"
+  ]
+}

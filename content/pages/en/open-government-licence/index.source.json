@@ -1,0 +1,8 @@
+{
+  "description": "Source pointer only; edit the listed sources, not generated HTML.",
+  "sources": [
+    "content/ogl/labels.json",
+    "content/ogl/versions.json",
+    "scripts/build.mjs"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "description": "Source pointer only; edit the listed sources, not generated HTML.",
+  "sources": [
+    "content/tools/whattf8.html"
+  ]
+}
