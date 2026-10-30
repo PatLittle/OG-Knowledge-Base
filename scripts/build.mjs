@@ -2,35 +2,35 @@ import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { marked } from 'marked';
 import { integrateFeatureAtlas } from './integrate-feature-atlas.mjs';
 import { integrateFrenchAtlas } from './integrate-feature-atlas-fr.mjs';
-import {buildSchemaPages,schemaBase,referenceBase,schemaLabels} from './schema-pages.mjs';
+import { buildMarkdownPages, walk } from './markdown-pages.mjs';
+import {buildSchemaPages,referenceBase} from './schema-pages.mjs';
 
 const base = '/OG-Knowledge-Base';
 const origin = 'https://patlittle.github.io';
 const data = JSON.parse(await readFile('content/ogl/versions.json', 'utf8'));
-const template = await readFile('templates/page.html', 'utf8');
+const template = await readFile('site/templates/page.html', 'utf8');
 const out = 'dist';
 const esc = s => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
-const labels = {
-  en: {siteTitle:'Open Government Knowledge Base', home:'Home', nav:'Main navigation', licence:'Open Government Licence', title:'Open Government Licence - Canada: Current and Previous Versions', intro:'Read the current Open Government Licence - Canada and explore previous versions in English and French.', reference:'Reference materials', current:'Current version', previous:'Previous versions', version:'Version', read:'Read the licence', sourceDate:'Source page modified', section:'Licence versions', overview:'Overview', download:'Download source Markdown', official:'View on Open.Canada.ca', toc:'On this page', source:'Archived Original', archive:'Archived source page', screenshot:'View source screenshot', status:'Previous version', notes:'These reference copies reproduce the supplied source text. Source page dates describe the original pages, rather than the publication date of this knowledge base.', note2:'The source filenames contain “v2_0_1”; the licence text identifies itself as version 2.0.', homeIntro:'Reference materials, tools, tutorials and documentation for Government of Canada data publishers and advanced users of Open.Canada.ca.', homeTitle:'Open Government Knowledge Base', explore:'Explore the knowledge base', cardDescription:'Current and previous licence texts, with source records and bilingual versions.', audiences:'For publishers and data users', audienceText:'Find practical resources for publishing, understanding and using open government data and information.', repo:'GitHub repository', historical:'Historical reference', historicalText:'This is a previous version of the licence. The current version and the original source records are available from this section.', v11:'Government of Canada Open Data License Agreement', v10:'Government of Canada Open Data Licence Agreement for Unrestricted Use of Canada’s Data', v20:'Open Government Licence - Canada', period11:'Version 1.1 · November 2011', period10:'Version 1.0 · source page dated March 2011', dateNote:'Source dates differ between languages for version 1.1; each page retains its own date.'},
-  fr: {siteTitle:'Base de connaissances du gouvernement ouvert', home:'Accueil', nav:'Navigation principale', licence:'Licence du gouvernement ouvert', title:'Licence du gouvernement ouvert – Canada : versions actuelle et antérieures', intro:'Consultez la version actuelle de la Licence du gouvernement ouvert – Canada et les versions antérieures en français et en anglais.', reference:'Documents de référence', current:'Version actuelle', previous:'Versions antérieures', version:'Version', read:'Lire la licence', sourceDate:'Modification de la page source', section:'Versions de la licence', overview:'Aperçu', download:'Télécharger le fichier Markdown source', official:'Consulter sur Ouvert.Canada.ca', toc:'Sur cette page', source:'Original archivé', archive:'Page source archivée', screenshot:'Voir la capture de la page source', status:'Version antérieure', notes:'Ces copies de référence reproduisent le texte source fourni. Les dates des pages sources correspondent aux pages originales et non à la date de publication de cette base de connaissances.', note2:'Les noms des fichiers sources contiennent « v2_0_1 »; le texte de la licence indique qu’il s’agit de la version 2.0.', homeIntro:'Documents de référence, outils, tutoriels et documentation pour les responsables de la publication de données du gouvernement du Canada et les utilisateurs avancés d’Ouvert.Canada.ca.', homeTitle:'Base de connaissances du gouvernement ouvert', explore:'Explorer la base de connaissances', cardDescription:'Textes des versions actuelle et antérieures de la licence, accompagnés de sources et de versions bilingues.', audiences:'Pour les responsables de la publication et les utilisateurs de données', audienceText:'Découvrez des ressources pratiques pour publier, comprendre et utiliser les données et l’information du gouvernement ouvert.', repo:'Dépôt GitHub', historical:'Document historique', historicalText:'Il s’agit d’une version antérieure de la licence. La version actuelle et les sources originales sont accessibles dans cette section.', v11:'Accord de licence de données libres du gouvernement du Canada', v10:'Entente de licence pour l’utilisation illimitée des données ouvertes du Canada', v20:'Licence du gouvernement ouvert – Canada', period11:'Version 1.1 · novembre 2011', period10:'Version 1.0 · page source datée de mars 2011', dateNote:'Les dates des pages sources de la version 1.1 diffèrent selon la langue; chaque page conserve sa propre date.'}
-};
+const labels = JSON.parse(await readFile('content/ogl/labels.json', 'utf8'));
 const section = lang => `${base}/${lang}/${lang==='en'?'open-government-licence':'licence-du-gouvernement-ouvert'}/`;
 const home = lang => `${base}/${lang}/`;
 const link = (href, text) => `<gcds-link href="${esc(href)}">${esc(text)}</gcds-link>`;
 const heading = (text,tag='h2') => `<gcds-heading tag="${tag}">${esc(text)}</gcds-heading>`;
 const urls=[];
 await rm(out, {recursive:true,force:true}); await mkdir(out,{recursive:true});
-await cp('assets',`${out}/assets`,{recursive:true});
-await cp('content/ogl',`${out}/sources/ogl`,{recursive:true});
+await cp('site/assets',`${out}/assets`,{recursive:true});
+await cp('content/ogl',`${out}/sources/ogl`,{recursive:true,filter: source => !source.endsWith('labels.json')});
 async function page(lang, path, title, description, body, counterpart, kind='section') {
+  if ([`${base}/en/tools/`, `${base}/en/tools/feature-atlas/`, `${base}/fr/outils/`, `${base}/fr/outils/atlas-des-fonctionnalites/`].includes(path) || urls.includes(path)) throw Error('Duplicate page route: '+path);
   const t=labels[lang];
-  const values={portalUrl:lang==='en'?'https://open.canada.ca/en':'https://ouvert.canada.ca/fr',portalLabel:lang==='en'?'Open.Canada.ca':'Ouvert.Canada.ca',statusLabel:lang==='en'?'System Status':'État du système',lang,title:esc(title),siteTitle:esc(t.siteTitle),description:esc(description),canonical:origin+path,english:origin+(lang==='en'?path:counterpart),french:origin+(lang==='fr'?path:counterpart),base,opposite:counterpart,home:home(lang),navLabel:t.nav,homeLabel:t.home,referenceLabel:lang==='en'?'Reference':'Références',sectionUrl:referenceBase(base,lang),homeCurrent:kind==='home'?'current':'',sectionCurrent:kind!=='home'?'current':'',body,footerLinks:esc(JSON.stringify({[t.repo]:'https://github.com/PatLittle/OG-Knowledge-Base',[t.home]:home(lang)}))};
-  const html=template.replace(/\{\{(\w+)\}\}/g,(_,k)=>values[k]);
+  const values={portalUrl:lang==='en'?'https://open.canada.ca/en':'https://ouvert.canada.ca/fr',portalLabel:lang==='en'?'Open.Canada.ca':'Ouvert.Canada.ca',statusLabel:lang==='en'?'System Status':'État du système',lang,title:esc(title),siteTitle:esc(t.siteTitle),description:esc(description),canonical:origin+path,english:origin+(lang==='en'?path:counterpart),french:origin+(lang==='fr'?path:counterpart),base,opposite:counterpart,home:home(lang),navLabel:t.nav,homeLabel:t.home,referenceLabel:lang==='en'?'Reference':'Références',sectionUrl:referenceBase(base,lang),homeCurrent:kind==='home'?'current':'',sectionCurrent:!['home','page'].includes(kind)?'current':'',body,footerLinks:esc(JSON.stringify({[t.repo]:'https://github.com/PatLittle/OG-Knowledge-Base',[t.home]:home(lang)}))};
+  let html=template.replace(/\{\{(\w+)\}\}/g,(_,k)=>values[k]);
+  if (!counterpart) html=html.replace(/  <link rel="alternate"[^>]*>\n/g, '').replace(' lang-href="undefined"', '');
   const file=`${out}${path.slice(base.length)}index.html`;await mkdir(file.slice(0,file.lastIndexOf('/')),{recursive:true});await writeFile(file,html);urls.push(path);
 }
 for (const lang of ['en','fr']) {
  const t=labels[lang],other=lang==='en'?'fr':'en';
- await page(lang,home(lang),t.homeTitle,t.homeIntro,`<div class="portal-notices" data-portal-notices aria-live="polite" hidden></div><p class="eyebrow">${lang==='en'?'Open.Canada.ca':'Ouvert.Canada.ca'} · ${t.audiences}</p>${heading(t.homeTitle,'h1')}<p class="lead">${t.homeIntro}</p>${heading(t.explore)}<gcds-grid columns="1fr" columns-desktop="1fr 1fr" gap="400"><gcds-card card-title="${esc(t.title)}" card-title-tag="h3" href="${section(lang)}" badge="${lang==='en'?'Reference':'Référence'}"><p>${t.cardDescription}</p></gcds-card><gcds-card card-title="${schemaLabels[lang].title}" card-title-tag="h3" href="${schemaBase(base,lang)}" badge="${lang==='en'?'Reference':'Référence'}"><p>${schemaLabels[lang].description}</p></gcds-card></gcds-grid>${heading(t.audiences,'h3')}<p class="section-intro">${t.audienceText}</p>`,home(other),'home');
+
  const cards=data.versions.filter(x=>!x.current).map(v=>`<gcds-card card-title="${esc(t['v'+v.version.replace('.','')])}" card-title-tag="h3" href="${section(lang)}v${v.version}/" badge="${t.version} ${v.version}"><p>${esc(t['period'+v.version.replace('.','')])}</p><p>${t.sourceDate} : <time datetime="${v.sources[lang].date}">${v.sources[lang].date}</time></p></gcds-card>`).join('');
  await page(lang,section(lang),t.title,t.intro,`<p class="eyebrow">${t.reference}</p>${heading(t.title,'h1')}<p class="lead">${t.intro}</p><section class="current-panel"><span class="status">${t.current}</span><h2>${t.v20} · ${t.version} 2.0</h2><p>${t.sourceDate} : <time datetime="2022-12-02">2022-12-02</time></p><div class="actions">${link(section(lang)+'v2.0/',t.read)} ${link(official(lang),t.official)}</div></section>${heading(t.previous)}<gcds-grid columns="1fr" columns-tablet="1fr 1fr" gap="400">${cards}</gcds-grid>${heading(t.source)}<p class="section-intro">${t.notes}</p><p>${t.note2}</p><p>${t.dateNote}</p>`,section(other));
  for(const v of data.versions) {
@@ -50,22 +50,20 @@ for (const lang of ['en','fr']) {
  }
 }
 await buildSchemaPages({base,page,esc,heading,link});
+await buildMarkdownPages({base, page});
 function official(lang){return lang==='en'?'https://open.canada.ca/en/open-government-licence-canada':'https://ouvert.canada.ca/fr/licence-du-gouvernement-ouvert-canada';}
-await writeFile(`${out}/index.html`, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Open Government Knowledge Base / Base de connaissances du gouvernement ouvert</title><link rel="canonical" href="${origin}${base}/"><link rel="alternate" hreflang="en" href="${origin}${home('en')}"><link rel="alternate" hreflang="fr" href="${origin}${home('fr')}"><link rel="alternate" hreflang="x-default" href="${origin}${base}/"><link rel="stylesheet" href="${base}/assets/site.css"></head><body><main class="language-choice"><span class="brand-mark" aria-hidden="true">OG</span><div class="language-grid"><section><h1>Open Government Knowledge Base</h1><p>Resources for data publishers and advanced users of Open.Canada.ca.</p><a href="${home('en')}" lang="en">English</a></section><section lang="fr"><h1>Base de connaissances du gouvernement ouvert</h1><p>Ressources pour les responsables de la publication de données et les utilisateurs avancés d’Ouvert.Canada.ca.</p><a href="${home('fr')}" lang="fr">Français</a></section></div></main></body></html>`);
-await writeFile(`${out}/404.html`, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Page not found / Page introuvable</title><link rel="stylesheet" href="${base}/assets/site.css"></head><body><main class="language-choice"><h1>Page not found</h1><p><a href="${home('en')}">Return to the knowledge base</a></p><section lang="fr"><h2>Page introuvable</h2><p><a href="${home('fr')}">Retour à la base de connaissances</a></p></section></main></body></html>`);
+await writeFile(`${out}/index.html`, (await readFile('site/templates/language-choice.html', 'utf8')).trimEnd().replaceAll('{{origin}}', origin).replaceAll('{{base}}', base));
+await writeFile(`${out}/404.html`, (await readFile('site/templates/404.html', 'utf8')).trimEnd().replaceAll('{{origin}}', origin).replaceAll('{{base}}', base));
 await writeFile(`${out}/.nojekyll`,'');
 await writeFile(`${out}/robots.txt`,`User-agent: *\nAllow: /\nSitemap: ${origin}${base}/sitemap.xml\n`);
 await writeFile(`${out}/sitemap.xml`,`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[base+'/',...urls].map(u=>`<url><loc>${origin}${u}</loc></url>`).join('')}</urlset>\n`);
-console.log(`Built ${urls.length+1} bilingual site pages in dist/`);
 
-// Add the English-only Tools and Feature Atlas pages before branch/publication copies.
+// Integrate the two interactive Atlas editions after rendering the shared pages.
 await integrateFeatureAtlas(out);
 await integrateFrenchAtlas(out);
 
-// Include the standalone, single-file bilingual WhatTF8 app in the deploy artifact.
-await cp('tools/whattf8',out+'/tools/whattf8',{recursive:true});
+// Standalone bilingual HTML is authored once, under content/.
+await mkdir(out+'/tools/whattf8',{recursive:true});
+await cp('content/tools/whattf8.html',out+'/tools/whattf8/index.html');
 
-// Keep the branch-published site identical to the workflow artifact.
-for (const name of ['en','fr','sources','data','index.html','404.html','.nojekyll','robots.txt','sitemap.xml']) {
-  await cp(`${out}/${name}`,name,{recursive:true});
-}
+console.log(`Built ${(await walk(out)).filter(file => file.endsWith('.html')).length} HTML pages in dist/`);

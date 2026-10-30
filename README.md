@@ -2,84 +2,107 @@
 
 Bilingual reference materials, utilities, tutorials and documentation for Government of Canada data publishers and advanced users of Open.Canada.ca.
 
-- [English](https://patlittle.github.io/OG-Knowledge-Base/en/)
-- [Français](https://patlittle.github.io/OG-Knowledge-Base/fr/)
+[English site](https://patlittle.github.io/OG-Knowledge-Base/en/) · [Site français](https://patlittle.github.io/OG-Knowledge-Base/fr/)
 
-## Develop and publish
+## Where to make a change
 
-Requires Node.js 22 or newer and Python 3 (site validation only).
+**Start in [`content/pages/`](content/pages/).** Its folders mirror the website URLs, without the `/OG-Knowledge-Base` prefix. Every published HTML page has one entry there:
+
+- A `.md` file is an editable page, rendered inside the shared site layout.
+- An `index.source.json` (or `404.source.json`) is a **pointer**, not another copy of the page. Its `sources` list links to the actual HTML, collection data, translations or renderer used to produce that page. These files are never published as pages.
+
+| Change | Edit |
+| --- | --- |
+| English or French homepage | `content/pages/en/index.md` or `content/pages/fr/index.md` |
+| Add a normal page | A new `.md` under `content/pages/en/` or `content/pages/fr/` |
+| Licence wording | `content/ogl/{en,fr}/{version}.md` |
+| Licence source dates, archive links or screenshots | `content/ogl/versions.json`; screenshots in `site/assets/ogl/` |
+| Licence headings and explanatory text | `content/ogl/labels.json` |
+| CKAN schema types and titles | `content/schemas/config.json` |
+| CKAN reference labels and explanatory text | `content/schemas/labels.json` |
+| Language-choice or not-found page | `site/templates/language-choice.html` or `site/templates/404.html` |
+| Collected CKAN definitions | `content/schemas/snapshots/`, normally updated by the collector |
+| Feature Atlas interactive source | `content/tools/feature-atlas.html` |
+| French Atlas wording | `content/tools/fr/{main,extensions,tour,ui}.json` |
+| Standalone bilingual WhatTF8 tool | `content/tools/whattf8.html` |
+| Shared header, footer and page layout | `site/templates/page.html` |
+| Styling and shared browser behaviour | `site/assets/` |
+| Collection layouts and Tools index text | The renderer linked by the page's `.source.json` |
+
+The homepages use HTML inside Markdown to retain their existing GCDS cards. New prose pages can use ordinary Markdown. Licence documents remain verbatim collection sources; they use a specialized layout with provenance, screenshots and Markdown downloads.
+
+## Add a Markdown page
+
+Create `content/pages/en/guides/publishing.md`:
+
+```md
+---
+title: Publishing a dataset
+description: A guide for data publishers.
+translation: /fr/guides/publication/
+---
+
+Describe the guide here.
+
+## Before you start
+
+Add your guidance, links and lists.
+```
+
+This produces `/OG-Knowledge-Base/en/guides/publishing/`. `guides/publishing/index.md` produces the same URL; use one form only. The builder adds the page title as an H1 when the body has none, creates heading anchors, and adds the page to the sitemap. Duplicate page URLs fail the build.
+
+Add the French file with `translation: /en/guides/publishing/`. Translation paths omit the project prefix and must end in `/`; the checks enforce reciprocal language links. For a page that has no translation yet, omit `translation`; it will have no language toggle or alternate-language metadata. Use relative links to **published** paths (for example `../another-guide/`), or full project paths such as `/OG-Knowledge-Base/en/`. Add a link from the relevant homepage or existing page so readers can discover the new page. The global navigation is maintained separately from page creation.
+
+For HTML-first tools, keep the source once in `content/tools/` and place a `.source.json` pointer at its logical location in `content/pages/`. Existing interactive tools demonstrate this pattern. New HTML tools still need a renderer or copy step in the build; pointers document sources and do not execute them. Every output page must have a corresponding Markdown file or pointer, and every pointer target must exist.
+
+## Build, check and preview
+
+Requires **Node.js 22+**, npm and **Python 3.9+** (CI uses 3.12). No Python packages are needed.
 
 ```sh
 npm ci
-npm run build
+npm test
+npm run preview
+```
+
+`npm test` makes a clean build and runs all checks. `npm run build` builds without checking; `npm run check` checks an existing build. The preview opens at `http://localhost:8000/OG-Knowledge-Base/`; stop it with Ctrl+C and rerun after edits.
+
+```text
+content/          Authored pages, HTML tools, translations and collected source data
+  pages/          URL-shaped content tree: Markdown pages and source pointers
+  ogl/            Original licence text and provenance
+  schemas/        Collector configuration and committed API snapshots
+  tools/          HTML-first tools and Atlas translations
+site/             Shared page template, CSS, browser scripts and images
+scripts/          Build/rendering, preview and schema collection commands
+tests/            Site, schema, interactive script and content-tree checks
+.github/          Shared CI build action and two workflows
+dist/             Generated website only; ignored by Git; safe to delete and rebuild
+```
+
+The build reads sources and writes **only `dist/`**. Do not edit or commit generated HTML, `sources/` downloads or `data/` API copies. Those directories exist only inside `dist/`. `node_modules/` is also ignored. Existing page URLs, licence downloads and schema JSON URLs are retained.
+
+## Publishing and the Pages setting
+
+The repository uses **GitHub Actions** as its single Pages publishing source. In **Settings → Pages → Build and deployment → Source**, select **GitHub Actions** when adopting this refactor, before merging it. The previous branch-based setting (`main`, `/`) relies on root-level generated copies that this refactor removes. The last published site remains available while the new workflow runs.
+
+`pages.yml` validates pull requests and builds/deploys pushes to `main` or manual runs on `main`. Deployment requires a successful build. Pull requests do not deploy. Both workflows use `.github/actions/build-site/action.yml`, which installs dependencies and runs the same `npm test` command used locally. Publication workflows share one concurrency group so a schema refresh and ordinary deployment cannot overlap.
+
+The previous workflow failed because building changed the committed Atlas HTML and a test required those generated copies to be clean. That requirement and the second publication path are removed. Tests check the built artifact instead: local links and anchors, canonical URLs, language pairs, licence integrity, schema behaviour, Atlas script syntax, and complete source pointers. New pages do not require updating a fixed page count.
+
+## Refresh CKAN schemas
+
+```sh
+npm run refresh:schemas
 npm test
 ```
 
-GitHub Actions builds, validates and deploys `dist/` after every push to `main`. Generated HTML is also committed at the repository root for compatibility with the existing branch-based Pages publication. Run the build before committing content edits so both publishing paths serve the same site. No content is fetched at build or page-load time: the licence Markdown is committed to this repository. GCDS components load from the official CDN, pinned to **1.6.0**.
+The collector discovers dataset and organization types, requests complete definitions and replaces snapshots only after all responses validate. Dataset requests use `expanded=true`. The daily workflow runs at 07:15 UTC and supports manual runs. It validates the site, commits **only** `content/schemas/snapshots/`, and deploys the tested artifact directly because bot commits do not trigger another push workflow. Failed fetches preserve the previous complete snapshot. Ordinary builds use committed snapshots and do not need the source API.
 
-For a local preview of the project-path URLs:
+`prop` is discovered and stored automatically, with a JSON download on the index. Add a bilingual entry to `content/schemas/config.json` to give a discovered type its own documented page, and add source pointers in the page tree. Schema snapshots record content-change timestamps and SHA-256 hashes; the manifest records the last successful API check.
 
-```sh
-mkdir -p /tmp/og-kb-preview
-ln -s "$PWD/dist" /tmp/og-kb-preview/OG-Knowledge-Base
-python3 -m http.server 8000 --directory /tmp/og-kb-preview
-```
+## Source and content notes
 
-Visit `http://localhost:8000/OG-Knowledge-Base/`.
+The licence collection includes versions 1.0, 1.1 and 2.0. Original filenames containing `v2_0_1` identify themselves as **version 2.0**. English and French version 1.1 sources have different modification dates; each retains its own date. Legal text is reproduced without editorial rewriting, with capture metadata and original screenshots presented separately. The MIT licence applies to site code; reproduced documents retain their original terms.
 
-## Structure and additional sections
-
-- `templates/page.html`: shared GCDS header, navigation, language toggle, metadata and footer.
-- `assets/site.css`: responsive documentation layout and small shared visual overrides.
-- `scripts/build.mjs`: static generation, bilingual page pairing and licence rendering.
-- `scripts/check_site.py`: links, anchors, language pairs, metadata and source integrity checks.
-- `content/ogl/{en,fr}/`: licence source Markdown with local screenshot references.
-- `content/ogl/versions.json`: language-specific provenance and version metadata.
-
-Each major section should own its content directory and localized URL paths. Reuse the page template, provide both language versions, and pair matching pages through the builder. Canonical URLs are self-referencing; reciprocal `hreflang` alternatives and the GCDS language toggle point to the corresponding translated page. The root offers a bilingual language choice.
-
-## Licence collection
-
-Imported from the supplied bilingual licence collection on 2026-10-12. Includes versions 1.0, 1.1 and 2.0. The files named `v2_0_1` describe themselves as **version 2.0** and are displayed accordingly. Source dates, archive URLs and screenshot images are preserved. The English and French version 1.1 source pages have different modification dates; neither has been substituted for the other.
-
-Legal text is reproduced without editorial rewriting. Source capture metadata and screenshots appear separately below it; the Markdown is downloadable at the bottom of each version page. Screenshot references use locally stored PNG files in `assets/ogl/{en,fr}/`; the six original screenshot images appear directly in the “Archived Original” section. The repository's MIT licence applies to the site code; reproduced licence documents retain their original terms.
-
-## CKAN metadata schemas
-
-The [English CKAN reference](https://patlittle.github.io/OG-Knowledge-Base/en/ckan-schemas/) and [French reference](https://patlittle.github.io/OG-Knowledge-Base/fr/schemas-ckan/) document the `dataset`, `info` and `organization` schemas. They share the Reference navigation with the licences.
-
-Each definition offers a single full-width Tree, Diagram or JSON view. The tree expands field properties, choices and repeated subfields on demand. The diagram has field-group selection, paging, zoom and a complete field inspector. Both views support field search and an explicit `required: true` filter. JSON can show the schema definition or the entire CKAN API response, with copying and a downloadable snapshot. Labels use the schema's original bilingual values; all JSON keys and values are preserved.
-
-- `content/schemas/config.json`: API base and the initial documented schema types.
-- `content/schemas/snapshots/`: full API discovery responses, definitions and retrieval manifest.
-- `scripts/fetch_schemas.py`: discovers every dataset and organization type from the list actions, requests all schema definitions, and replaces snapshots only after every request validates. Dataset requests use `expanded=true`; organization requests use the provided parameters.
-- `scripts/schema-pages.mjs`: bilingual reference index and schema-page generation.
-- `assets/schema-viewer.js`: standalone interactive views, without third-party diagram dependencies.
-- `.github/workflows/update-schemas.yml`: daily refresh at 07:15 UTC, manual dispatch, and initial execution when the collector/configuration/workflow changes. Builds, tests, commits snapshots and generated pages, then deploys directly. A bot commit does not trigger another fetch loop.
-
-`prop` is discovered and stored automatically; it has a JSON download on the index. Add a bilingual entry to `config.json` to give a discovered type its own documented page. Removed or unavailable documented types fail validation and preserve the last complete snapshot. Each schema records its last content-change timestamp and SHA-256; the manifest records the last successful API check.
-
-Run `python3 scripts/fetch_schemas.py` before `npm run build` to refresh locally. The ordinary Pages build uses committed snapshots and continues to work when the source API is unavailable.
-
-## Tools: CKAN Feature Atlas (English preview)
-
-The [Feature Atlas](https://patlittle.github.io/OG-Knowledge-Base/en/tools/feature-atlas/) is an interactive, diagram-first explanation of the two PostgreSQL databases powering Open.Canada.ca/data, with CKAN extensions, public Action API examples and a 16-step guided tour. It belongs to the new [Tools](https://patlittle.github.io/OG-Knowledge-Base/en/tools/) section.
-
-- `content/tools/feature-atlas.html`: reviewed standalone Atlas source, kept intact.
-- `scripts/integrate-feature-atlas.mjs`: builds the GCDS-framed English page, full-width infographic, Tools navigation, homepage entry and sitemap records.
-- No sidebar or iframe is used for the interactive page.
-- No French equivalent or `hreflang="fr"` is published until the English feature and French terminology have been reviewed.
-
-
-
-## Feature Atlas / Atlas des fonctionnalités
-
-The interactive feature atlas documents CKAN's PostgreSQL metadata and DataStore databases, resource views, API methods, HTTP routes, extensions and a 16-step guided tour.
-
-- [English — Tools / Feature Atlas](https://patlittle.github.io/OG-Knowledge-Base/en/tools/feature-atlas/)
-- [Français — Outils / Atlas des fonctionnalités](https://patlittle.github.io/OG-Knowledge-Base/fr/outils/atlas-des-fonctionnalites/)
-
-Both editions are generated from the same interactive source, `content/tools/feature-atlas.html`. French text is maintained in the structured dictionaries `content/tools/fr/{main,extensions,tour,ui}.json`, applied by `scripts/integrate-feature-atlas-fr.mjs` after the English integration. CKAN method names, field identifiers, UUIDs, documentation links and live portal endpoint examples remain unchanged between languages.
-
-The tools section uses the standard GCDS site header, navigation and footer, but deliberately has **no sidebar navigation** to preserve the full width of the database diagram. Reciprocal language toggles and `hreflang` links pair the two Tools indexes and the two Atlas pages. Generated pages in both languages must be committed alongside source changes, because the repository can also publish directly from its branch. The site validator enforces that requirement.
-
+The bilingual Feature Atlas retains its interactive diagrams, public API examples and 16-step tour. Both editions derive from one interactive HTML source, with French text applied from the translation dictionaries. Technical identifiers, API methods and endpoint examples remain unchanged. Tools pages use the standard site frame with no sidebar. GCDS components remain pinned to 1.6.0 from the official CDN.

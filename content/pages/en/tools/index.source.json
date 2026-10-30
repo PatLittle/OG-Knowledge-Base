@@ -1,0 +1,7 @@
+{
+  "description": "Source pointer only; edit the listed sources, not generated HTML.",
+  "sources": [
+    "scripts/integrate-feature-atlas.mjs",
+    "scripts/integrate-feature-atlas-fr.mjs"
+  ]
+}

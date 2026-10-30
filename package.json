@@ -5,10 +5,14 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "python3 scripts/check_site.py && node scripts/check_schemas.mjs && node scripts/check_atlas_scripts.mjs"
+    "test": "npm run build && npm run check",
+    "check": "python3 tests/check_site.py && node tests/check_schemas.mjs && node tests/check_atlas_scripts.mjs && node --test tests/content.test.mjs",
+    "preview": "npm run build && node scripts/preview.mjs",
+    "refresh:schemas": "python3 scripts/fetch_schemas.py"
   },
   "dependencies": {
-    "marked": "17.0.5"
+    "marked": "17.0.5",
+    "yaml": "2.9.1"
   },
   "engines": {
     "node": ">=22"

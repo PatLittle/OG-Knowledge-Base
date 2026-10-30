@@ -1,0 +1,9 @@
+{
+  "description": "Source pointer only; edit the listed sources, not generated HTML.",
+  "sources": [
+    "content/schemas/config.json",
+    "content/schemas/snapshots/manifest.json",
+    "content/schemas/labels.json",
+    "scripts/schema-pages.mjs"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Source pointer only; edit the listed sources, not generated HTML.",
+  "sources": [
+    "content/tools/feature-atlas.html",
+    "content/tools/fr/main.json",
+    "content/tools/fr/extensions.json",
+    "content/tools/fr/tour.json",
+    "content/tools/fr/ui.json"
+  ]
+}
