@@ -10,7 +10,8 @@ main{padding-bottom:3rem}.wrap{max-width:1100px;margin:0 auto;padding:1.3rem 1.2
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1rem}.panel{border:1px solid #b6c6d1;border-radius:5px;background:#fff;padding:1.25rem;margin:1rem 0}.drop{border:2px dashed #56758b;border-radius:5px;padding:2rem 1rem;text-align:center;cursor:pointer;background:#f5f9fb}.drop.drag{background:#e2f3ff;border-color:#17669a}.drop:focus-visible{outline:3px solid #d89d00}
 .actions{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:1rem 0}.control{font:inherit;display:block;width:100%;padding:.65rem;border:2px solid #6b7781;border-radius:3px;background:white}.inline{width:auto;min-width:210px}.hint{color:#526474;font-size:.93rem;line-height:1.5}.mono{font-family:ui-monospace,Consolas,monospace;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #c6d0d7;padding:.65rem;text-align:left;vertical-align:top}th{width:32%}pre{overflow:auto;max-height:18rem;background:#f4f6f8;border:1px solid #cbd5dd;padding:1rem;white-space:pre-wrap;overflow-wrap:anywhere}
 button{font:inherit;background:#26374a;color:white;padding:.6rem 1rem;border:0;border-radius:4px;cursor:pointer}button:disabled{background:#87949d;cursor:not-allowed}button.secondary{background:white;color:#26374a;border:2px solid #26374a}
-label{display:block;font-weight:600;margin:.8rem 0 .3rem}small{font-size:.9rem}#status{margin:1rem 0}#errors[hidden],#results[hidden],#status[hidden]{display:none}a{color:#245e86}textarea{min-height:6rem}
+button.secondary:disabled{color:#6b7781;border-color:#87949d;background:#f4f6f8}
+label{display:block;font-weight:600;margin:.8rem 0 .3rem}small{font-size:.9rem}#status{margin:1rem 0}#errors[hidden],#results[hidden],#status[hidden]{display:none}a{color:#245e86}textarea{min-height:6rem}.checkbox{display:flex;gap:.55rem;align-items:baseline;font-weight:400}.checkbox input{width:1.1rem;height:1.1rem;flex-shrink:0}[hidden]{display:none!important}
 </style></head><body>
 <gcds-header id="header" lang-href="?lang=fr" skip-to-href="#main-content"><a slot="signature" class="site-brand" id="brand" href="/OG-Knowledge-Base/en/"><span class="brand-mark" aria-hidden="true">OG</span><span id="brandName">Open Government Knowledge Base</span></a><gcds-top-nav slot="menu" id="topnav" label="Main navigation"><gcds-nav-link slot="home" id="home" href="/OG-Knowledge-Base/en/">Home</gcds-nav-link><gcds-nav-link id="reference" href="/OG-Knowledge-Base/en/reference/">Reference</gcds-nav-link><gcds-nav-link id="tools" href="/OG-Knowledge-Base/en/tools/" current>Tools</gcds-nav-link><gcds-nav-link id="portal" href="https://open.canada.ca/en">Open.Canada.ca</gcds-nav-link></gcds-top-nav></gcds-header>
 <main id="main-content" class="wrap" tabindex="-1">
@@ -18,41 +19,306 @@ label{display:block;font-weight:600;margin:.8rem 0 .3rem}small{font-size:.9rem}#
 <p class="eyebrow" data-i="eyebrow">Tools / Character encoding</p><gcds-heading tag="h1">WhatTF8</gcds-heading>
 <p class="lead" data-i="intro">Check a file or URL for character encoding issues, preview decoded text, and export a UTF-8 copy. Your files are processed locally in your browser.</p>
 <gcds-alert alert-role="info" id="privacy"><span data-i="privacy">Local files are not uploaded to a server. URL inspection requires the remote website to permit cross-origin access (CORS). Character detection is heuristic; verify the preview before converting.</span></gcds-alert>
-<div id="errors" hidden><gcds-error-summary id="errorSummary" heading="Check the following" listen="false"></gcds-error-summary><gcds-alert alert-role="danger"><span id="errorText" role="alert"></span></gcds-alert></div>
+<div id="errors" hidden tabindex="-1"><gcds-error-summary id="errorSummary" heading="Review The Following Issues" listen="false"></gcds-error-summary></div>
 <div id="status" hidden role="status" aria-live="polite"><gcds-alert id="statusAlert" alert-role="success"><span id="statusText"></span></gcds-alert></div>
 <section aria-labelledby="loadTitle"><gcds-heading tag="h2" id="loadTitle" data-i="load">1. Load a source</gcds-heading>
 <div class="grid"><div class="panel"><gcds-heading tag="h3" data-i="upload">Choose or drop a file</gcds-heading><div id="drop" class="drop" tabindex="0" role="button" aria-label="Choose or drop a file"><strong data-i="drag">Drop a document here</strong><p data-i="browse">or select a file from your device</p><button type="button" id="browseBtn" data-i="choose">Choose file</button><input id="file" type="file" hidden accept=".txt,.csv,.tsv,.json,.xml,.html,.htm,.md,.log,.srt,.vtt,.css,.js,.yaml,.yml,.docx,.pdf,.doc,.rtf,*/*"></div><p class="hint" data-i="types">Plain-text formats can be transcoded. PDF and Word formats require extraction rather than direct re-encoding.</p></div>
-<div class="panel"><gcds-heading tag="h3" data-i="urlHead">Load from a URL</gcds-heading><label for="url" data-i="urlLabel">Public document URL</label><input id="url" class="control" type="url" placeholder="https://example.org/data.csv"><div class="actions"><button id="fetch" type="button" data-i="fetch">Fetch and inspect URL</button></div><p class="hint" data-i="cors">The URL must allow browser fetches via CORS. This application does not use a proxy.</p></div></div></section>
+<div class="panel"><gcds-heading tag="h3" data-i="urlHead">Load from a URL</gcds-heading><label for="url" data-i="urlLabel">Public document URL</label><input id="url" class="control" type="url" placeholder="https://example.org/data.csv"><label class="checkbox"><input id="useProxy" type="checkbox"> <span data-i="useProxy">Add CORS proxy</span></label><div id="proxyOptions" hidden><label for="proxyUrl" data-i="proxyLabel">CORS proxy URL</label><input id="proxyUrl" class="control" type="url" placeholder="https://proxy.example/?url=" aria-describedby="proxyHelp"><p id="proxyHelp" class="hint" data-i="proxyHelp">The document URL is appended to this prefix, URL-encoded. Use {url} to choose where it goes, or {rawUrl} if your proxy requires an unencoded URL.</p></div><div class="actions"><button id="fetch" type="button" data-i="fetch">Fetch and inspect URL</button></div><p class="hint" data-i="cors">The document or your chosen proxy must allow browser fetches via CORS. When enabled, the proxy receives the document URL and its contents.</p></div></div></section>
 <section id="results" hidden aria-labelledby="resultsTitle"><gcds-heading tag="h2" id="resultsTitle" data-i="diagnosis">2. Inspect encoding</gcds-heading>
-<div class="panel"><table><tbody><tr><th data-i="filename">Source</th><td class="mono" id="source"></td></tr><tr><th data-i="size">Size</th><td id="size"></td></tr><tr><th data-i="mime">Content type</th><td id="mime"></td></tr><tr><th data-i="bom">Byte-order mark</th><td id="bom"></td></tr><tr><th data-i="detected">Suggested encoding</th><td id="detected"></td></tr><tr><th data-i="validation">UTF-8 validation</th><td id="validation"></td></tr><tr><th data-i="replacement">Replacement characters</th><td id="replacement"></td></tr></tbody></table>
+<div class="panel"><table><tbody><tr><th data-i="filename">Source</th><td class="mono" id="source"></td></tr><tr><th data-i="size">Size</th><td id="size"></td></tr><tr><th data-i="mime">Content type</th><td id="mime"></td></tr><tr><th data-i="bom">Byte-order mark</th><td id="bom"></td></tr><tr><th data-i="bomHex">BOM (hex)</th><td class="mono" id="bomHex"></td></tr><tr><th data-i="detected">Suggested encoding</th><td id="detected"></td></tr><tr><th data-i="validation">UTF-8 validation</th><td id="validation"></td></tr><tr><th data-i="replacement">Replacement characters</th><td id="replacement"></td></tr></tbody></table>
+<gcds-alert id="conversionWarning" heading="Re-Encoding Unavailable" alert-role="warning" hidden><p data-i="conversionWarning">Encoding can be read, but re-encoding this document type is not currently supported.</p></gcds-alert>
 <label for="encoding" data-i="encoding">Decode source as</label><select id="encoding" class="control inline"><option value="utf-8">UTF-8</option><option value="windows-1252">Windows-1252</option><option value="windows-1251">Windows-1251</option><option value="iso-8859-1">ISO-8859-1</option><option value="us-ascii">ASCII</option><option value="utf-16le">UTF-16 LE</option><option value="utf-16be">UTF-16 BE</option><option value="shift_jis">Shift JIS</option><option value="gb18030">GB18030</option></select>
 <div class="actions"><button class="secondary" id="recheck" data-i="recheck">Update preview</button><button class="secondary" id="clear" data-i="clear">Clear source</button></div>
 <label for="preview" data-i="preview">Decoded text preview (first 8,000 characters)</label><pre id="preview" tabindex="0"></pre></div>
-<gcds-heading tag="h2" data-i="convert">3. Convert and download</gcds-heading><div class="panel"><p data-i="convertHelp">Converts decoded text to a UTF-8 file, without a byte-order mark. The source file remains unchanged. Review the preview before downloading.</p><div class="actions"><button id="download" data-i="download">Download UTF-8 copy</button></div><p class="hint" id="formatHint"></p></div>
+<gcds-heading tag="h2" data-i="convert">3. Convert and download</gcds-heading><div class="panel"><p data-i="convertHelp">Converts decoded text to a UTF-8 file, with an optional byte-order mark (BOM). The source file remains unchanged. Review the preview before downloading.</p><label class="checkbox"><input id="includeBom" type="checkbox"> <span data-i="includeBom">Include a UTF-8 byte-order mark (BOM)</span></label><p><span data-i="exportEncoding">Export encoding</span>: <strong id="exportEncoding">UTF-8</strong></p><div class="actions"><button id="download" data-i="download">Download UTF-8 copy</button></div><p class="hint" id="formatHint"></p></div>
 </section>
 <section aria-labelledby="guidance"><gcds-heading tag="h2" id="guidance" data-i="guidance">Guidance and limitations</gcds-heading><p data-i="guidanceText">Use UTF-8 for interoperable plain-text data such as CSV, JSON, XML, and HTML. The encoding of a webpage's text is not necessarily the encoding of files linked from it. Binary formats such as PDF, DOC, and DOCX cannot be made UTF-8 by simply changing their bytes; conversion requires document-aware software. This tool does not preserve formatting from those formats.</p><p><a id="guideLink" href="https://www.canada.ca/en/government/system/digital-government/digital-standards.html" target="_blank" rel="noopener" data-i="guideLink">Government of Canada Digital Standards</a> · <a href="https://www.w3.org/International/questions/qa-choosing-encodings" target="_blank" rel="noopener">W3C: Choosing character encodings</a></p></section>
 </main><div class="page-date"><gcds-date-modified>2026-10-28</gcds-date-modified></div><gcds-footer display="compact" id="footer" sub-links='{"GitHub repository":"https://github.com/PatLittle/OG-Knowledge-Base","Home":"/OG-Knowledge-Base/en/"}'></gcds-footer>
 <script>
 (()=>{'use strict';
 const dictionary={
-en:{eyebrow:'Tools / Character encoding',intro:'Check a file or URL for character encoding issues, preview decoded text, and export a UTF-8 copy. Your files are processed locally in your browser.',privacy:'Local files are not uploaded to a server. URL inspection requires the remote website to permit cross-origin access (CORS). Character detection is heuristic; verify the preview before converting.',load:'1. Load a source',upload:'Choose or drop a file',drag:'Drop a document here',browse:'or select a file from your device',choose:'Choose file',types:'Plain-text formats can be transcoded. PDF and Word formats require extraction rather than direct re-encoding.',urlHead:'Load from a URL',urlLabel:'Public document URL',fetch:'Fetch and inspect URL',cors:'The URL must allow browser fetches via CORS. This application does not use a proxy.',diagnosis:'2. Inspect encoding',filename:'Source',size:'Size',mime:'Content type',bom:'Byte-order mark',detected:'Suggested encoding',validation:'UTF-8 validation',replacement:'Replacement characters',encoding:'Decode source as',recheck:'Update preview',clear:'Clear source',preview:'Decoded text preview (first 8,000 characters)',convert:'3. Convert and download',convertHelp:'Converts decoded text to a UTF-8 file, without a byte-order mark. The source file remains unchanged. Review the preview before downloading.',download:'Download UTF-8 copy',guidance:'Guidance and limitations',guidanceText:'Use UTF-8 for interoperable plain-text data such as CSV, JSON, XML, and HTML. A webpage and the files linked from it can use different encodings. Binary formats such as PDF, DOC, and DOCX cannot be made UTF-8 by simply changing their bytes; conversion requires document-aware software. This tool does not preserve their formatting.',guideLink:'Government of Canada Digital Standards',ok:'Source loaded. Verify the detected encoding and decoded preview.',badFile:'This is a binary Word/PDF document. Direct character re-encoding would corrupt it. Export text or CSV from a document-aware program, then load that file.',fetchError:'Could not fetch this URL. Check the address, network connection, and CORS permissions.',invalid:'Please enter a valid http:// or https:// URL.',decodeError:'Unable to decode this source with the selected encoding.',nontext:'This resource appears to be binary; direct transcoding is unsafe.',ready:'UTF-8 download prepared.',none:'None',valid:'Valid',invalidUtf:'Invalid byte sequences',ascii:'ASCII-compatible (also valid UTF-8)',utf8:'UTF-8 (valid byte sequences)',fallback:'Uncertain: select the source encoding and inspect the preview',hint:'The preview is based on the selected encoding. Incorrect encoding can silently change characters.',tooLarge:'File exceeds the 30 MiB in-browser processing limit.',errorHead:'Review the following issues',language:'Français'},
-fr:{eyebrow:'Outils / Encodage des caractères',intro:'Vérifiez l’encodage d’un fichier ou d’une URL, prévisualisez le texte décodé et exportez une copie UTF-8. Les fichiers sont traités localement dans votre navigateur.',privacy:'Les fichiers locaux ne sont pas téléversés vers un serveur. L’analyse d’une URL exige que le site distant autorise l’accès interorigines (CORS). La détection est approximative : vérifiez l’aperçu avant de convertir.',load:'1. Charger une source',upload:'Sélectionner ou déposer un fichier',drag:'Déposez un document ici',browse:'ou sélectionnez un fichier sur votre appareil',choose:'Choisir un fichier',types:'Les formats texte peuvent être convertis. Les fichiers PDF et Word nécessitent une extraction plutôt qu’un réencodage direct.',urlHead:'Charger à partir d’une URL',urlLabel:'URL du document public',fetch:'Récupérer et analyser l’URL',cors:'L’URL doit autoriser les requêtes CORS du navigateur. L’application n’utilise pas de mandataire.',diagnosis:'2. Examiner l’encodage',filename:'Source',size:'Taille',mime:'Type de contenu',bom:'Marque d’ordre des octets',detected:'Encodage suggéré',validation:'Validation UTF-8',replacement:'Caractères de remplacement',encoding:'Décoder la source comme',recheck:'Actualiser l’aperçu',clear:'Effacer la source',preview:'Aperçu du texte décodé (8 000 premiers caractères)',convert:'3. Convertir et télécharger',convertHelp:'Convertit le texte décodé en fichier UTF-8, sans marque d’ordre des octets. Le fichier d’origine demeure inchangé. Vérifiez l’aperçu avant le téléchargement.',download:'Télécharger une copie UTF-8',guidance:'Conseils et limites',guidanceText:'Utilisez UTF-8 pour les données texte interopérables comme CSV, JSON, XML et HTML. Une page Web et ses fichiers liés peuvent utiliser des encodages différents. Les formats binaires PDF, DOC et DOCX ne peuvent pas être convertis en UTF-8 par simple modification des octets : un logiciel adapté au format est nécessaire. Cet outil ne conserve pas leur mise en forme.',guideLink:'Normes relatives au numérique du gouvernement du Canada',ok:'Source chargée. Vérifiez l’encodage suggéré et l’aperçu décodé.',badFile:'Ce document Word ou PDF est binaire. Un réencodage direct le corromprait. Exportez le texte ou un CSV à partir d’un logiciel adapté, puis chargez le fichier.',fetchError:'Impossible de récupérer cette URL. Vérifiez l’adresse, la connexion réseau et les autorisations CORS.',invalid:'Saisissez une URL http:// ou https:// valide.',decodeError:'Impossible de décoder cette source avec l’encodage choisi.',nontext:'Cette ressource semble être binaire; la conversion directe est risquée.',ready:'Téléchargement UTF-8 préparé.',none:'Aucune',valid:'Valide',invalidUtf:'Séquences d’octets invalides',ascii:'Compatible ASCII (également UTF-8 valide)',utf8:'UTF-8 (séquences d’octets valides)',fallback:'Incertain : choisissez l’encodage source et examinez l’aperçu',hint:'L’aperçu repose sur l’encodage choisi. Un mauvais encodage peut modifier des caractères sans avertissement.',tooLarge:'Le fichier dépasse la limite de 30 Mio de traitement dans le navigateur.',errorHead:'Corrigez les problèmes suivants',language:'English'}};
-const $=id=>document.getElementById(id);let lang=new URLSearchParams(location.search).get('lang')==='fr'?'fr':'en';let data=null;let decoded='';let fileName='';let mediaType='';let guess='';let utfValid=false;const t=k=>dictionary[lang][k];const limit=30*1024*1024;
-function renderLang(){document.documentElement.lang=lang;document.title='WhatTF8 | '+(lang==='fr'?'Base de connaissances du gouvernement ouvert':'Open Government Knowledge Base');document.querySelectorAll('[data-i]').forEach(el=>el.textContent=t(el.dataset.i));let root='/OG-Knowledge-Base/',fr=lang==='fr',home=root+(fr?'fr/':'en/'),tools=root+(fr?'fr/outils/':'en/tools/');$('brand').href=home;$('brandName').textContent=fr?'Base de connaissances du gouvernement ouvert':'Open Government Knowledge Base';$('home').href=home;$('home').textContent=fr?'Accueil':'Home';$('reference').href=root+(fr?'fr/references/':'en/reference/');$('reference').textContent=fr?'Références':'Reference';$('tools').href=tools;$('tools').textContent=fr?'Outils':'Tools';$('portal').href=fr?'https://ouvert.canada.ca/fr':'https://open.canada.ca/en';$('portal').textContent=fr?'Ouvert.Canada.ca':'Open.Canada.ca';$('topnav').setAttribute('label',fr?'Navigation principale':'Main navigation');$('crumbHome').href=home;$('crumbHome').textContent=fr?'Accueil':'Home';$('crumbTools').href=tools;$('crumbTools').textContent=fr?'Outils':'Tools';$('crumbs').setAttribute('aria-label',fr?'Fil d’Ariane':'Breadcrumb');$('header').setAttribute('lang-href','?lang='+(fr?'en':'fr'));$('drop').setAttribute('aria-label',fr?'Sélectionner ou déposer un fichier':'Choose or drop a file');$('errorSummary').setAttribute('heading',t('errorHead'));$('footer').setAttribute('sub-links',JSON.stringify(fr?{'Dépôt GitHub':'https://github.com/PatLittle/OG-Knowledge-Base','Accueil':home}:{'GitHub repository':'https://github.com/PatLittle/OG-Knowledge-Base','Home':home}));if(data)analyze();}
-function error(message,anchor='file'){ $('errors').hidden=false;$('errorText').textContent=message;$('errorSummary').setAttribute('error-links',JSON.stringify([{href:'#'+anchor,error:message}]));$('status').hidden=true; }
-function clearError(){$('errors').hidden=true;$('errorText').textContent='';}
-function status(message){clearError();$('statusText').textContent=message;$('status').hidden=false;}
-function binary(b,name,mime){const ext=name.split(/[?#]/)[0].toLowerCase();const start=Array.from(b.subarray(0,8));return ext.match(/\.(pdf|doc|docx|xlsx|pptx|odt|zip)$/)||mime.match(/application\/(pdf|zip|msword|vnd\.openxmlformats|octet-stream)/i)||String.fromCharCode(...start.slice(0,4))==='%PDF'||start.slice(0,4).join(',')==='80,75,3,4'||start.slice(0,8).join(',')==='208,207,17,224,161,177,26,225';}
-function bom(b){if(b.length>=3&&b[0]===239&&b[1]===187&&b[2]===191)return 'UTF-8';if(b.length>=2&&b[0]===255&&b[1]===254)return 'UTF-16LE';if(b.length>=2&&b[0]===254&&b[1]===255)return 'UTF-16BE';return null;}
-function choose(b){const mark=bom(b);if(mark)return mark.toLowerCase().replace('utf-16le','utf-16le').replace('utf-16be','utf-16be');let valid=true;try{new TextDecoder('utf-8',{fatal:true}).decode(b)}catch{valid=false}utfValid=valid;if(valid)return b.every(x=>x<128)?'us-ascii':'utf-8';const even=b.filter((x,i)=>i%2===0&&x===0).length,odd=b.filter((x,i)=>i%2===1&&x===0).length;if(b.length>8&&odd>b.length/5&&even<odd/3)return 'utf-16le';if(b.length>8&&even>b.length/5&&odd<even/3)return 'utf-16be';return 'windows-1252';}
-function analyze(){if(!data)return;const bytes=new Uint8Array(data);utfValid=true;try{new TextDecoder('utf-8',{fatal:true}).decode(bytes)}catch{utfValid=false}let suggested=guess;if(suggested==='us-ascii')suggested=t('ascii');else if(suggested==='utf-8')suggested=t('utf8');else if(!bom(bytes)&&!utfValid)suggested=t('fallback')+' ('+guess+')';$('detected').textContent=suggested;$('validation').textContent=t(utfValid?'valid':'invalidUtf');$('bom').textContent=bom(bytes)||t('none');$('source').textContent=fileName;$('size').textContent=bytes.length.toLocaleString(lang==='fr'?'fr-CA':'en-CA')+' bytes';$('mime').textContent=mediaType||'—';decode();}
-function decode(){if(!data)return;const encoding=$('encoding').value;try{const bytes=new Uint8Array(data);if(encoding==='us-ascii'&&bytes.some(x=>x>127))throw Error(t('decodeError'));decoded=new TextDecoder(encoding,{fatal:true}).decode(bytes);$('preview').textContent=decoded.slice(0,8000);const replacements=(decoded.match(/\uFFFD/g)||[]).length;$('replacement').textContent=String(replacements);$('download').disabled=false;$('formatHint').textContent=t('hint');clearError();}catch(e){decoded='';$('preview').textContent='';$('download').disabled=true;error(t('decodeError'),'encoding');}}
-async function load(buffer,name,mime){clearError();$('status').hidden=true;$('results').hidden=true;data=null;if(buffer.byteLength>limit){error(t('tooLarge'));return}const b=new Uint8Array(buffer);if(binary(b,name,mime||'')){error(t('badFile'));return}if(b.length>2&&b.slice(0,1024).filter(x=>x===0).length>10&&!bom(b)){error(t('nontext'));return}data=buffer;fileName=name;mediaType=mime||'text/plain';guess=choose(b);$('encoding').value=guess;$('results').hidden=false;analyze();status(t('ok'));}
-async function file(f){if(!f)return;try{if(f.size>limit){error(t('tooLarge'));return}await load(await f.arrayBuffer(),f.name,f.type)}catch{error(t('decodeError'))}}
-$('file').addEventListener('change',e=>file(e.target.files[0]));$('browseBtn').onclick=e=>{e.stopPropagation();$('file').click()};$('drop').onclick=e=>{if(e.target.id!=='browseBtn')$('file').click()};$('drop').onkeydown=e=>{if(e.target===$('drop')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();$('file').click()}};for(const event of ['dragenter','dragover'])$('drop').addEventListener(event,e=>{e.preventDefault();$('drop').classList.add('drag')});for(const event of ['dragleave','drop'])$('drop').addEventListener(event,e=>{e.preventDefault();$('drop').classList.remove('drag')});$('drop').addEventListener('drop',e=>file(e.dataTransfer.files[0]));
-$('fetch').onclick=async()=>{let u;try{u=new URL($('url').value);if(!['https:','http:'].includes(u.protocol))throw 0}catch{error(t('invalid'),'url');return}const btn=$('fetch');btn.disabled=true;try{const response=await fetch(u.href,{mode:'cors',credentials:'omit'});if(!response.ok)throw Error('HTTP '+response.status);const size=+(response.headers.get('content-length')||0);if(size>limit){error(t('tooLarge'),'url');return}const type=response.headers.get('content-type')||'';const buf=await response.arrayBuffer();await load(buf,u.pathname.split('/').pop()||u.hostname,type)}catch(e){error(t('fetchError')+' '+String(e.message||''),'url')}finally{btn.disabled=false}};
-$('encoding').onchange=decode;$('recheck').onclick=decode;$('clear').onclick=()=>{data=null;decoded='';$('results').hidden=true;$('file').value='';$('url').value='';$('status').hidden=true;clearError()};
-$('download').onclick=()=>{if(!data)return;const blob=new Blob([new TextEncoder().encode(decoded)],{type:'text/plain;charset=utf-8'});const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=(fileName.replace(/\.[^.]+$/,'')||'document')+'.utf8'+((fileName.match(/\.(csv|tsv|json|xml|html|htm|txt|md|log|srt|vtt|css|js|yaml|yml)$/i)||[])[0]||'.txt');document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);status(t('ready'))};
-$('header').addEventListener('click',e=>{const link=e.composedPath().find(n=>n?.getAttribute?.('href')==='?lang='+(lang==='fr'?'en':'fr'));if(link){e.preventDefault();lang=lang==='fr'?'en':'fr';history.replaceState(null,'','?lang='+lang);renderLang()}});window.addEventListener('popstate',()=>{lang=new URLSearchParams(location.search).get('lang')==='fr'?'fr':'en';renderLang()});renderLang();
+en:{eyebrow:'Tools / Character encoding',intro:'Check a file or URL for character encoding issues, preview decoded text, and export a UTF-8 copy. Your files are processed locally in your browser.',privacy:'Local files are not uploaded to a server. URL inspection requires the remote website to permit cross-origin access (CORS). Character detection is heuristic; verify the preview before converting.',load:'1. Load a source',upload:'Choose or drop a file',drag:'Drop a document here',browse:'or select a file from your device',choose:'Choose file',types:'Plain-text formats can be transcoded. PDF and Word formats require extraction rather than direct re-encoding.',urlHead:'Load from a URL',urlLabel:'Public document URL',fetch:'Fetch and inspect URL',cors:'The document or your chosen proxy must allow browser fetches via CORS. When enabled, the proxy receives the document URL and its contents.',diagnosis:'2. Inspect encoding',filename:'Source',size:'Size',mime:'Content type',bom:'Byte-order mark',detected:'Suggested encoding',validation:'UTF-8 validation',replacement:'Replacement characters',encoding:'Decode source as',recheck:'Update preview',clear:'Clear source',preview:'Decoded text preview (first 8,000 characters)',convert:'3. Convert and download',convertHelp:'Converts decoded text to a UTF-8 file, with an optional byte-order mark (BOM). The source file remains unchanged. Review the preview before downloading.',download:'Download UTF-8 copy',guidance:'Guidance and limitations',guidanceText:'Use UTF-8 for interoperable plain-text data such as CSV, JSON, XML, and HTML. A webpage and the files linked from it can use different encodings. Binary formats such as PDF, DOC, and DOCX cannot be made UTF-8 by simply changing their bytes; conversion requires document-aware software. This tool does not preserve their formatting.',guideLink:'Government of Canada Digital Standards',ok:'Source loaded. Verify the detected encoding and decoded preview.',badFile:'This is a binary Word/PDF document. Direct character re-encoding would corrupt it. Export text or CSV from a document-aware program, then load that file.',fetchError:'Could not fetch this URL. Check the address, network connection, and CORS permissions.',invalid:'Please enter a valid http:// or https:// URL.',decodeError:'Unable to decode this source with the selected encoding.',nontext:'This resource appears to be binary; direct transcoding is unsafe.',ready:'UTF-8 download prepared.',none:'None',valid:'Valid',invalidUtf:'Invalid byte sequences',ascii:'ASCII-compatible (also valid UTF-8)',utf8:'UTF-8 (valid byte sequences)',fallback:'Uncertain: select the source encoding and inspect the preview',hint:'The preview is based on the selected encoding. Incorrect encoding can silently change characters.',tooLarge:'File exceeds the 30 MiB in-browser processing limit.',errorHead:'Review The Following Issues',language:'Français',useProxy:'Add CORS proxy',proxyLabel:'CORS proxy URL',proxyHelp:'The document URL is appended to this prefix, URL-encoded. Use {url} to choose where it goes, or {rawUrl} if your proxy requires an unencoded URL.',invalidProxy:'Enter a valid http:// or https:// CORS proxy URL.',bomHex:'BOM (hex)',includeBom:'Include a UTF-8 byte-order mark (BOM)',exportEncoding:'Export encoding',sig:'UTF-8-SIG (UTF-8 with BOM)',downloadSig:'Download UTF-8-SIG copy',warningHead:'Re-Encoding Unavailable',conversionWarning:'Encoding can be read, but re-encoding this document type is not currently supported.',unknownEncoding:'Not detected; document-aware inspection is required',containerValidation:'Not applicable to the document container',noPreview:'Text extraction for this document type is not supported.',embedded:'embedded text; other document text may use different encodings',metadataEncoding:'XML metadata only',unsupportedEncoding:'This character encoding is not supported for re-encoding.',readySig:'UTF-8-SIG download prepared (with BOM).'},
+fr:{eyebrow:'Outils / Encodage des caractères',intro:'Vérifiez l’encodage d’un fichier ou d’une URL, prévisualisez le texte décodé et exportez une copie UTF-8. Les fichiers sont traités localement dans votre navigateur.',privacy:'Les fichiers locaux ne sont pas téléversés vers un serveur. L’analyse d’une URL exige que le site distant autorise l’accès interorigines (CORS). La détection est approximative : vérifiez l’aperçu avant de convertir.',load:'1. Charger une source',upload:'Sélectionner ou déposer un fichier',drag:'Déposez un document ici',browse:'ou sélectionnez un fichier sur votre appareil',choose:'Choisir un fichier',types:'Les formats texte peuvent être convertis. Les fichiers PDF et Word nécessitent une extraction plutôt qu’un réencodage direct.',urlHead:'Charger à partir d’une URL',urlLabel:'URL du document public',fetch:'Récupérer et analyser l’URL',cors:'Le document ou le mandataire choisi doit autoriser les requêtes CORS du navigateur. Le mandataire reçoit l’URL du document et son contenu lorsqu’il est activé.',diagnosis:'2. Examiner l’encodage',filename:'Source',size:'Taille',mime:'Type de contenu',bom:'Marque d’ordre des octets',detected:'Encodage suggéré',validation:'Validation UTF-8',replacement:'Caractères de remplacement',encoding:'Décoder la source comme',recheck:'Actualiser l’aperçu',clear:'Effacer la source',preview:'Aperçu du texte décodé (8 000 premiers caractères)',convert:'3. Convertir et télécharger',convertHelp:'Convertit le texte décodé en fichier UTF-8, avec une marque d’ordre des octets (BOM) facultative. Le fichier d’origine demeure inchangé. Vérifiez l’aperçu avant le téléchargement.',download:'Télécharger une copie UTF-8',guidance:'Conseils et limites',guidanceText:'Utilisez UTF-8 pour les données texte interopérables comme CSV, JSON, XML et HTML. Une page Web et ses fichiers liés peuvent utiliser des encodages différents. Les formats binaires PDF, DOC et DOCX ne peuvent pas être convertis en UTF-8 par simple modification des octets : un logiciel adapté au format est nécessaire. Cet outil ne conserve pas leur mise en forme.',guideLink:'Normes relatives au numérique du gouvernement du Canada',ok:'Source chargée. Vérifiez l’encodage suggéré et l’aperçu décodé.',badFile:'Ce document Word ou PDF est binaire. Un réencodage direct le corromprait. Exportez le texte ou un CSV à partir d’un logiciel adapté, puis chargez le fichier.',fetchError:'Impossible de récupérer cette URL. Vérifiez l’adresse, la connexion réseau et les autorisations CORS.',invalid:'Saisissez une URL http:// ou https:// valide.',decodeError:'Impossible de décoder cette source avec l’encodage choisi.',nontext:'Cette ressource semble être binaire; la conversion directe est risquée.',ready:'Téléchargement UTF-8 préparé.',none:'Aucune',valid:'Valide',invalidUtf:'Séquences d’octets invalides',ascii:'Compatible ASCII (également UTF-8 valide)',utf8:'UTF-8 (séquences d’octets valides)',fallback:'Incertain : choisissez l’encodage source et examinez l’aperçu',hint:'L’aperçu repose sur l’encodage choisi. Un mauvais encodage peut modifier des caractères sans avertissement.',tooLarge:'Le fichier dépasse la limite de 30 Mio de traitement dans le navigateur.',errorHead:'Corrigez les problèmes suivants',language:'English',useProxy:'Ajouter un mandataire CORS',proxyLabel:'URL du mandataire CORS',proxyHelp:'L’URL du document est ajoutée à ce préfixe sous forme encodée. Utilisez {url} pour choisir son emplacement, ou {rawUrl} si le mandataire exige une URL non encodée.',invalidProxy:'Saisissez une URL http:// ou https:// valide pour le mandataire CORS.',bomHex:'BOM (hexadécimal)',includeBom:'Inclure une marque d’ordre des octets UTF-8 (BOM)',exportEncoding:'Encodage du fichier exporté',sig:'UTF-8-SIG (UTF-8 avec BOM)',downloadSig:'Télécharger une copie UTF-8-SIG',warningHead:'Réencodage indisponible',conversionWarning:'L’encodage peut être lu, mais le réencodage de ce type de document n’est pas pris en charge actuellement.',unknownEncoding:'Non détecté; un logiciel adapté au format est nécessaire',containerValidation:'Sans objet pour le conteneur du document',noPreview:'L’extraction du texte de ce type de document n’est pas prise en charge.',embedded:'texte intégré; les autres textes du document peuvent utiliser des encodages différents',metadataEncoding:'métadonnées XML seulement',unsupportedEncoding:'Cet encodage de caractères n’est pas pris en charge pour le réencodage.',readySig:'Téléchargement UTF-8-SIG préparé (avec BOM).'}};
+// Encoding utilities stay independent of the interface so byte handling can be tested.
+function bom(bytes) {
+  const signatures = [
+    ['UTF-32LE', [0xFF, 0xFE, 0x00, 0x00]],
+    ['UTF-32BE', [0x00, 0x00, 0xFE, 0xFF]],
+    ['UTF-8', [0xEF, 0xBB, 0xBF]],
+    ['UTF-16LE', [0xFF, 0xFE]],
+    ['UTF-16BE', [0xFE, 0xFF]]
+  ];
+  for (const [encoding, signature] of signatures) {
+    if (signature.every((value, i) => bytes[i] === value)) {
+      return { encoding, hex: signature.map(value => value.toString(16).padStart(2, '0').toUpperCase()).join(' ') };
+    }
+  }
+  return null;
+}
+function validUtf8(bytes) {
+  try { new TextDecoder('utf-8', { fatal: true }).decode(bytes); return true; }
+  catch { return false; }
+}
+function choose(bytes) {
+  const mark = bom(bytes);
+  if (mark) return mark.encoding.toLowerCase();
+  // UTF-16 without a BOM may also be valid UTF-8 containing NULs.
+  const sample = bytes.subarray(0, 4096);
+  let even = 0, odd = 0;
+  sample.forEach((value, i) => { if (!value) i % 2 ? odd++ : even++; });
+  if (sample.length > 8 && odd > sample.length / 5 && even < odd / 3) return 'utf-16le';
+  if (sample.length > 8 && even > sample.length / 5 && odd < even / 3) return 'utf-16be';
+  if (validUtf8(bytes)) return bytes.every(value => value < 128) ? 'us-ascii' : 'utf-8';
+  return 'windows-1252';
+}
+function binary(bytes, name, mime) {
+  const extension = name.split(/[?#]/)[0].toLowerCase();
+  const prefix = Array.from(bytes.subarray(0, 8));
+  const head = new TextDecoder('windows-1252').decode(bytes.subarray(0, 8));
+  if (/\.(pdf|doc[xm]?|xls[xmb]?|ppt[xm]?|od[tsp]|zip|gz|rtf|png|jpe?g|gif|exe)$/i.test(extension) ||
+      (/^(image|audio|video)\//i.test(mime) && !/^image\/svg\+xml(?:;|$)/i.test(mime)) ||
+      /application\/(pdf|zip|gzip|msword|rtf|vnd\.(openxmlformats|ms-|oasis))/i.test(mime) ||
+      head.startsWith('%PDF') || head.startsWith('{\\rtf') ||
+      prefix.slice(0, 4).join(',') === '80,75,3,4' ||
+      prefix.join(',') === '208,207,17,224,161,177,26,225' ||
+      prefix.slice(0, 4).join(',') === '137,80,78,71' ||
+      prefix.slice(0, 2).join(',') === '31,139') return true;
+  if (/^utf-(16|32)/.test(choose(bytes))) return false;
+  const sample = bytes.subarray(0, 4096);
+  const controls = sample.filter(value => value < 32 && ![9, 10, 12, 13].includes(value)).length;
+  return controls > Math.max(1, sample.length / 20);
+}
+function inspectBinary(bytes, name, mime) {
+  const mark = bom(bytes);
+  if (mark) return { encoding: mark.encoding, scope: '' };
+  // A container has no single text encoding. Report explicit evidence only,
+  // rather than applying the plain-text Windows-1252 fallback to binary data.
+  const sample = new TextDecoder('windows-1252').decode(bytes.subarray(0, 1024 * 1024));
+  if (sample.startsWith('{\\rtf')) {
+    const codepage = sample.match(/\\ansicpg(\d+)\b/)?.[1];
+    if (codepage) return { encoding: codepage === '65001' ? 'UTF-8' : /^125[0-8]$/.test(codepage) ? 'Windows-' + codepage : 'Code page ' + codepage, scope: 'embedded' };
+  }
+  if (sample.startsWith('%PDF')) {
+    if (/<\s*FEFF(?:\s*[0-9A-F]){4,}\s*>/i.test(sample) || /\(\u00fe\u00ff/.test(sample)) {
+      return { encoding: 'UTF-16BE', scope: 'embedded' };
+    }
+    const encoding = sample.match(/<\?xml\s[^?]*encoding\s*=\s*["']([A-Za-z0-9._-]+)["'][^?]*\?>/i)?.[1];
+    if (encoding) return { encoding, scope: 'metadataEncoding' };
+  }
+  return null;
+}
+function exportBytes(text, includeBom) {
+  const encoded = new TextEncoder().encode(text);
+  if (!includeBom) return encoded;
+  const output = new Uint8Array(encoded.length + 3);
+  output.set([0xEF, 0xBB, 0xBF]);
+  output.set(encoded, 3);
+  return output;
+}
+function proxyRequestUrl(source, proxy) {
+  const documentUrl = new URL(source);
+  if (!['http:', 'https:'].includes(documentUrl.protocol)) throw Error('source');
+  if (proxy === null) return documentUrl.href;
+  if (!proxy.trim()) throw Error('proxy');
+  const value = proxy.includes('{url}') || proxy.includes('{rawUrl}')
+    ? proxy.replaceAll('{url}', encodeURIComponent(documentUrl.href)).replaceAll('{rawUrl}', documentUrl.href)
+    : proxy + encodeURIComponent(documentUrl.href);
+  const request = new URL(value);
+  if (!['http:', 'https:'].includes(request.protocol)) throw Error('proxy');
+  return request.href;
+}
+
+// Page state and interactions.
+const $ = id => document.getElementById(id);
+let lang = new URLSearchParams(location.search).get('lang') === 'fr' ? 'fr' : 'en';
+let data = null, decoded = '', fileName = '', mediaType = '', guess = '';
+let canConvert = false, isContainer = false, evidence = null, requestId = 0;
+const t = key => dictionary[lang][key];
+const limit = 30 * 1024 * 1024;
+function renderLang() {
+  const fr = lang === 'fr', root = '/OG-Knowledge-Base/';
+  const home = root + (fr ? 'fr/' : 'en/'), tools = root + (fr ? 'fr/outils/' : 'en/tools/');
+  document.documentElement.lang = lang;
+  document.title = 'WhatTF8 | ' + (fr ? 'Base de connaissances du gouvernement ouvert' : 'Open Government Knowledge Base');
+  document.querySelectorAll('[data-i]').forEach(element => element.textContent = t(element.dataset.i));
+  $('brand').href = home;
+  $('brandName').textContent = fr ? 'Base de connaissances du gouvernement ouvert' : 'Open Government Knowledge Base';
+  for (const [id, href, label] of [
+    ['home', home, fr ? 'Accueil' : 'Home'],
+    ['reference', root + (fr ? 'fr/references/' : 'en/reference/'), fr ? 'Références' : 'Reference'],
+    ['tools', tools, fr ? 'Outils' : 'Tools'],
+    ['portal', fr ? 'https://ouvert.canada.ca/fr' : 'https://open.canada.ca/en', fr ? 'Ouvert.Canada.ca' : 'Open.Canada.ca'],
+    ['crumbHome', home, fr ? 'Accueil' : 'Home'], ['crumbTools', tools, fr ? 'Outils' : 'Tools']
+  ]) { $(id).href = href; $(id).textContent = label; }
+  $('topnav').setAttribute('label', fr ? 'Navigation principale' : 'Main navigation');
+  $('crumbs').setAttribute('aria-label', fr ? 'Fil d’Ariane' : 'Breadcrumb');
+  $('header').setAttribute('lang-href', '?lang=' + (fr ? 'en' : 'fr'));
+  $('drop').setAttribute('aria-label', t('upload'));
+  $('errorSummary').setAttribute('heading', t('errorHead'));
+  $('conversionWarning').setAttribute('heading', t('warningHead'));
+  $('footer').setAttribute('sub-links', JSON.stringify(fr
+    ? {'Dépôt GitHub':'https://github.com/PatLittle/OG-Knowledge-Base', 'Accueil':home}
+    : {'GitHub repository':'https://github.com/PatLittle/OG-Knowledge-Base', 'Home':home}));
+  updateExport();
+  if (data) analyze();
+}
+function error(message, anchor = 'drop') {
+  $('errors').hidden = false;
+  $('errorSummary').setAttribute('error-links', JSON.stringify({ ['#' + anchor]: message }));
+  $('status').hidden = true;
+  $('errors').focus();
+}
+function clearError() {
+  $('errors').hidden = true;
+  $('errorSummary').setAttribute('error-links', '{}');
+}
+function status(message) {
+  clearError();
+  $('statusText').textContent = message;
+  $('status').hidden = false;
+}
+function resetSource() {
+  data = null; decoded = ''; canConvert = false; isContainer = false; evidence = null;
+  $('results').hidden = true;
+  $('conversionWarning').hidden = true;
+  $('status').hidden = true;
+  $('download').disabled = true;
+  clearError();
+}
+function updateExport() {
+  $('exportEncoding').textContent = $('includeBom').checked ? t('sig') : 'UTF-8';
+  $('download').textContent = t($('includeBom').checked ? 'downloadSig' : 'download');
+}
+function analyze() {
+  if (!data) return;
+  const bytes = new Uint8Array(data), mark = bom(bytes);
+  $('source').textContent = fileName;
+  $('size').textContent = bytes.length.toLocaleString(lang === 'fr' ? 'fr-CA' : 'en-CA') + (lang === 'fr' ? ' octets' : ' bytes');
+  $('mime').textContent = mediaType || '—';
+  $('bom').textContent = mark?.encoding || t('none');
+  $('bomHex').textContent = mark?.hex || t('none');
+  $('encoding').disabled = !canConvert;
+  $('recheck').disabled = !canConvert;
+  $('includeBom').disabled = !canConvert;
+  if (!canConvert) {
+    $('detected').textContent = evidence ? evidence.encoding + (evidence.scope ? ' (' + t(evidence.scope) + ')' : '') : t('unknownEncoding');
+    $('validation').textContent = t('containerValidation');
+    $('replacement').textContent = '—';
+    $('preview').textContent = t('noPreview');
+    $('download').disabled = true;
+    $('formatHint').textContent = t(isContainer ? 'noPreview' : 'unsupportedEncoding');
+    $('conversionWarning').hidden = !evidence;
+    if (evidence) clearError();
+    return;
+  }
+  let suggested = guess;
+  if (guess === 'us-ascii') suggested = t('ascii');
+  else if (guess === 'utf-8') suggested = t('utf8');
+  else if (!mark && !validUtf8(bytes)) suggested = t('fallback') + ' (' + guess + ')';
+  $('detected').textContent = suggested;
+  $('validation').textContent = t(validUtf8(bytes) ? 'valid' : 'invalidUtf');
+  decode();
+}
+function decode() {
+  if (!data || !canConvert) return;
+  try {
+    const bytes = new Uint8Array(data), encoding = $('encoding').value;
+    if (encoding === 'us-ascii' && bytes.some(value => value > 127)) throw Error('Not ASCII');
+    decoded = new TextDecoder(encoding, { fatal:true }).decode(bytes);
+    $('preview').textContent = decoded.slice(0, 8000);
+    $('replacement').textContent = String((decoded.match(/\uFFFD/g) || []).length);
+    $('download').disabled = false;
+    $('formatHint').textContent = t('hint');
+    clearError();
+  } catch {
+    decoded = '';
+    $('preview').textContent = '';
+    $('download').disabled = true;
+    error(t('decodeError'), 'encoding');
+  }
+}
+function load(buffer, name, mime, anchor = 'drop') {
+  resetSource();
+  if (buffer.byteLength > limit) { error(t('tooLarge'), anchor); return; }
+  const bytes = new Uint8Array(buffer);
+  data = buffer; fileName = name; mediaType = mime || 'text/plain';
+  isContainer = Boolean(binary(bytes, name, mime || ''));
+  guess = choose(bytes);
+  canConvert = !isContainer && !guess.startsWith('utf-32');
+  evidence = canConvert ? null : inspectBinary(bytes, name, mime || '');
+  $('encoding').value = canConvert ? guess : evidence?.encoding.toLowerCase() || '';
+  $('results').hidden = false;
+  analyze();
+  if (!canConvert) {
+    if (!evidence) error(t(/\.(pdf|docx?)$/i.test(name) ? 'badFile' : 'nontext'), anchor);
+  } else if (!$('download').disabled) status(t('ok'));
+}
+async function file(source) {
+  if (!source) return;
+  const current = ++requestId;
+  resetSource();
+  try {
+    if (source.size > limit) { error(t('tooLarge')); return; }
+    const buffer = await source.arrayBuffer();
+    if (current === requestId) load(buffer, source.name, source.type);
+  } catch { if (current === requestId) error(t('decodeError')); }
+}
+$('file').addEventListener('change', event => file(event.target.files[0]));
+$('browseBtn').onclick = event => { event.stopPropagation(); $('file').click(); };
+$('drop').onclick = event => { if (event.target.id !== 'browseBtn') $('file').click(); };
+$('drop').onkeydown = event => {
+  if (event.target === $('drop') && ['Enter', ' '].includes(event.key)) { event.preventDefault(); $('file').click(); }
+};
+for (const event of ['dragenter', 'dragover']) $('drop').addEventListener(event, action => { action.preventDefault(); $('drop').classList.add('drag'); });
+for (const event of ['dragleave', 'drop']) $('drop').addEventListener(event, action => { action.preventDefault(); $('drop').classList.remove('drag'); });
+$('drop').addEventListener('drop', event => file(event.dataTransfer.files[0]));
+$('useProxy').onchange = () => {
+  $('proxyOptions').hidden = !$('useProxy').checked;
+  if ($('useProxy').checked) $('proxyUrl').focus();
+};
+$('fetch').onclick = async () => {
+  const current = ++requestId;
+  resetSource();
+  let source, destination;
+  try { source = new URL($('url').value); proxyRequestUrl(source.href, null); }
+  catch { error(t('invalid'), 'url'); return; }
+  try { destination = proxyRequestUrl(source.href, $('useProxy').checked ? $('proxyUrl').value.trim() : null); }
+  catch { error(t('invalidProxy'), 'proxyUrl'); return; }
+  const button = $('fetch'); button.disabled = true;
+  try {
+    const response = await fetch(destination, { mode:'cors', credentials:'omit' });
+    if (current !== requestId) return;
+    if (!response.ok) throw Error('HTTP ' + response.status);
+    if (Number(response.headers.get('content-length') || 0) > limit) { error(t('tooLarge'), 'url'); return; }
+    const buffer = await response.arrayBuffer();
+    if (current === requestId) load(buffer, source.pathname.split('/').pop() || source.hostname, response.headers.get('content-type') || '', 'url');
+  } catch (failure) { if (current === requestId) error(t('fetchError') + ' ' + String(failure.message || ''), 'url'); }
+  finally { button.disabled = false; }
+};
+$('encoding').onchange = decode;
+$('recheck').onclick = decode;
+$('includeBom').onchange = updateExport;
+$('clear').onclick = () => {
+  requestId++; resetSource(); $('file').value = ''; $('url').value = '';
+};
+$('download').onclick = () => {
+  if (!data || !canConvert || $('download').disabled) return;
+  const includeBom = $('includeBom').checked;
+  const blob = new Blob([exportBytes(decoded, includeBom)], { type:'text/plain;charset=utf-8' });
+  const link = document.createElement('a'), url = URL.createObjectURL(blob);
+  link.href = url;
+  link.download = (fileName.replace(/\.[^.]+$/, '') || 'document') + (includeBom ? '.utf8-sig' : '.utf8') +
+    ((fileName.match(/\.(csv|tsv|json|xml|html|htm|txt|md|log|srt|vtt|css|js|yaml|yml)$/i) || [])[0] || '.txt');
+  document.body.append(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  status(t(includeBom ? 'readySig' : 'ready'));
+};
+$('header').addEventListener('click', event => {
+  const link = event.composedPath().find(node => node?.getAttribute?.('href') === '?lang=' + (lang === 'fr' ? 'en' : 'fr'));
+  if (link) { event.preventDefault(); lang = lang === 'fr' ? 'en' : 'fr'; history.replaceState(null, '', '?lang=' + lang); renderLang(); }
+});
+window.addEventListener('popstate', () => { lang = new URLSearchParams(location.search).get('lang') === 'fr' ? 'fr' : 'en'; renderLang(); });
+renderLang();
+
 })();
 </script></body></html>
