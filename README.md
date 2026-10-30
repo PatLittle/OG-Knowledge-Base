@@ -101,6 +101,14 @@ The collector discovers dataset and organization types, requests complete defini
 
 `prop` is discovered and stored automatically, with a JSON download on the index. Add a bilingual entry to `content/schemas/config.json` to give a discovered type its own documented page, and add source pointers in the page tree. Schema snapshots record content-change timestamps and SHA-256 hashes; the manifest records the last successful API check.
 
+## WhatTF8 encoding inspection
+
+The standalone bilingual source is `content/tools/whattf8.html`. Errors use the GCDS error summary with links to the relevant controls. Binary documents remain unavailable for direct conversion; explicit encoding evidence (a leading BOM, RTF code-page declaration, or supported PDF text/metadata markers) is shown with a warning. An encoding found inside a container is labelled with its scope, rather than presented as a single encoding for the entire document. DOCX and other compressed containers are not unpacked for text inspection.
+
+The inspection table reports the leading BOM and its hexadecimal bytes. Text downloads offer **UTF-8** without a BOM or **UTF-8-SIG** with the `EF BB BF` prefix. This changes the exported copy only. UTF-32 BOMs can be identified, but UTF-32 decoding/conversion is not supported.
+
+URL loading is direct by default. Enabling **Add CORS proxy** reveals a URL field: the source URL is appended to the proxy prefix, URL-encoded. Templates can use `{url}` for that encoded value or `{rawUrl}` for a proxy that expects the original URL. A chosen proxy receives the document URL and contents; it must permit browser CORS requests. No proxy service is configured by default.
+
 ## Source and content notes
 
 The licence collection includes versions 1.0, 1.1 and 2.0. Original filenames containing `v2_0_1` identify themselves as **version 2.0**. English and French version 1.1 sources have different modification dates; each retains its own date. Legal text is reproduced without editorial rewriting, with capture metadata and original screenshots presented separately. The MIT licence applies to site code; reproduced documents retain their original terms.

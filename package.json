@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "npm run build && npm run check",
-    "check": "python3 tests/check_site.py && node tests/check_schemas.mjs && node tests/check_atlas_scripts.mjs && node --test tests/content.test.mjs",
+    "check": "python3 tests/check_site.py && node tests/check_schemas.mjs && node tests/check_atlas_scripts.mjs && node --test tests/*.test.mjs",
     "preview": "npm run build && node scripts/preview.mjs",
     "refresh:schemas": "python3 scripts/fetch_schemas.py"
   },
