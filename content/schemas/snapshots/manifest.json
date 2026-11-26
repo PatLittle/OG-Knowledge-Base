@@ -1,6 +1,6 @@
 {
   "api_base": "https://open.canada.ca/data/api/action/",
-  "checked_at": "2026-11-25T17:56:13Z",
+  "checked_at": "2026-11-26T17:40:51Z",
   "schemas": [
     {
       "kind": "dataset",
